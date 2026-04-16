@@ -308,7 +308,7 @@ tr:nth-child(even) td{background:#FAFAFA}
 .ic-edit{position:absolute;top:6px;right:34px;width:22px;height:22px;background:#4B5563;color:#fff;border:none;border-radius:50%;font-size:12px;line-height:22px;text-align:center;cursor:pointer;z-index:20;padding:0;font-weight:900}
 @media(max-width:1440px){#normalLayout{grid-template-columns:220px fit-content(916px)}.cc-sec{grid-column:1 / -1;position:static;width:916px;max-width:916px;justify-self:end}}
 @media(max-width:1180px){#normalLayout{grid-template-columns:1fr}.main-col,.cc-sec{width:100%;max-width:none;min-width:0}.cc-sec{position:static}}
-.memo-note{ margin:40px 0 24px; color:#111; font-size:12px; line-height:1.7; white-space:pre-wrap; word-break:keep-all; display:none; } .memo-note.on{ display:block; }
+.memo-note{ margin:40px 0 24px; color:#111; font-size:12px; line-height:1.7; white-space:pre-wrap; word-break:keep-all; width:100%; border:none; background:transparent; resize:vertical; min-height:84px; padding:0; outline:none; font-family:inherit; } .memo-note[readonly]{ cursor:default; } .memo-note.editing{ background:rgba(0,0,0,.02); }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -374,7 +374,7 @@ tr:nth-child(even) td{background:#FAFAFA}
   </div>
   <!-- DATA VIEW -->
   <div class="data-view" id="dataView"></div>
-  <div class="memo-note" id="memoNote"> 한 세트는 랜덤으로 섞지 말고 하나의 구매 미션으로 묶어야 합니다. “이사 세트”, “초기육아 세트”, “패션 리프레시 세트”처럼 한 번에 이해되는 장보기 맥락이 있어야 클릭 이후 전환으로 이어질 가능성이 높습니다. Google은 비교·검토가 필요한 고관여 묶음, Moloco는 첫 1~2초에 가격 충격이 읽히는 묶음이 상대적으로 유리합니다. </div>
+  <textarea class="memo-note" id="memoNote" readonly>한 세트는 랜덤으로 섞지 말고 하나의 구매 미션으로 묶어야 합니다. “이사 세트”, “초기육아 세트”, “패션 리프레시 세트”처럼 한 번에 이해되는 장보기 맥락이 있어야 클릭 이후 전환으로 이어질 가능성이 높습니다. Google은 비교·검토가 필요한 고관여 묶음, Moloco는 첫 1~2초에 가격 충격이 읽히는 묶음이 상대적으로 유리합니다.</textarea>
 </div>
 <script>
 const PERSONAS = [
@@ -819,6 +819,7 @@ function renderPersonaInsight(pid){ const el=document.getElementById('pInsight')
 function renderVersionBanner(vid){ const el=document.getElementById('vBanner'); if(el){ el.className='v-banner'; el.innerHTML=''; } }
 const CATEGORY_OPTIONS = ['디지털기기','생활가전','가구/인테리어','생활/주방','유아동','유아도서','여성의류','여성잡화','남성패션/잡화','뷰티/미용','스포츠/레저','취미/게임/음반','도서','티켓/교환권','가공식품','반려동물용품','식물'];
 const STORAGE_KEY = 'daangn-pt-v4';
+const MEMO_STORAGE_KEY = 'daangn-pt-v4-memo';
 const LOCAL_BACKUP_KEY = STORAGE_KEY + '-backup';
 const SUPABASE_URL = 'https://newoydegfbnnqujgiips.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ld295ZGVnZmJubnF1amdpaXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyMzgzOTIsImV4cCI6MjA5MTgxNDM5Mn0.NFTJeC1fHuYwodu1uoAVY7qr4P_KV1NbvXUyYNE3I8g';
@@ -1461,11 +1462,16 @@ async function loadFromStorage(){
     }
     ensureDataShape();
   }catch(e){ console.error('load failed',e); }
+  const savedMemo = localStorage.getItem(MEMO_STORAGE_KEY);
+  const memoEl = document.getElementById('memoNote');
+  if(savedMemo !== null && memoEl) memoEl.value = savedMemo;
 }
 async function saveAll(){
   ensureDataShape();
   const payload = getSerializableState();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    const memoEl = document.getElementById('memoNote');
+  if(memoEl) localStorage.setItem(MEMO_STORAGE_KEY, memoEl.value);
   saveLocalBackup(payload);
   const remoteResult = await pushRemoteState(payload);
   isDirty=false;
@@ -1510,6 +1516,11 @@ function setEditMode(next){
     if(!curVersion && VERSIONS[0]) curVersion = VERSIONS[0].id;
   }
   document.body.classList.toggle('edit-on', editMode);
+    const memoEl = document.getElementById('memoNote');
+  if(memoEl){
+    memoEl.readOnly = !editMode;
+    memoEl.classList.toggle('editing', editMode);
+  }
   document.getElementById('memoNote')?.classList.toggle('on', editMode);
   renderPersonaRow();
   renderVersionRow();
@@ -2154,6 +2165,11 @@ async function init(){
   if(persistenceMode==='supabase') showSaveStatus('Supabase 저장본을 불러왔어요.');
   else if(persistenceMode==='local-newer') showSaveStatus('브라우저 최신 저장본을 불러왔어요.');
 }
+document.addEventListener('input', (e)=>{
+  if(e.target && e.target.id === 'memoNote'){
+    markDirty();
+  }
+});
 init();
 </script>
 <!-- FAB MAIN -->
