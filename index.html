@@ -86,7 +86,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .ic-search{display:none!important}
 .ic-cat{display:none!important}
 .ic-pr{display:none!important}
-.ic-meta{display: grid;grid-template-columns: repeat(3, minmax(72px, 1fr));gap: 8px; margin-bottom:10px}
+.ic-meta{display: grid;grid-template-columns: repeat(2, minmax(72px, 1fr));gap: 8px; margin-bottom:10px}
 .ic-meta-box{background:#fafafa;border:1px solid #efefef;border-radius:8px;padding:6px}
 .ic-meta-k{white-space: nowrap;font-size:10px;color:var(--s);line-height:1;margin-bottom:3px}
 .ic-meta-v{white-space: nowrap;font-size:14px;line-height:1.15;color:var(--t);font-weight:500}
@@ -198,8 +198,6 @@ tr:nth-child(even) td{background:#FAFAFA}
 .mo-inp-wrap .mo-inp:focus{border:none}
 .mo-suf{padding:0 12px;color:var(--s);font-size:12px;font-weight:700;white-space:nowrap;background:#fafafa;border-left:1px solid var(--b);align-self:stretch;display:flex;align-items:center}
 .mo-select{appearance:none}
-
-
 #preViews{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px;align-items:start;margin-bottom:18px}
 .tc-sec{background:var(--w);border-radius:18px;padding:14px;box-shadow:var(--sh);position:sticky;top:92px}
 .tc-row{display:flex;flex-direction:column;gap:10px;overflow:visible;padding-bottom:0;scrollbar-width:auto}
@@ -218,15 +216,12 @@ tr:nth-child(even) td{background:#FAFAFA}
 .hd-btn.hd-edit,#fab,#saveBar{display:none !important}
 @media(max-width:960px){#preViews{grid-template-columns:1fr}.tc-sec{position:static}#normalView{margin-left:0}.items-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.items-grid{grid-template-columns:1fr}.hd-btn{font-size:16px;padding:11px 14px}}
-
-
 /* --- 2026-04 simplified layout pass --- */
 .hd{justify-content:center;background:var(--o);padding:18px 20px}
 .hd-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;width:100%;max-width:860px}
 .hd-btn{display:flex;align-items:center;justify-content:center;gap:10px;min-width:190px;padding:15px 28px;border:none;border-radius:20px;font-size:23px;font-weight:900;background:rgba(255,255,255,.18);color:#fff}
 .hd-btn.on{background:#fff;color:var(--o);transform:scale(1.09);box-shadow:0 10px 22px rgba(0,0,0,.12)}
 .hd-ic{font-size:22px;line-height:1}
-
 #normalLayout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;align-items:start;margin-bottom:28px}
 .main-col{min-width:0}
 #preViews.main-selectors{display:block;margin-bottom:18px}
@@ -244,7 +239,6 @@ tr:nth-child(even) td{background:#FAFAFA}
 .tc-nm{line-height:1.35;white-space:normal;font-size:13px}
 .tc-sub{font-size:11px}
 #normalView{margin-left:0}
-
 .items-grid{gap:12px}
 .ic{min-width: 220px;border:1px solid var(--b);box-shadow:0 2px 10px rgba(0,0,0,.05)}
 .ic:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
@@ -261,7 +255,6 @@ tr:nth-child(even) td{background:#FAFAFA}
 .ic-disc{margin-left:auto;background:none;border:none;padding:0;color:#5B5B5B;font-size:12px;font-weight:800;white-space:nowrap}
 .ic-btn{margin-top:4px;background:#5A5A5A}
 .ic-btn:hover{background:#444}
-
 @media(max-width:960px){
   #normalLayout{grid-template-columns:1fr}
   .tc-sec{position:static}
@@ -274,9 +267,6 @@ tr:nth-child(even) td{background:#FAFAFA}
   .main-block{padding:16px 14px 12px}
   .main-block .p-row{grid-template-columns:1fr}
 }
-
-
-
 /* --- 2026-04 edit fix / size tuning --- */
 .hd-btns{max-width:760px}
 .hd-btn{min-width:168px;padding:12px 22px;font-size:20px;border-radius:18px}
@@ -287,9 +277,6 @@ tr:nth-child(even) td{background:#FAFAFA}
 .save-status.on{display:block}
 @media(max-width:960px){.hd-btn{font-size:17px;padding:12px 16px;min-width:0}}
 @media(max-width:640px){.hd-btn{font-size:15px;padding:11px 14px}.fab{padding:14px 22px;font-size:14px}}
-
-
-
 /* --- 2026-04 custom combos + inline edit --- */
 #normalLayout{grid-template-columns:220px minmax(0,1fr) 220px}
 .cc-sec{background:var(--w);border-radius:18px;padding:14px;box-shadow:var(--sh);position:sticky;top:100px;align-self:start}
@@ -315,7 +302,6 @@ tr:nth-child(even) td{background:#FAFAFA}
 .ic-edit{position:absolute;top:6px;right:34px;width:22px;height:22px;background:#4B5563;color:#fff;border:none;border-radius:50%;font-size:12px;line-height:22px;text-align:center;cursor:pointer;z-index:20;padding:0;font-weight:900}
 @media(max-width:1200px){#normalLayout{grid-template-columns:220px minmax(0,1fr)}.cc-sec{grid-column:1 / -1;position:static}}
 @media(max-width:960px){#normalLayout{grid-template-columns:1fr}.cc-sec{position:static}}
-
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -327,7 +313,6 @@ tr:nth-child(even) td{background:#FAFAFA}
     <button class="hd-btn" id="btn-data" onclick="setView('data')"><span class="hd-ic">📊</span><span>데이터 보기</span></button>
   </div>
 </header>
-
 <div class="wrap">
   <!-- DATA BAR -->
   <div class="databar">
@@ -337,19 +322,6 @@ tr:nth-child(even) td{background:#FAFAFA}
         <div class="db-item"><div class="db-val" id="db-persona-count">5개</div><div class="db-lbl">페르소나</div></div>
         <div class="db-item"><div class="db-val" id="db-version-count">4개</div><div class="db-lbl">광고 버전</div></div>
         <div class="db-item"><div class="db-val" id="db-item-count">160개</div><div class="db-lbl">분석 매물</div></div>
-      </div>
-    </div>
-    <div class="db-div"></div>
-    <div class="db-group">
-      <div class="db-grp-lbl">카테고리별 거래완료율 — 판매 완료 비율 (최근 90일 · BigQuery 실데이터)</div>
-      <div class="db-grp-items">
-        <div class="db-item"><div class="db-val">46%</div><div class="db-lbl">디지털기기</div></div>
-        <div class="db-item"><div class="db-val">50.2%</div><div class="db-lbl">생활가전</div></div>
-        <div class="db-item"><div class="db-val">47%</div><div class="db-lbl">유아동</div></div>
-        <div class="db-item"><div class="db-val">41%</div><div class="db-lbl">스포츠/레저</div></div>
-        <div class="db-item"><div class="db-val">48%</div><div class="db-lbl">가구/인테리어</div></div>
-        <div class="db-item"><div class="db-val">69%</div><div class="db-lbl">e쿠폰 최고</div></div>
-        <div class="db-item"><div class="db-val">54%</div><div class="db-lbl">유아도서</div></div>
       </div>
     </div>
     <div class="db-div"></div>
@@ -366,24 +338,19 @@ tr:nth-child(even) td{background:#FAFAFA}
       </div>
     </div>
   </div>
-
   <!-- TOP 8 COMBOS -->
   <div id="preViews">
   <div class="tc-sec">
     <div class="sec-lbl">🏅 추천 조합 TOP 8</div>
     <div class="tc-row" id="topCombos"></div>
   </div>
-
   <!-- PERSONAS -->
   <div class="sec-lbl">페르소나 선택</div>
   <div class="p-row" id="personaRow"></div>
-
   <!-- VERSION TABS -->
   <div class="sec-lbl">버전 선택</div>
   <div class="v-row" id="versionRow"></div>
-
   </div><!-- end of preViews -->
-
   <!-- NORMAL VIEW -->
   <div id="normalView">
     <div class="empty" id="emptyState">
@@ -393,17 +360,14 @@ tr:nth-child(even) td{background:#FAFAFA}
     </div>
     <div class="items-grid" id="itemsGrid" style="display:none"></div>
   </div>
-
   <!-- MATRIX VIEW -->
   <div class="matrix-wrap" id="matrixView">
     <div class="sec-lbl" style="margin-bottom:12px">페르소나 × 버전 TOP4 매트릭스</div>
     <div id="matrixTable"></div>
   </div>
-
   <!-- DATA VIEW -->
   <div class="data-view" id="dataView"></div>
 </div>
-
 <script>
 const PERSONAS = [
   {
@@ -435,7 +399,7 @@ const PERSONAS = [
     profile:'28-40세 엄마 / 유아 1-5세 자녀',
     trigger:'유아용품 브랜드 인식 + "우리 아이에게" 감성 카피에 반응',
     topQuery:'유모차 582K · 레고 841K · 자전거(아이) · 유아도서',
-    adResp:'완료율 81%+ 유아동 브랜드(타이니러브·베이비뵨·코니스) 신뢰',
+    adResp:'유아동 브랜드(타이니러브·베이비뵨·코니스) 신뢰',
     category:'유아동(46%) · 유아도서(54%) · 생활가전',
     spend:'건당 평균 5-25만원',
   },
@@ -462,25 +426,24 @@ const PERSONAS = [
     spend:'건당 평균 5-60만원',
   },
 ];
-
 const VERSIONS = [
   {
     id:'v1', label:'🏆 버전1 · 고가템', comboShort:'v1 고가템/프리미엄',
     title:'신품 엄두 못 냈던 그 물건, 이 가격에?',
     desc:'100만원 이상 프리미엄 매물 집중 공략. 신품 대비 40-60% 절약 임팩트로 클릭 유도.',
-    stats:[{v:'47-54%',l:'평균 완료율'},{v:'60%↓',l:'평균 할인율'},{v:'고가',l:'가격대'}],
+    stats:[{v:'47-54%',l:'평균 검색지표'},{v:'60%↓',l:'평균 할인율'},{v:'고가',l:'가격대'}],
   },
   {
     id:'v2', label:'🎯 버전2 · 저가템', comboShort:'v2 저가템/입문',
     title:'이 가격이면 나도 한 번 찍먹해 볼 만한데?',
     desc:'진입장벽 완전 파괴. 1-5만원대 소액 아이템으로 첫 구매 장벽 제거.',
-    stats:[{v:'35-42%',l:'평균 완료율'},{v:'65%↓',l:'평균 할인율'},{v:'소액',l:'가격대'}],
+    stats:[{v:'35-42%',l:'평균 검색지표'},{v:'65%↓',l:'평균 할인율'},{v:'소액',l:'가격대'}],
   },
   {
     id:'v3', label:'🔥 버전3 · 상시인기 국민템', comboShort:'v3 국민템/대중성',
     title:'어차피 살 건데, 여기서 반값에 사면 개이득!',
     desc:'월 클릭 100만+ 검색어 기반. 높은 수요·빠른 회전율로 승부하는 국민 아이템.',
-    stats:[{v:'45-50%',l:'평균 완료율'},{v:'50%↓',l:'평균 할인율'},{v:'중간',l:'가격대'}],
+    stats:[{v:'45-50%',l:'평균 검색지표'},{v:'50%↓',l:'평균 할인율'},{v:'중간',l:'가격대'}],
   },
   {
     id:'v4', label:'🌸 버전4 · 시즌인기 5월템', comboShort:'v4 시즌템/5월',
@@ -489,96 +452,94 @@ const VERSIONS = [
     stats:[{v:'3.0M',l:'자전거 월클릭'},{v:'1.0M',l:'에어컨 월클릭'},{v:'5월',l:'시즌 피크'}],
   },
 ];
-
 const CUSTOM_COMBOS = [];
-
 const ITEMS = {
   p1:{
     v1:[
-      {cat:'디지털기기',nm:'맥북',p:'80만원',op:'250만원',disc:'68%',meta:'검색 582K/월 · 완료율 45%',hook:'중고 맥북 중위가 80만원대, 신품의 1/3'},
-      {cat:'디지털기기',nm:'아이패드',p:'40만원',op:'130만원',disc:'69%',meta:'검색 1.30M/월 · 완료율 45%',hook:'월 130만 클릭, 신품 대비 69% 절약'},
-      {cat:'디지털기기',nm:'아이폰16프로',p:'90만원',op:'170만원',disc:'47%',meta:'검색 327K/월 · 완료율 41%',hook:'최신 프로도 당근에서 47% 절약'},
-      {cat:'디지털기기',nm:'게이밍노트북',p:'40만원',op:'150만원',disc:'73%',meta:'검색 554K/월 · 완료율 46%',hook:'고사양 게이밍 노트북, 신품의 27%에'},
-      {cat:'생활가전',nm:'안마의자',p:'30만원',op:'200만원',disc:'85%',meta:'검색 328K/월 · 완료율 49%',hook:'200만원대가 30만원, 85% 할인'},
-      {cat:'디지털기기',nm:'폴드7',p:'70만원',op:'190만원',disc:'63%',meta:'검색 376K/월 · 완료율 46%',hook:'최신 폴더블폰, 신품 대비 63% 절약'},
-      {cat:'디지털기기',nm:'애플워치',p:'13만원',op:'60만원',disc:'78%',meta:'검색 810K/월 · 완료율 45%',hook:'월 81만 클릭, 웨어러블 인기 1위'},
-      {cat:'생활가전',nm:'건조기',p:'10만원',op:'80만원',disc:'88%',meta:'검색 430K/월 · 완료율 53%',hook:'80만원짜리 10만원, 완료율 53%'},
+      {cat:'디지털기기',nm:'맥북',p:'80만원',op:'250만원',disc:'68%',meta:'검색 582K/월',hook:'중고 맥북 중위가 80만원대, 신품의 1/3'},
+      {cat:'디지털기기',nm:'아이패드',p:'40만원',op:'130만원',disc:'69%',meta:'검색 1.30M/월',hook:'월 130만 클릭, 신품 대비 69% 절약'},
+      {cat:'디지털기기',nm:'아이폰16프로',p:'90만원',op:'170만원',disc:'47%',meta:'검색 327K/월',hook:'최신 프로도 당근에서 47% 절약'},
+      {cat:'디지털기기',nm:'게이밍노트북',p:'40만원',op:'150만원',disc:'73%',meta:'검색 554K/월',hook:'고사양 게이밍 노트북, 신품의 27%에'},
+      {cat:'생활가전',nm:'안마의자',p:'30만원',op:'200만원',disc:'85%',meta:'검색 328K/월',hook:'200만원대가 30만원, 85% 할인'},
+      {cat:'디지털기기',nm:'폴드7',p:'70만원',op:'190만원',disc:'63%',meta:'검색 376K/월',hook:'최신 폴더블폰, 신품 대비 63% 절약'},
+      {cat:'디지털기기',nm:'애플워치',p:'13만원',op:'60만원',disc:'78%',meta:'검색 810K/월',hook:'월 81만 클릭, 웨어러블 인기 1위'},
+      {cat:'생활가전',nm:'건조기',p:'10만원',op:'80만원',disc:'88%',meta:'검색 430K/월',hook:'80만원짜리 10만원, '},
     ],
     v2:[
-      {cat:'디지털기기',nm:'노트북',p:'13만원',op:'80만원',disc:'84%',meta:'검색 2.68M/월 · 완료율 46%',hook:'월 268만 클릭 검색 1위, 중위가 13만원'},
-      {cat:'디지털기기',nm:'아이폰',p:'28만원',op:'130만원',disc:'78%',meta:'검색 1.61M/월 · 완료율 41%',hook:'월 161만 클릭, 중위가 28만원대'},
-      {cat:'디지털기기',nm:'모니터',p:'6만원',op:'25만원',disc:'76%',meta:'검색 1.57M/월 · 완료율 54%',hook:'완료율 54%, 올리면 빨리 팔림'},
-      {cat:'디지털기기',nm:'컴퓨터',p:'10만원',op:'60만원',disc:'83%',meta:'검색 2.05M/월 · 완료율 46%',hook:'월 205만 클릭, 역대급 검색량'},
-      {cat:'디지털기기',nm:'에어팟',p:'10만원',op:'30만원',disc:'67%',meta:'검색 755K/월 · 완료율 43%',hook:'에어팟 중위가 10만원, 신품의 1/3'},
-      {cat:'디지털기기',nm:'갤럭시',p:'28만원',op:'100만원',disc:'72%',meta:'검색 942K/월 · 완료율 46%',hook:'월 94만 클릭, 안드로이드 인기 1위'},
-      {cat:'디지털기기',nm:'키보드',p:'5만원',op:'15만원',disc:'67%',meta:'검색 560K/월 · 완료율 46%',hook:'재택근무 필수템, 5만원대 시작'},
-      {cat:'생활가전',nm:'청소기',p:'4만원',op:'20만원',disc:'80%',meta:'검색 566K/월 · 완료율 55%',hook:'완료율 55%, 올리면 바로 팔리는 인기템'},
+      {cat:'디지털기기',nm:'노트북',p:'13만원',op:'80만원',disc:'84%',meta:'검색 2.68M/월',hook:'월 268만 클릭 검색 1위, 중위가 13만원'},
+      {cat:'디지털기기',nm:'아이폰',p:'28만원',op:'130만원',disc:'78%',meta:'검색 1.61M/월',hook:'월 161만 클릭, 중위가 28만원대'},
+      {cat:'디지털기기',nm:'모니터',p:'6만원',op:'25만원',disc:'76%',meta:'검색 1.57M/월',hook:''},
+      {cat:'디지털기기',nm:'컴퓨터',p:'10만원',op:'60만원',disc:'83%',meta:'검색 2.05M/월',hook:'월 205만 클릭, 역대급 검색량'},
+      {cat:'디지털기기',nm:'에어팟',p:'10만원',op:'30만원',disc:'67%',meta:'검색 755K/월',hook:'에어팟 중위가 10만원, 신품의 1/3'},
+      {cat:'디지털기기',nm:'갤럭시',p:'28만원',op:'100만원',disc:'72%',meta:'검색 942K/월',hook:'월 94만 클릭, 안드로이드 인기 1위'},
+      {cat:'디지털기기',nm:'키보드',p:'5만원',op:'15만원',disc:'67%',meta:'검색 560K/월',hook:'재택근무 필수템, 5만원대 시작'},
+      {cat:'생활가전',nm:'청소기',p:'4만원',op:'20만원',disc:'80%',meta:'검색 566K/월',hook:''},
     ],
     v3:[
       {cat:'디지털기기',nm:'모니터',p:'2.5만원',op:'20만원',disc:'88%',meta:'검색 1.57M/월 · P25가격대',hook:'2.5만원 모니터로 듀얼 세팅 입문'},
       {cat:'디지털기기',nm:'에어팟',p:'4만원',op:'25만원',disc:'84%',meta:'검색 755K/월 · P25가격대',hook:'4만원 에어팟, 찍먹 가격'},
-      {cat:'디지털기기',nm:'닌텐도스위치',p:'5만원',op:'40만원',disc:'88%',meta:'검색 499K/월 · 완료율 53%',hook:'5만원 닌텐도, 완료율 53%로 잘 팔림'},
-      {cat:'디지털기기',nm:'버즈',p:'5만원',op:'15만원',disc:'67%',meta:'검색 340K/월 · 완료율 46%',hook:'삼성 유저 이어폰, 5만원 입문'},
-      {cat:'생활가전',nm:'에어프라이어',p:'2만원',op:'10만원',disc:'80%',meta:'검색 466K/월 · 완료율 48%',hook:'2만원 에어프라이어, 자취 입문'},
-      {cat:'생활가전',nm:'밥솥',p:'3만원',op:'15만원',disc:'80%',meta:'검색 392K/월 · 완료율 49%',hook:'3만원 밥솥, 자취 필수 첫 구매'},
-      {cat:'디지털기기',nm:'스피커',p:'3만원',op:'12만원',disc:'75%',meta:'검색 479K/월 · 완료율 46%',hook:'블루투스 스피커 3만원, 첫 경험'},
-      {cat:'생활가전',nm:'전자레인지',p:'4만원',op:'15만원',disc:'73%',meta:'검색 919K/월 · 완료율 49%',hook:'919K 검색 국민가전, 4만원이면 충분'},
+      {cat:'디지털기기',nm:'닌텐도스위치',p:'5만원',op:'40만원',disc:'88%',meta:'검색 499K/월',hook:'5만원 닌텐도, '},
+      {cat:'디지털기기',nm:'버즈',p:'5만원',op:'15만원',disc:'67%',meta:'검색 340K/월',hook:'삼성 유저 이어폰, 5만원 입문'},
+      {cat:'생활가전',nm:'에어프라이어',p:'2만원',op:'10만원',disc:'80%',meta:'검색 466K/월',hook:'2만원 에어프라이어, 자취 입문'},
+      {cat:'생활가전',nm:'밥솥',p:'3만원',op:'15만원',disc:'80%',meta:'검색 392K/월',hook:'3만원 밥솥, 자취 필수 첫 구매'},
+      {cat:'디지털기기',nm:'스피커',p:'3만원',op:'12만원',disc:'75%',meta:'검색 479K/월',hook:'블루투스 스피커 3만원, 첫 경험'},
+      {cat:'생활가전',nm:'전자레인지',p:'4만원',op:'15만원',disc:'73%',meta:'검색 919K/월',hook:'919K 검색 국민가전, 4만원이면 충분'},
     ],
     v4:[
-      {cat:'생활가전',nm:'에어컨',p:'20만원',op:'80만원',disc:'75%',meta:'검색 1.03M/월 · 완료율 46%',hook:'여름 전 필수, 지금 사면 설치 대기 없음'},
-      {cat:'생활가전',nm:'제습기',p:'6.5만원',op:'25만원',disc:'74%',meta:'검색 577K/월 · 완료율 60%',hook:'완료율 60%, 장마 전에 품절 예고'},
-      {cat:'생활가전',nm:'창문형에어컨',p:'15만원',op:'40만원',disc:'63%',meta:'검색 299K/월 · 완료율 46%',hook:'설치비 0원, 원룸 여름나기 필수'},
-      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월 · 완료율 47%',hook:'여름 여행 시즌, 2.7만원이면 충분'},
-      {cat:'생활가전',nm:'공기청정기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 622K/월 · 완료율 49%',hook:'봄 미세먼지 시즌, 8만원대'},
-      {cat:'생활가전',nm:'정수기',p:'8만원',op:'40만원',disc:'80%',meta:'검색 349K/월 · 완료율 49%',hook:'렌탈 대신 당근에서 80% 할인'},
-      {cat:'생활가전',nm:'무선청소기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 307K/월 · 완료율 49%',hook:'무선 업그레이드, 8만원이면 가능'},
-      {cat:'생활가전',nm:'커피머신',p:'8만원',op:'30만원',disc:'73%',meta:'검색 329K/월 · 완료율 49%',hook:'홈카페 8만원, 커피값 아끼기 시작'},
+      {cat:'생활가전',nm:'에어컨',p:'20만원',op:'80만원',disc:'75%',meta:'검색 1.03M/월',hook:'여름 전 필수, 지금 사면 설치 대기 없음'},
+      {cat:'생활가전',nm:'제습기',p:'6.5만원',op:'25만원',disc:'74%',meta:'검색 577K/월',hook:''},
+      {cat:'생활가전',nm:'창문형에어컨',p:'15만원',op:'40만원',disc:'63%',meta:'검색 299K/월',hook:'설치비 0원, 원룸 여름나기 필수'},
+      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월',hook:'여름 여행 시즌, 2.7만원이면 충분'},
+      {cat:'생활가전',nm:'공기청정기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 622K/월',hook:'봄 미세먼지 시즌, 8만원대'},
+      {cat:'생활가전',nm:'정수기',p:'8만원',op:'40만원',disc:'80%',meta:'검색 349K/월',hook:'렌탈 대신 당근에서 80% 할인'},
+      {cat:'생활가전',nm:'무선청소기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 307K/월',hook:'무선 업그레이드, 8만원이면 가능'},
+      {cat:'생활가전',nm:'커피머신',p:'8만원',op:'30만원',disc:'73%',meta:'검색 329K/월',hook:'홈카페 8만원, 커피값 아끼기 시작'},
     ],
     v5:[
-      {cat:'생활가전',nm:'에어컨',p:'20만원',op:'80만원',disc:'75%',meta:'검색 1.03M/월 · 완료율 46%',hook:'5월에 안 사면 6월 설치 3주 대기'},
-      {cat:'생활가전',nm:'제습기',p:'6.5만원',op:'25만원',disc:'74%',meta:'검색 577K/월 · 완료율 60%',hook:'장마 전 선점 — 5월이 마지노선'},
-      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월 · 완료율 50%',hook:'검색 1위, 봄 라이딩 시즌 개막'},
-      {cat:'스포츠/레저',nm:'전기자전거',p:'50만원',op:'150만원',disc:'67%',meta:'검색 1.55M/월 · 완료율 40%',hook:'기름값 0원 출퇴근, 봄에 시작'},
-      {cat:'생활가전',nm:'창문형에어컨',p:'15만원',op:'40만원',disc:'63%',meta:'검색 299K/월 · 완료율 46%',hook:'원룸 필수, 여름 전 선점 타이밍'},
-      {cat:'생활가전',nm:'공기청정기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 622K/월 · 완료율 49%',hook:'봄 황사 시즌, 지금이 가장 싼 타이밍'},
-      {cat:'스포츠/레저',nm:'실내자전거',p:'8만원',op:'30만원',disc:'73%',meta:'검색 614K/월 · 완료율 41%',hook:'614K 검색, 홈트 인기 상승 중'},
-      {cat:'디지털기기',nm:'디카',p:'10만원',op:'50만원',disc:'80%',meta:'검색 336K/월 · 완료율 46%',hook:'봄 사진 시즌, 디카 수요 급등'},
+      {cat:'생활가전',nm:'에어컨',p:'20만원',op:'80만원',disc:'75%',meta:'검색 1.03M/월',hook:'5월에 안 사면 6월 설치 3주 대기'},
+      {cat:'생활가전',nm:'제습기',p:'6.5만원',op:'25만원',disc:'74%',meta:'검색 577K/월',hook:'장마 전 선점 — 5월이 마지노선'},
+      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월',hook:'검색 1위, 봄 라이딩 시즌 개막'},
+      {cat:'스포츠/레저',nm:'전기자전거',p:'50만원',op:'150만원',disc:'67%',meta:'검색 1.55M/월',hook:'기름값 0원 출퇴근, 봄에 시작'},
+      {cat:'생활가전',nm:'창문형에어컨',p:'15만원',op:'40만원',disc:'63%',meta:'검색 299K/월',hook:'원룸 필수, 여름 전 선점 타이밍'},
+      {cat:'생활가전',nm:'공기청정기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 622K/월',hook:'봄 황사 시즌, 지금이 가장 싼 타이밍'},
+      {cat:'스포츠/레저',nm:'실내자전거',p:'8만원',op:'30만원',disc:'73%',meta:'검색 614K/월',hook:'614K 검색, 홈트 인기 상승 중'},
+      {cat:'디지털기기',nm:'디카',p:'10만원',op:'50만원',disc:'80%',meta:'검색 336K/월',hook:'봄 사진 시즌, 디카 수요 급등'},
     ],
     v6:[
-      {cat:'디지털기기',nm:'아이폰13미니',p:'15만원',op:'100만원',disc:'85%',meta:'검색 369K/월 · 완료율 41%',hook:'서브폰 15만원, 분실 대비용'},
+      {cat:'디지털기기',nm:'아이폰13미니',p:'15만원',op:'100만원',disc:'85%',meta:'검색 369K/월',hook:'서브폰 15만원, 분실 대비용'},
       {cat:'디지털기기',nm:'모니터',p:'2.5만원',op:'20만원',disc:'88%',meta:'검색 1.57M/월 · P25가격대',hook:'서브 모니터 2.5만원, 듀얼 완성'},
-      {cat:'디지털기기',nm:'컴퓨터본체',p:'15만원',op:'80만원',disc:'81%',meta:'검색 427K/월 · 완료율 46%',hook:'백업 PC 15만원, 고장 대비'},
-      {cat:'디지털기기',nm:'TV',p:'5만원',op:'30만원',disc:'83%',meta:'검색 469K/월 · 완료율 46%',hook:'방·서재 서브 TV, 5만원'},
+      {cat:'디지털기기',nm:'컴퓨터본체',p:'15만원',op:'80만원',disc:'81%',meta:'검색 427K/월',hook:'백업 PC 15만원, 고장 대비'},
+      {cat:'디지털기기',nm:'TV',p:'5만원',op:'30만원',disc:'83%',meta:'검색 469K/월',hook:'방·서재 서브 TV, 5만원'},
       {cat:'디지털기기',nm:'갤럭시탭',p:'8만원',op:'40만원',disc:'80%',meta:'검색 506K/월 · P25가격대',hook:'PDF 전용 태블릿, 8만원'},
-      {cat:'디지털기기',nm:'데스크탑',p:'20만원',op:'100만원',disc:'80%',meta:'검색 310K/월 · 완료율 46%',hook:'서브 데스크탑, 작업용 20만원'},
-      {cat:'디지털기기',nm:'닌텐도스위치',p:'5만원',op:'40만원',disc:'88%',meta:'검색 499K/월 · 완료율 53%',hook:'여행·거실용 서브 게임기, 5만원'},
-      {cat:'디지털기기',nm:'갤럭시워치',p:'8만원',op:'30만원',disc:'73%',meta:'검색 388K/월 · 완료율 46%',hook:'운동용 서브 워치, 8만원'},
+      {cat:'디지털기기',nm:'데스크탑',p:'20만원',op:'100만원',disc:'80%',meta:'검색 310K/월',hook:'서브 데스크탑, 작업용 20만원'},
+      {cat:'디지털기기',nm:'닌텐도스위치',p:'5만원',op:'40만원',disc:'88%',meta:'검색 499K/월',hook:'여행·거실용 서브 게임기, 5만원'},
+      {cat:'디지털기기',nm:'갤럭시워치',p:'8만원',op:'30만원',disc:'73%',meta:'검색 388K/월',hook:'운동용 서브 워치, 8만원'},
     ],
   },
   p2:{
     v1:[
-      {cat:'여성잡화',nm:'루이비통',p:'33만원',op:'150만원',disc:'78%',meta:'검색 469K/월 · 완료율 23%',hook:'중위가 33만원, 명품 입문 최적 가격대'},
-      {cat:'여성잡화',nm:'샤넬',p:'8만원',op:'100만원',disc:'92%',meta:'검색 398K/월 · 완료율 26%',hook:'샤넬 중위가 8만원, 소품부터 시작'},
-      {cat:'남성패션/잡화',nm:'시계',p:'10만원',op:'50만원',disc:'80%',meta:'검색 546K/월 · 완료율 34%',hook:'월 54만 클릭, 시계 인기 급상승'},
-      {cat:'여성잡화',nm:'버버리',p:'15만원',op:'80만원',disc:'81%',meta:'검색 298K/월 · 완료율 28%',hook:'버버리 중위가 15만원대'},
-      {cat:'남성패션/잡화',nm:'14k',p:'10만원',op:'30만원',disc:'67%',meta:'검색 292K/월 · 완료율 34%',hook:'14K 금 악세사리, 투자+패션'},
-      {cat:'남성패션/잡화',nm:'아크테릭스',p:'10만원',op:'50만원',disc:'80%',meta:'검색 319K/월 · 완료율 34%',hook:'아웃도어 명품, 신품의 20%에'},
-      {cat:'남성패션/잡화',nm:'가죽자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 409K/월 · 완료율 34%',hook:'월 41만 클릭, 가죽자켓 인기 폭발'},
-      {cat:'남성패션/잡화',nm:'스톤아일랜드',p:'10만원',op:'50만원',disc:'80%',meta:'검색 343K/월 · 완료율 34%',hook:'스톤아일랜드, 신품의 20%에'},
+      {cat:'여성잡화',nm:'루이비통',p:'33만원',op:'150만원',disc:'78%',meta:'검색 469K/월',hook:'중위가 33만원, 명품 입문 최적 가격대'},
+      {cat:'여성잡화',nm:'샤넬',p:'8만원',op:'100만원',disc:'92%',meta:'검색 398K/월',hook:'샤넬 중위가 8만원, 소품부터 시작'},
+      {cat:'남성패션/잡화',nm:'시계',p:'10만원',op:'50만원',disc:'80%',meta:'검색 546K/월',hook:'월 54만 클릭, 시계 인기 급상승'},
+      {cat:'여성잡화',nm:'버버리',p:'15만원',op:'80만원',disc:'81%',meta:'검색 298K/월',hook:'버버리 중위가 15만원대'},
+      {cat:'남성패션/잡화',nm:'14k',p:'10만원',op:'30만원',disc:'67%',meta:'검색 292K/월',hook:'14K 금 악세사리, 투자+패션'},
+      {cat:'남성패션/잡화',nm:'아크테릭스',p:'10만원',op:'50만원',disc:'80%',meta:'검색 319K/월',hook:'아웃도어 명품, 신품의 20%에'},
+      {cat:'남성패션/잡화',nm:'가죽자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 409K/월',hook:'월 41만 클릭, 가죽자켓 인기 폭발'},
+      {cat:'남성패션/잡화',nm:'스톤아일랜드',p:'10만원',op:'50만원',disc:'80%',meta:'검색 343K/월',hook:'스톤아일랜드, 신품의 20%에'},
     ],
     v2:[
-      {cat:'남성패션/잡화',nm:'바람막이',p:'3만원',op:'10만원',disc:'70%',meta:'검색 595K/월 · 완료율 34%',hook:'월 60만 클릭, 봄 국민 아우터'},
-      {cat:'남성패션/잡화',nm:'백팩',p:'3만원',op:'10만원',disc:'70%',meta:'검색 677K/월 · 완료율 34%',hook:'월 68만 클릭, 가방 인기 1위'},
-      {cat:'여성잡화',nm:'가방',p:'3만원',op:'10만원',disc:'70%',meta:'검색 459K/월 · 완료율 28%',hook:'월 46만 클릭, 다양한 브랜드'},
-      {cat:'여성잡화',nm:'카드지갑',p:'3만원',op:'10만원',disc:'70%',meta:'검색 399K/월 · 완료율 28%',hook:'월 40만 클릭, 지갑 교체 적기'},
-      {cat:'남성패션/잡화',nm:'폴로',p:'3만원',op:'10만원',disc:'70%',meta:'검색 324K/월 · 완료율 34%',hook:'폴로 중위가 3만원, 클래식 캐주얼'},
-      {cat:'남성패션/잡화',nm:'경량패딩',p:'3만원',op:'10만원',disc:'70%',meta:'검색 282K/월 · 완료율 34%',hook:'봄가을 필수, 경량패딩 3만원'},
-      {cat:'여성의류',nm:'원피스',p:'2만원',op:'8만원',disc:'75%',meta:'검색 474K/월 · 완료율 28%',hook:'월 47만 클릭, 봄 원피스 시즌'},
-      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월 · 완료율 47%',hook:'월 65만 클릭, 여행 필수템 반값'},
+      {cat:'남성패션/잡화',nm:'바람막이',p:'3만원',op:'10만원',disc:'70%',meta:'검색 595K/월',hook:'월 60만 클릭, 봄 국민 아우터'},
+      {cat:'남성패션/잡화',nm:'백팩',p:'3만원',op:'10만원',disc:'70%',meta:'검색 677K/월',hook:'월 68만 클릭, 가방 인기 1위'},
+      {cat:'여성잡화',nm:'가방',p:'3만원',op:'10만원',disc:'70%',meta:'검색 459K/월',hook:'월 46만 클릭, 다양한 브랜드'},
+      {cat:'여성잡화',nm:'카드지갑',p:'3만원',op:'10만원',disc:'70%',meta:'검색 399K/월',hook:'월 40만 클릭, 지갑 교체 적기'},
+      {cat:'남성패션/잡화',nm:'폴로',p:'3만원',op:'10만원',disc:'70%',meta:'검색 324K/월',hook:'폴로 중위가 3만원, 클래식 캐주얼'},
+      {cat:'남성패션/잡화',nm:'경량패딩',p:'3만원',op:'10만원',disc:'70%',meta:'검색 282K/월',hook:'봄가을 필수, 경량패딩 3만원'},
+      {cat:'여성의류',nm:'원피스',p:'2만원',op:'8만원',disc:'75%',meta:'검색 474K/월',hook:'월 47만 클릭, 봄 원피스 시즌'},
+      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월',hook:'월 65만 클릭, 여행 필수템 반값'},
     ],
     v3:[
       {cat:'여성의류',nm:'원피스',p:'0.8만원',op:'5만원',disc:'84%',meta:'검색 474K/월 · P25가격대',hook:'8천원 원피스로 봄 코디 입문'},
-      {cat:'남성패션/잡화',nm:'자켓',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 303K/월 · 완료율 34%',hook:'1.5만원 자켓, 부담 제로'},
+      {cat:'남성패션/잡화',nm:'자켓',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 303K/월',hook:'1.5만원 자켓, 부담 제로'},
       {cat:'여성의류',nm:'수영복',p:'1만원',op:'5만원',disc:'80%',meta:'검색 283K/월 · P25가격대',hook:'1만원 수영복으로 여름 입문'},
       {cat:'남성패션/잡화',nm:'폴로',p:'1.5만원',op:'8만원',disc:'81%',meta:'검색 324K/월 · P25가격대',hook:'폴로 1.5만원, 클래식 입문'},
       {cat:'남성패션/잡화',nm:'바람막이',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 595K/월 · P25가격대',hook:'1.5만원 바람막이, 봄 필수'},
@@ -587,31 +548,31 @@ const ITEMS = {
       {cat:'남성패션/잡화',nm:'경량패딩',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 282K/월 · P25가격대',hook:'경량패딩 1.5만원, 환절기 한 벌'},
     ],
     v4:[
-      {cat:'남성패션/잡화',nm:'가죽자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 409K/월 · 완료율 34%',hook:'가을까지 입고 되팔면 원가회수'},
-      {cat:'여성의류',nm:'수영복',p:'2만원',op:'8만원',disc:'75%',meta:'검색 283K/월 · 완료율 28%',hook:'여름만 입고 되팔면 1만원 사용비'},
-      {cat:'남성패션/잡화',nm:'트위드자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 286K/월 · 완료율 34%',hook:'봄 시즌 한정, 5만원에 입어보기'},
-      {cat:'남성패션/잡화',nm:'바람막이',p:'3만원',op:'10만원',disc:'70%',meta:'검색 595K/월 · 완료율 34%',hook:'봄 2개월 입고 되팔면 2만원 사용비'},
-      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월 · 완료율 47%',hook:'여름 여행용, 쓰고 되팔면 거의 0원'},
-      {cat:'남성패션/잡화',nm:'경량패딩',p:'3만원',op:'10만원',disc:'70%',meta:'검색 282K/월 · 완료율 34%',hook:'환절기 한철, 되팔면 비용 최소'},
-      {cat:'남성패션/잡화',nm:'안전화',p:'3만원',op:'10만원',disc:'70%',meta:'검색 297K/월 · 완료율 34%',hook:'단기 현장 작업용, 3만원이면 충분'},
-      {cat:'여성의류',nm:'원피스',p:'2만원',op:'8만원',disc:'75%',meta:'검색 474K/월 · 완료율 28%',hook:'봄 시즌 입고, 되팔면 사용비 0원'},
+      {cat:'남성패션/잡화',nm:'가죽자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 409K/월',hook:'가을까지 입고 되팔면 원가회수'},
+      {cat:'여성의류',nm:'수영복',p:'2만원',op:'8만원',disc:'75%',meta:'검색 283K/월',hook:'여름만 입고 되팔면 1만원 사용비'},
+      {cat:'남성패션/잡화',nm:'트위드자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 286K/월',hook:'봄 시즌 한정, 5만원에 입어보기'},
+      {cat:'남성패션/잡화',nm:'바람막이',p:'3만원',op:'10만원',disc:'70%',meta:'검색 595K/월',hook:'봄 2개월 입고 되팔면 2만원 사용비'},
+      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월',hook:'여름 여행용, 쓰고 되팔면 거의 0원'},
+      {cat:'남성패션/잡화',nm:'경량패딩',p:'3만원',op:'10만원',disc:'70%',meta:'검색 282K/월',hook:'환절기 한철, 되팔면 비용 최소'},
+      {cat:'남성패션/잡화',nm:'안전화',p:'3만원',op:'10만원',disc:'70%',meta:'검색 297K/월',hook:'단기 현장 작업용, 3만원이면 충분'},
+      {cat:'여성의류',nm:'원피스',p:'2만원',op:'8만원',disc:'75%',meta:'검색 474K/월',hook:'봄 시즌 입고, 되팔면 사용비 0원'},
     ],
     v5:[
-      {cat:'남성패션/잡화',nm:'바람막이',p:'3만원',op:'10만원',disc:'70%',meta:'검색 595K/월 · 완료율 34%',hook:'5월 일교차 필수, 검색량 폭발 중'},
-      {cat:'여성의류',nm:'수영복',p:'2만원',op:'8만원',disc:'75%',meta:'검색 283K/월 · 완료율 28%',hook:'여름 직전, 수영복 수요 급증'},
-      {cat:'남성패션/잡화',nm:'가죽자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 409K/월 · 완료율 34%',hook:'봄 가죽자켓 시즌, 409K 검색량'},
-      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월 · 완료율 47%',hook:'여름 여행 시즌, 650K 검색'},
-      {cat:'여성의류',nm:'원피스',p:'2만원',op:'8만원',disc:'75%',meta:'검색 474K/월 · 완료율 28%',hook:'봄 원피스 시즌 개막, 지금이 타이밍'},
-      {cat:'여성잡화',nm:'루이비통',p:'33만원',op:'150만원',disc:'78%',meta:'검색 469K/월 · 완료율 23%',hook:'봄 시즌 명품, 월 47만 검색'},
-      {cat:'남성패션/잡화',nm:'트위드자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 286K/월 · 완료율 34%',hook:'5월 봄 패션 피크, 트위드 시즌'},
-      {cat:'여성잡화',nm:'카드지갑',p:'3만원',op:'10만원',disc:'70%',meta:'검색 399K/월 · 완료율 28%',hook:'봄 신학기·입사, 지갑 교체 시즌'},
+      {cat:'남성패션/잡화',nm:'바람막이',p:'3만원',op:'10만원',disc:'70%',meta:'검색 595K/월',hook:'5월 일교차 필수, 검색량 폭발 중'},
+      {cat:'여성의류',nm:'수영복',p:'2만원',op:'8만원',disc:'75%',meta:'검색 283K/월',hook:'여름 직전, 수영복 수요 급증'},
+      {cat:'남성패션/잡화',nm:'가죽자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 409K/월',hook:'봄 가죽자켓 시즌, 409K 검색량'},
+      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월',hook:'여름 여행 시즌, 650K 검색'},
+      {cat:'여성의류',nm:'원피스',p:'2만원',op:'8만원',disc:'75%',meta:'검색 474K/월',hook:'봄 원피스 시즌 개막, 지금이 타이밍'},
+      {cat:'여성잡화',nm:'루이비통',p:'33만원',op:'150만원',disc:'78%',meta:'검색 469K/월',hook:'봄 시즌 명품, 월 47만 검색'},
+      {cat:'남성패션/잡화',nm:'트위드자켓',p:'5만원',op:'20만원',disc:'75%',meta:'검색 286K/월',hook:'5월 봄 패션 피크, 트위드 시즌'},
+      {cat:'여성잡화',nm:'카드지갑',p:'3만원',op:'10만원',disc:'70%',meta:'검색 399K/월',hook:'봄 신학기·입사, 지갑 교체 시즌'},
     ],
     v6:[
       {cat:'남성패션/잡화',nm:'바람막이',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 595K/월 · P25가격대',hook:'비 올 때 막 입을 바람막이 1.5만원'},
       {cat:'남성패션/잡화',nm:'백팩',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 677K/월 · P25가격대',hook:'등산·출장용 서브백, 1.5만원'},
-      {cat:'남성패션/잡화',nm:'안전화',p:'3만원',op:'10만원',disc:'70%',meta:'검색 297K/월 · 완료율 34%',hook:'현장 작업용, 더러워져도 OK'},
+      {cat:'남성패션/잡화',nm:'안전화',p:'3만원',op:'10만원',disc:'70%',meta:'검색 297K/월',hook:'현장 작업용, 더러워져도 OK'},
       {cat:'여성잡화',nm:'가방',p:'1.5만원',op:'8만원',disc:'81%',meta:'검색 459K/월 · P25가격대',hook:'일상·작업용 서브 가방 1.5만원'},
-      {cat:'남성패션/잡화',nm:'자켓',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 303K/월 · 완료율 34%',hook:'막 입을 자켓, 1.5만원'},
+      {cat:'남성패션/잡화',nm:'자켓',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 303K/월',hook:'막 입을 자켓, 1.5만원'},
       {cat:'여성의류',nm:'원피스',p:'0.8만원',op:'5만원',disc:'84%',meta:'검색 474K/월 · P25가격대',hook:'집·편의점용 편한 원피스 8천원'},
       {cat:'남성패션/잡화',nm:'폴로',p:'1.5만원',op:'8만원',disc:'81%',meta:'검색 324K/월 · P25가격대',hook:'업무·캐주얼 겸용 서브 폴로'},
       {cat:'남성패션/잡화',nm:'경량패딩',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 282K/월 · P25가격대',hook:'사무실 냉방 대비 서브 패딩'},
@@ -619,24 +580,24 @@ const ITEMS = {
   },
   p3:{
     v1:[
-      {cat:'유아동',nm:'유모차',p:'12만원',op:'60만원',disc:'80%',meta:'검색 593K/월 · 완료율 55%',hook:'프리미엄 유모차도 당근에서 12만원대'},
-      {cat:'유아동',nm:'카시트',p:'7만원',op:'30만원',disc:'77%',meta:'검색 454K/월 · 완료율 57%',hook:'완료율 57%, 올리면 바로 팔림'},
-      {cat:'유아동',nm:'아기침대',p:'5만원',op:'25만원',disc:'80%',meta:'검색 460K/월 · 완료율 47%',hook:'월 46만 클릭, 5만원대'},
-      {cat:'유아동',nm:'베베드피노',p:'10만원',op:'40만원',disc:'75%',meta:'검색 323K/월 · 완료율 47%',hook:'육아맘 인기 브랜드, 10만원대'},
-      {cat:'유아동',nm:'트라이크',p:'5만원',op:'20만원',disc:'75%',meta:'검색 391K/월 · 완료율 47%',hook:'월 39만 클릭, 성장기 필수'},
-      {cat:'취미/게임/음반',nm:'레고',p:'3만원',op:'10만원',disc:'70%',meta:'검색 854K/월 · 완료율 40%',hook:'월 85만 클릭, 아이 선물 1순위'},
-      {cat:'유아동',nm:'미끄럼틀',p:'3만원',op:'15만원',disc:'80%',meta:'검색 322K/월 · 완료율 47%',hook:'실내 놀이 필수, 3만원대'},
-      {cat:'유아동',nm:'푸쉬카',p:'5만원',op:'20만원',disc:'75%',meta:'검색 326K/월 · 완료율 47%',hook:'아이 탑승 완구, 월 33만 클릭'},
+      {cat:'유아동',nm:'유모차',p:'12만원',op:'60만원',disc:'80%',meta:'검색 593K/월',hook:'프리미엄 유모차도 당근에서 12만원대'},
+      {cat:'유아동',nm:'카시트',p:'7만원',op:'30만원',disc:'77%',meta:'검색 454K/월',hook:', 올리면 바로 팔림'},
+      {cat:'유아동',nm:'아기침대',p:'5만원',op:'25만원',disc:'80%',meta:'검색 460K/월',hook:'월 46만 클릭, 5만원대'},
+      {cat:'유아동',nm:'베베드피노',p:'10만원',op:'40만원',disc:'75%',meta:'검색 323K/월',hook:'육아맘 인기 브랜드, 10만원대'},
+      {cat:'유아동',nm:'트라이크',p:'5만원',op:'20만원',disc:'75%',meta:'검색 391K/월',hook:'월 39만 클릭, 성장기 필수'},
+      {cat:'취미/게임/음반',nm:'레고',p:'3만원',op:'10만원',disc:'70%',meta:'검색 854K/월',hook:'월 85만 클릭, 아이 선물 1순위'},
+      {cat:'유아동',nm:'미끄럼틀',p:'3만원',op:'15만원',disc:'80%',meta:'검색 322K/월',hook:'실내 놀이 필수, 3만원대'},
+      {cat:'유아동',nm:'푸쉬카',p:'5만원',op:'20만원',disc:'75%',meta:'검색 326K/월',hook:'아이 탑승 완구, 월 33만 클릭'},
     ],
     v2:[
-      {cat:'취미/게임/음반',nm:'레고',p:'3만원',op:'10만원',disc:'70%',meta:'검색 854K/월 · 완료율 40%',hook:'월 85만 클릭, 유아동 검색 1위'},
-      {cat:'유아동',nm:'유모차',p:'3.5만원',op:'30만원',disc:'88%',meta:'검색 593K/월 · 완료율 55%',hook:'중위가 3.5만원, 완료율 55%'},
-      {cat:'유아동',nm:'카시트',p:'3만원',op:'20만원',disc:'85%',meta:'검색 454K/월 · 완료율 57%',hook:'중위가 3만원, 완료율 57% 최고'},
-      {cat:'유아동',nm:'아기침대',p:'3만원',op:'20만원',disc:'85%',meta:'검색 460K/월 · 완료율 47%',hook:'월 46만 클릭, 인기 육아용품'},
-      {cat:'유아동',nm:'트라이크',p:'5만원',op:'20만원',disc:'75%',meta:'검색 391K/월 · 완료율 47%',hook:'아이 이동수단, 월 39만 클릭'},
-      {cat:'유아동',nm:'미끄럼틀',p:'3만원',op:'15만원',disc:'80%',meta:'검색 322K/월 · 완료율 47%',hook:'실내 놀이 국민템, 3만원'},
-      {cat:'스포츠/레저',nm:'킥보드',p:'3만원',op:'10만원',disc:'70%',meta:'검색 347K/월 · 완료율 41%',hook:'아이 킥보드, 3만원이면 시작'},
-      {cat:'유아동',nm:'주방놀이',p:'2만원',op:'8만원',disc:'75%',meta:'검색 284K/월 · 완료율 47%',hook:'역할놀이 인기템, 2만원'},
+      {cat:'취미/게임/음반',nm:'레고',p:'3만원',op:'10만원',disc:'70%',meta:'검색 854K/월',hook:'월 85만 클릭, 유아동 검색 1위'},
+      {cat:'유아동',nm:'유모차',p:'3.5만원',op:'30만원',disc:'88%',meta:'검색 593K/월',hook:'중위가 3.5만원, '},
+      {cat:'유아동',nm:'카시트',p:'3만원',op:'20만원',disc:'85%',meta:'검색 454K/월',hook:'중위가 3만원,  최고'},
+      {cat:'유아동',nm:'아기침대',p:'3만원',op:'20만원',disc:'85%',meta:'검색 460K/월',hook:'월 46만 클릭, 인기 육아용품'},
+      {cat:'유아동',nm:'트라이크',p:'5만원',op:'20만원',disc:'75%',meta:'검색 391K/월',hook:'아이 이동수단, 월 39만 클릭'},
+      {cat:'유아동',nm:'미끄럼틀',p:'3만원',op:'15만원',disc:'80%',meta:'검색 322K/월',hook:'실내 놀이 국민템, 3만원'},
+      {cat:'스포츠/레저',nm:'킥보드',p:'3만원',op:'10만원',disc:'70%',meta:'검색 347K/월',hook:'아이 킥보드, 3만원이면 시작'},
+      {cat:'유아동',nm:'주방놀이',p:'2만원',op:'8만원',disc:'75%',meta:'검색 284K/월',hook:'역할놀이 인기템, 2만원'},
     ],
     v3:[
       {cat:'유아동',nm:'주방놀이',p:'1만원',op:'5만원',disc:'80%',meta:'검색 284K/월 · P25가격대',hook:'1만원 주방놀이, 역할놀이 입문'},
@@ -649,27 +610,27 @@ const ITEMS = {
       {cat:'유아동',nm:'트라이크',p:'2만원',op:'12만원',disc:'83%',meta:'검색 391K/월 · P25가격대',hook:'2만원 트라이크, 이동수단 시작'},
     ],
     v4:[
-      {cat:'유아동',nm:'미끄럼틀',p:'3만원',op:'15만원',disc:'80%',meta:'검색 322K/월 · 완료율 47%',hook:'크면 안 쓰는 미끄럼틀, 되팔면 OK'},
-      {cat:'유아동',nm:'유모차',p:'3.5만원',op:'30만원',disc:'88%',meta:'검색 593K/월 · 완료율 55%',hook:'성장하면 필요 없어, 되팔기 쉬움'},
-      {cat:'유아동',nm:'카시트',p:'3만원',op:'20만원',disc:'85%',meta:'검색 454K/월 · 완료율 57%',hook:'체중 넘으면 교체, 완료율 57%'},
-      {cat:'유아동',nm:'트라이크',p:'5만원',op:'20만원',disc:'75%',meta:'검색 391K/월 · 완료율 47%',hook:'1-2년 타고 되팔면 3만원 회수'},
-      {cat:'유아동',nm:'아기침대',p:'3만원',op:'20만원',disc:'85%',meta:'검색 460K/월 · 완료율 47%',hook:'1년 쓰고 되팔면 사용비 1만원'},
-      {cat:'유아동',nm:'푸쉬카',p:'5만원',op:'20만원',disc:'75%',meta:'검색 326K/월 · 완료율 47%',hook:'성장하면 필요 없어, 되팔기 쉬움'},
-      {cat:'유아동',nm:'베베드피노',p:'10만원',op:'40만원',disc:'75%',meta:'검색 323K/월 · 완료율 47%',hook:'6개월~2년 후 당근에서 되팔기'},
-      {cat:'유아동',nm:'주방놀이',p:'2만원',op:'8만원',disc:'75%',meta:'검색 284K/월 · 완료율 47%',hook:'관심 바뀌면 바로 되팔기'},
+      {cat:'유아동',nm:'미끄럼틀',p:'3만원',op:'15만원',disc:'80%',meta:'검색 322K/월',hook:'크면 안 쓰는 미끄럼틀, 되팔면 OK'},
+      {cat:'유아동',nm:'유모차',p:'3.5만원',op:'30만원',disc:'88%',meta:'검색 593K/월',hook:'성장하면 필요 없어, 되팔기 쉬움'},
+      {cat:'유아동',nm:'카시트',p:'3만원',op:'20만원',disc:'85%',meta:'검색 454K/월',hook:'체중 넘으면 교체, '},
+      {cat:'유아동',nm:'트라이크',p:'5만원',op:'20만원',disc:'75%',meta:'검색 391K/월',hook:'1-2년 타고 되팔면 3만원 회수'},
+      {cat:'유아동',nm:'아기침대',p:'3만원',op:'20만원',disc:'85%',meta:'검색 460K/월',hook:'1년 쓰고 되팔면 사용비 1만원'},
+      {cat:'유아동',nm:'푸쉬카',p:'5만원',op:'20만원',disc:'75%',meta:'검색 326K/월',hook:'성장하면 필요 없어, 되팔기 쉬움'},
+      {cat:'유아동',nm:'베베드피노',p:'10만원',op:'40만원',disc:'75%',meta:'검색 323K/월',hook:'6개월~2년 후 당근에서 되팔기'},
+      {cat:'유아동',nm:'주방놀이',p:'2만원',op:'8만원',disc:'75%',meta:'검색 284K/월',hook:'관심 바뀌면 바로 되팔기'},
     ],
     v5:[
-      {cat:'스포츠/레저',nm:'킥보드',p:'3만원',op:'10만원',disc:'70%',meta:'검색 347K/월 · 완료율 41%',hook:'봄 야외 놀이 시즌, 킥보드 수요 급증'},
-      {cat:'취미/게임/음반',nm:'레고',p:'3만원',op:'10만원',disc:'70%',meta:'검색 854K/월 · 완료율 40%',hook:'어린이날 선물 1순위, 854K 검색'},
-      {cat:'유아동',nm:'트라이크',p:'5만원',op:'20만원',disc:'75%',meta:'검색 391K/월 · 완료율 47%',hook:'봄 야외 시즌, 트라이크 수요 급등'},
-      {cat:'유아동',nm:'미끄럼틀',p:'3만원',op:'15만원',disc:'80%',meta:'검색 322K/월 · 완료율 47%',hook:'봄 나들이, 야외 미끄럼틀 인기'},
-      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월 · 완료율 50%',hook:'아이 자전거 시즌, 봄 검색 폭발'},
-      {cat:'유아동',nm:'유모차',p:'3.5만원',op:'30만원',disc:'88%',meta:'검색 593K/월 · 완료율 55%',hook:'봄 나들이 시즌, 유모차 수요 급증'},
-      {cat:'유아동',nm:'웨건',p:'5만원',op:'15만원',disc:'67%',meta:'검색 357K/월 · 완료율 41%',hook:'캠핑·나들이 웨건, 봄 시즌 개막'},
-      {cat:'유아동',nm:'푸쉬카',p:'5만원',op:'20만원',disc:'75%',meta:'검색 326K/월 · 완료율 47%',hook:'봄 야외 놀이, 푸쉬카 인기'},
+      {cat:'스포츠/레저',nm:'킥보드',p:'3만원',op:'10만원',disc:'70%',meta:'검색 347K/월',hook:'봄 야외 놀이 시즌, 킥보드 수요 급증'},
+      {cat:'취미/게임/음반',nm:'레고',p:'3만원',op:'10만원',disc:'70%',meta:'검색 854K/월',hook:'어린이날 선물 1순위, 854K 검색'},
+      {cat:'유아동',nm:'트라이크',p:'5만원',op:'20만원',disc:'75%',meta:'검색 391K/월',hook:'봄 야외 시즌, 트라이크 수요 급등'},
+      {cat:'유아동',nm:'미끄럼틀',p:'3만원',op:'15만원',disc:'80%',meta:'검색 322K/월',hook:'봄 나들이, 야외 미끄럼틀 인기'},
+      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월',hook:'아이 자전거 시즌, 봄 검색 폭발'},
+      {cat:'유아동',nm:'유모차',p:'3.5만원',op:'30만원',disc:'88%',meta:'검색 593K/월',hook:'봄 나들이 시즌, 유모차 수요 급증'},
+      {cat:'유아동',nm:'웨건',p:'5만원',op:'15만원',disc:'67%',meta:'검색 357K/월',hook:'캠핑·나들이 웨건, 봄 시즌 개막'},
+      {cat:'유아동',nm:'푸쉬카',p:'5만원',op:'20만원',disc:'75%',meta:'검색 326K/월',hook:'봄 야외 놀이, 푸쉬카 인기'},
     ],
     v6:[
-      {cat:'유아동',nm:'휴대용유모차',p:'5만원',op:'25만원',disc:'80%',meta:'검색 312K/월 · 완료율 47%',hook:'외출 전용 서브 유모차, 5만원'},
+      {cat:'유아동',nm:'휴대용유모차',p:'5만원',op:'25만원',disc:'80%',meta:'검색 312K/월',hook:'외출 전용 서브 유모차, 5만원'},
       {cat:'유아동',nm:'유모차',p:'1만원',op:'20만원',disc:'95%',meta:'검색 593K/월 · P25가격대',hook:'막 쓸 유모차, 1만원'},
       {cat:'유아동',nm:'카시트',p:'1.5만원',op:'15만원',disc:'90%',meta:'검색 454K/월 · P25가격대',hook:'두 번째 차량용 서브 카시트'},
       {cat:'스포츠/레저',nm:'킥보드',p:'1만원',op:'6만원',disc:'83%',meta:'검색 347K/월 · P25가격대',hook:'놀이터 잃어버려도 OK, 1만원'},
@@ -681,61 +642,61 @@ const ITEMS = {
   },
   p4:{
     v1:[
-      {cat:'스포츠/레저',nm:'전기자전거',p:'50만원',op:'150만원',disc:'67%',meta:'검색 1.55M/월 · 완료율 40%',hook:'월 155만 클릭, 중위가 50만원대'},
-      {cat:'스포츠/레저',nm:'로드자전거',p:'30만원',op:'100만원',disc:'70%',meta:'검색 637K/월 · 완료율 50%',hook:'로드바이크 30만원대 시작'},
-      {cat:'스포츠/레저',nm:'오토바이',p:'100만원',op:'300만원',disc:'67%',meta:'검색 758K/월 · 완료율 41%',hook:'월 76만 클릭, 중고 바이크 인기'},
-      {cat:'스포츠/레저',nm:'에어텐트',p:'15만원',op:'50만원',disc:'70%',meta:'검색 369K/월 · 완료율 43%',hook:'프리미엄 에어텐트, 15만원대'},
-      {cat:'스포츠/레저',nm:'슈퍼커브',p:'80만원',op:'200만원',disc:'60%',meta:'검색 367K/월 · 완료율 41%',hook:'클래식 바이크, 중위가 80만원'},
-      {cat:'스포츠/레저',nm:'아이언세트',p:'10만원',op:'40만원',disc:'75%',meta:'검색 304K/월 · 완료율 40%',hook:'골프 아이언세트, 10만원대'},
-      {cat:'스포츠/레저',nm:'골프백',p:'5만원',op:'20만원',disc:'75%',meta:'검색 586K/월 · 완료율 40%',hook:'월 59만 클릭, 골프백 인기'},
-      {cat:'스포츠/레저',nm:'실내자전거',p:'8만원',op:'30만원',disc:'73%',meta:'검색 614K/월 · 완료율 41%',hook:'홈트 인기, 614K 검색'},
+      {cat:'스포츠/레저',nm:'전기자전거',p:'50만원',op:'150만원',disc:'67%',meta:'검색 1.55M/월',hook:'월 155만 클릭, 중위가 50만원대'},
+      {cat:'스포츠/레저',nm:'로드자전거',p:'30만원',op:'100만원',disc:'70%',meta:'검색 637K/월',hook:'로드바이크 30만원대 시작'},
+      {cat:'스포츠/레저',nm:'오토바이',p:'100만원',op:'300만원',disc:'67%',meta:'검색 758K/월',hook:'월 76만 클릭, 중고 바이크 인기'},
+      {cat:'스포츠/레저',nm:'에어텐트',p:'15만원',op:'50만원',disc:'70%',meta:'검색 369K/월',hook:'프리미엄 에어텐트, 15만원대'},
+      {cat:'스포츠/레저',nm:'슈퍼커브',p:'80만원',op:'200만원',disc:'60%',meta:'검색 367K/월',hook:'클래식 바이크, 중위가 80만원'},
+      {cat:'스포츠/레저',nm:'아이언세트',p:'10만원',op:'40만원',disc:'75%',meta:'검색 304K/월',hook:'골프 아이언세트, 10만원대'},
+      {cat:'스포츠/레저',nm:'골프백',p:'5만원',op:'20만원',disc:'75%',meta:'검색 586K/월',hook:'월 59만 클릭, 골프백 인기'},
+      {cat:'스포츠/레저',nm:'실내자전거',p:'8만원',op:'30만원',disc:'73%',meta:'검색 614K/월',hook:'홈트 인기, 614K 검색'},
     ],
     v2:[
-      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월 · 완료율 50%',hook:'검색 1위 3.09M, 국민 이동수단'},
-      {cat:'스포츠/레저',nm:'전기자전거',p:'50만원',op:'150만원',disc:'67%',meta:'검색 1.55M/월 · 완료율 40%',hook:'월 155만 클릭, 출퇴근 혁명'},
-      {cat:'스포츠/레저',nm:'텐트',p:'6만원',op:'25만원',disc:'76%',meta:'검색 818K/월 · 완료율 43%',hook:'월 82만 클릭, 캠핑 필수템'},
-      {cat:'스포츠/레저',nm:'골프백',p:'5만원',op:'20만원',disc:'75%',meta:'검색 586K/월 · 완료율 40%',hook:'골프 국민템, 5만원대 시작'},
-      {cat:'스포츠/레저',nm:'킥보드',p:'3만원',op:'10만원',disc:'70%',meta:'검색 347K/월 · 완료율 41%',hook:'단거리 이동 국민 킥보드'},
-      {cat:'스포츠/레저',nm:'캠핑의자',p:'3만원',op:'10만원',disc:'70%',meta:'검색 354K/월 · 완료율 41%',hook:'캠핑 기본템, 3만원'},
-      {cat:'스포츠/레저',nm:'드라이버',p:'5만원',op:'20만원',disc:'75%',meta:'검색 623K/월 · 완료율 40%',hook:'월 62만 클릭, 골프 드라이버'},
-      {cat:'스포츠/레저',nm:'픽시',p:'10만원',op:'30만원',disc:'67%',meta:'검색 536K/월 · 완료율 41%',hook:'도심 라이딩, 536K 검색'},
+      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월',hook:'검색 1위 3.09M, 국민 이동수단'},
+      {cat:'스포츠/레저',nm:'전기자전거',p:'50만원',op:'150만원',disc:'67%',meta:'검색 1.55M/월',hook:'월 155만 클릭, 출퇴근 혁명'},
+      {cat:'스포츠/레저',nm:'텐트',p:'6만원',op:'25만원',disc:'76%',meta:'검색 818K/월',hook:'월 82만 클릭, 캠핑 필수템'},
+      {cat:'스포츠/레저',nm:'골프백',p:'5만원',op:'20만원',disc:'75%',meta:'검색 586K/월',hook:'골프 국민템, 5만원대 시작'},
+      {cat:'스포츠/레저',nm:'킥보드',p:'3만원',op:'10만원',disc:'70%',meta:'검색 347K/월',hook:'단거리 이동 국민 킥보드'},
+      {cat:'스포츠/레저',nm:'캠핑의자',p:'3만원',op:'10만원',disc:'70%',meta:'검색 354K/월',hook:'캠핑 기본템, 3만원'},
+      {cat:'스포츠/레저',nm:'드라이버',p:'5만원',op:'20만원',disc:'75%',meta:'검색 623K/월',hook:'월 62만 클릭, 골프 드라이버'},
+      {cat:'스포츠/레저',nm:'픽시',p:'10만원',op:'30만원',disc:'67%',meta:'검색 536K/월',hook:'도심 라이딩, 536K 검색'},
     ],
     v3:[
       {cat:'스포츠/레저',nm:'캠핑의자',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 354K/월 · P25가격대',hook:'1.5만원 캠핑의자, 첫 캠핑 입문'},
       {cat:'스포츠/레저',nm:'킥보드',p:'1만원',op:'6만원',disc:'83%',meta:'검색 347K/월 · P25가격대',hook:'1만원 킥보드로 이동 입문'},
-      {cat:'스포츠/레저',nm:'낚시',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 317K/월 · 완료율 41%',hook:'낚시 입문, 1.5만원이면 시작'},
-      {cat:'취미/게임/음반',nm:'보드게임',p:'1만원',op:'4만원',disc:'75%',meta:'검색 395K/월 · 완료율 31%',hook:'보드게임 1만원, 가족 놀이 입문'},
+      {cat:'스포츠/레저',nm:'낚시',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 317K/월',hook:'낚시 입문, 1.5만원이면 시작'},
+      {cat:'취미/게임/음반',nm:'보드게임',p:'1만원',op:'4만원',disc:'75%',meta:'검색 395K/월',hook:'보드게임 1만원, 가족 놀이 입문'},
       {cat:'스포츠/레저',nm:'텐트',p:'2만원',op:'15만원',disc:'87%',meta:'검색 818K/월 · P25가격대',hook:'2만원 텐트로 첫 캠핑 도전'},
       {cat:'스포츠/레저',nm:'자전거',p:'2만원',op:'20만원',disc:'90%',meta:'검색 3.09M/월 · P25가격대',hook:'2만원 자전거, 근거리 이동 입문'},
-      {cat:'스포츠/레저',nm:'퍼터',p:'2만원',op:'10만원',disc:'80%',meta:'검색 700K/월 · 완료율 40%',hook:'퍼터 2만원, 골프 연습 입문'},
-      {cat:'스포츠/레저',nm:'스텝퍼',p:'3만원',op:'10만원',disc:'70%',meta:'검색 282K/월 · 완료율 41%',hook:'홈트 입문, 스텝퍼 3만원'},
+      {cat:'스포츠/레저',nm:'퍼터',p:'2만원',op:'10만원',disc:'80%',meta:'검색 700K/월',hook:'퍼터 2만원, 골프 연습 입문'},
+      {cat:'스포츠/레저',nm:'스텝퍼',p:'3만원',op:'10만원',disc:'70%',meta:'검색 282K/월',hook:'홈트 입문, 스텝퍼 3만원'},
     ],
     v4:[
-      {cat:'스포츠/레저',nm:'텐트',p:'6만원',op:'25만원',disc:'76%',meta:'검색 818K/월 · 완료율 43%',hook:'캠핑 시즌만 쓰고 되팔면 원가회수'},
-      {cat:'스포츠/레저',nm:'캠핑의자',p:'3만원',op:'10만원',disc:'70%',meta:'검색 354K/월 · 완료율 41%',hook:'봄~가을만 쓰고 되팔기'},
-      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월 · 완료율 50%',hook:'봄~가을 타고 겨울에 되팔면 OK'},
-      {cat:'스포츠/레저',nm:'낚시',p:'3만원',op:'10만원',disc:'70%',meta:'검색 317K/월 · 완료율 41%',hook:'봄낚시 시즌, 3만원에 한 시즌'},
-      {cat:'스포츠/레저',nm:'전동킥보드',p:'16만원',op:'50만원',disc:'68%',meta:'검색 327K/월 · 완료율 41%',hook:'봄~가을 출퇴근, 되팔면 원가회수'},
-      {cat:'스포츠/레저',nm:'에어텐트',p:'15만원',op:'50만원',disc:'70%',meta:'검색 369K/월 · 완료율 43%',hook:'캠핑 시즌만, 비수기 되팔기'},
-      {cat:'여성의류',nm:'수영복',p:'2만원',op:'8만원',disc:'75%',meta:'검색 283K/월 · 완료율 28%',hook:'여름 수영 시즌만 입고 되팔기'},
-      {cat:'스포츠/레저',nm:'스쿠터',p:'20만원',op:'60만원',disc:'67%',meta:'검색 531K/월 · 완료율 41%',hook:'봄~가을 이동, 되팔면 원가회수'},
+      {cat:'스포츠/레저',nm:'텐트',p:'6만원',op:'25만원',disc:'76%',meta:'검색 818K/월',hook:'캠핑 시즌만 쓰고 되팔면 원가회수'},
+      {cat:'스포츠/레저',nm:'캠핑의자',p:'3만원',op:'10만원',disc:'70%',meta:'검색 354K/월',hook:'봄~가을만 쓰고 되팔기'},
+      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월',hook:'봄~가을 타고 겨울에 되팔면 OK'},
+      {cat:'스포츠/레저',nm:'낚시',p:'3만원',op:'10만원',disc:'70%',meta:'검색 317K/월',hook:'봄낚시 시즌, 3만원에 한 시즌'},
+      {cat:'스포츠/레저',nm:'전동킥보드',p:'16만원',op:'50만원',disc:'68%',meta:'검색 327K/월',hook:'봄~가을 출퇴근, 되팔면 원가회수'},
+      {cat:'스포츠/레저',nm:'에어텐트',p:'15만원',op:'50만원',disc:'70%',meta:'검색 369K/월',hook:'캠핑 시즌만, 비수기 되팔기'},
+      {cat:'여성의류',nm:'수영복',p:'2만원',op:'8만원',disc:'75%',meta:'검색 283K/월',hook:'여름 수영 시즌만 입고 되팔기'},
+      {cat:'스포츠/레저',nm:'스쿠터',p:'20만원',op:'60만원',disc:'67%',meta:'검색 531K/월',hook:'봄~가을 이동, 되팔면 원가회수'},
     ],
     v5:[
-      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월 · 완료율 50%',hook:'봄 라이딩 시즌 개막, 검색 1위'},
-      {cat:'스포츠/레저',nm:'전기자전거',p:'50만원',op:'150만원',disc:'67%',meta:'검색 1.55M/월 · 완료율 40%',hook:'봄 출퇴근, 지금 사면 여름 내내'},
-      {cat:'스포츠/레저',nm:'텐트',p:'6만원',op:'25만원',disc:'76%',meta:'검색 818K/월 · 완료율 43%',hook:'캠핑 시즌 개막, 818K 검색 폭발'},
-      {cat:'스포츠/레저',nm:'에어텐트',p:'15만원',op:'50만원',disc:'70%',meta:'검색 369K/월 · 완료율 43%',hook:'봄 캠핑 필수, 에어텐트 수요 급등'},
-      {cat:'스포츠/레저',nm:'캠핑의자',p:'3만원',op:'10만원',disc:'70%',meta:'검색 354K/월 · 완료율 41%',hook:'캠핑 시즌 시작, 최적 타이밍'},
-      {cat:'스포츠/레저',nm:'골프백',p:'5만원',op:'20만원',disc:'75%',meta:'검색 586K/월 · 완료율 40%',hook:'봄 필드 시즌, 골프백 수요 급증'},
-      {cat:'스포츠/레저',nm:'낚시',p:'3만원',op:'10만원',disc:'70%',meta:'검색 317K/월 · 완료율 41%',hook:'봄 낚시 시즌 개막, 수요 급등'},
-      {cat:'스포츠/레저',nm:'로드자전거',p:'30만원',op:'100만원',disc:'70%',meta:'검색 637K/월 · 완료율 50%',hook:'봄 라이딩 최적, 637K 검색'},
+      {cat:'스포츠/레저',nm:'자전거',p:'6만원',op:'30만원',disc:'80%',meta:'검색 3.09M/월',hook:'봄 라이딩 시즌 개막, 검색 1위'},
+      {cat:'스포츠/레저',nm:'전기자전거',p:'50만원',op:'150만원',disc:'67%',meta:'검색 1.55M/월',hook:'봄 출퇴근, 지금 사면 여름 내내'},
+      {cat:'스포츠/레저',nm:'텐트',p:'6만원',op:'25만원',disc:'76%',meta:'검색 818K/월',hook:'캠핑 시즌 개막, 818K 검색 폭발'},
+      {cat:'스포츠/레저',nm:'에어텐트',p:'15만원',op:'50만원',disc:'70%',meta:'검색 369K/월',hook:'봄 캠핑 필수, 에어텐트 수요 급등'},
+      {cat:'스포츠/레저',nm:'캠핑의자',p:'3만원',op:'10만원',disc:'70%',meta:'검색 354K/월',hook:'캠핑 시즌 시작, 최적 타이밍'},
+      {cat:'스포츠/레저',nm:'골프백',p:'5만원',op:'20만원',disc:'75%',meta:'검색 586K/월',hook:'봄 필드 시즌, 골프백 수요 급증'},
+      {cat:'스포츠/레저',nm:'낚시',p:'3만원',op:'10만원',disc:'70%',meta:'검색 317K/월',hook:'봄 낚시 시즌 개막, 수요 급등'},
+      {cat:'스포츠/레저',nm:'로드자전거',p:'30만원',op:'100만원',disc:'70%',meta:'검색 637K/월',hook:'봄 라이딩 최적, 637K 검색'},
     ],
     v6:[
       {cat:'스포츠/레저',nm:'자전거',p:'2만원',op:'20만원',disc:'90%',meta:'검색 3.09M/월 · P25가격대',hook:'도난 걱정 없이 막 탈 자전거 2만원'},
       {cat:'스포츠/레저',nm:'킥보드',p:'1만원',op:'6만원',disc:'83%',meta:'검색 347K/월 · P25가격대',hook:'막 탈 킥보드, 1만원'},
       {cat:'스포츠/레저',nm:'전동킥보드',p:'6만원',op:'30만원',disc:'80%',meta:'검색 327K/월 · P25가격대',hook:'근거리 전용 서브 전동킥보드'},
       {cat:'스포츠/레저',nm:'픽시',p:'5만원',op:'20만원',disc:'75%',meta:'검색 536K/월 · P25가격대',hook:'도심 막 탈 픽시, 5만원'},
-      {cat:'스포츠/레저',nm:'미니벨로',p:'5만원',op:'20만원',disc:'75%',meta:'검색 295K/월 · 완료율 41%',hook:'접이식 서브 자전거, 5만원'},
+      {cat:'스포츠/레저',nm:'미니벨로',p:'5만원',op:'20만원',disc:'75%',meta:'검색 295K/월',hook:'접이식 서브 자전거, 5만원'},
       {cat:'스포츠/레저',nm:'캠핑의자',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 354K/월 · P25가격대',hook:'빌려줘도 OK인 서브 캠핑의자'},
       {cat:'스포츠/레저',nm:'퍼터',p:'2만원',op:'10만원',disc:'80%',meta:'검색 700K/월 · P25가격대',hook:'연습장 전용 서브 퍼터'},
       {cat:'스포츠/레저',nm:'낚시',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 317K/월 · P25가격대',hook:'소모성 낚시 장비, 1.5만원'},
@@ -743,73 +704,71 @@ const ITEMS = {
   },
   p5:{
     v1:[
-      {cat:'생활가전',nm:'냉장고',p:'27만원',op:'100만원',disc:'73%',meta:'검색 1.86M/월 · 완료율 49%',hook:'프리미엄 냉장고 27만원대, 신품의 27%'},
-      {cat:'가구/인테리어',nm:'소파',p:'14만원',op:'50만원',disc:'72%',meta:'검색 2.19M/월 · 완료율 46%',hook:'월 219만 클릭, 거실 완성'},
-      {cat:'생활가전',nm:'에어컨',p:'40만원',op:'120만원',disc:'67%',meta:'검색 1.03M/월 · 완료율 46%',hook:'프리미엄 에어컨, 40만원대'},
-      {cat:'생활가전',nm:'세탁기',p:'10만원',op:'60만원',disc:'83%',meta:'검색 832K/월 · 완료율 52%',hook:'완료율 52%, 올리면 바로 팔리는 인기'},
-      {cat:'생활가전',nm:'건조기',p:'10만원',op:'80만원',disc:'88%',meta:'검색 430K/월 · 완료율 53%',hook:'완료율 53%, 인기 급상승'},
-      {cat:'가구/인테리어',nm:'침대',p:'5만원',op:'30만원',disc:'83%',meta:'검색 704K/월 · 완료율 48%',hook:'침대 5만원대, 이사 필수'},
-      {cat:'생활가전',nm:'안마의자',p:'30만원',op:'200만원',disc:'85%',meta:'검색 328K/월 · 완료율 49%',hook:'200만원대 85% 할인'},
-      {cat:'생활가전',nm:'김치냉장고',p:'10만원',op:'50만원',disc:'80%',meta:'검색 319K/월 · 완료율 49%',hook:'김치냉장고 10만원, 신품의 20%'},
+      {cat:'생활가전',nm:'냉장고',p:'27만원',op:'100만원',disc:'73%',meta:'검색 1.86M/월',hook:'프리미엄 냉장고 27만원대, 신품의 27%'},
+      {cat:'가구/인테리어',nm:'소파',p:'14만원',op:'50만원',disc:'72%',meta:'검색 2.19M/월',hook:'월 219만 클릭, 거실 완성'},
+      {cat:'생활가전',nm:'에어컨',p:'40만원',op:'120만원',disc:'67%',meta:'검색 1.03M/월',hook:'프리미엄 에어컨, 40만원대'},
+      {cat:'생활가전',nm:'세탁기',p:'10만원',op:'60만원',disc:'83%',meta:'검색 832K/월',hook:', 올리면 바로 팔리는 인기'},
+      {cat:'생활가전',nm:'건조기',p:'10만원',op:'80만원',disc:'88%',meta:'검색 430K/월',hook:', 인기 급상승'},
+      {cat:'가구/인테리어',nm:'침대',p:'5만원',op:'30만원',disc:'83%',meta:'검색 704K/월',hook:'침대 5만원대, 이사 필수'},
+      {cat:'생활가전',nm:'안마의자',p:'30만원',op:'200만원',disc:'85%',meta:'검색 328K/월',hook:'200만원대 85% 할인'},
+      {cat:'생활가전',nm:'김치냉장고',p:'10만원',op:'50만원',disc:'80%',meta:'검색 319K/월',hook:'김치냉장고 10만원, 신품의 20%'},
     ],
     v2:[
-      {cat:'가구/인테리어',nm:'의자',p:'2만원',op:'10만원',disc:'80%',meta:'검색 1.74M/월 · 완료율 48%',hook:'월 174만 클릭, 가구 인기 1위'},
-      {cat:'가구/인테리어',nm:'책상',p:'5만원',op:'20만원',disc:'75%',meta:'검색 1.64M/월 · 완료율 48%',hook:'월 164만 클릭, 재택 필수'},
-      {cat:'가구/인테리어',nm:'소파',p:'5만원',op:'30만원',disc:'83%',meta:'검색 2.19M/월 · 완료율 46%',hook:'월 219만 클릭, 검색 TOP'},
-      {cat:'가구/인테리어',nm:'식탁',p:'4만원',op:'20만원',disc:'80%',meta:'검색 1.07M/월 · 완료율 54%',hook:'완료율 54%, 올리면 바로 팔림'},
-      {cat:'생활가전',nm:'냉장고',p:'13만원',op:'70만원',disc:'81%',meta:'검색 1.86M/월 · 완료율 49%',hook:'월 186만 클릭, 이사 필수 1위'},
-      {cat:'생활가전',nm:'세탁기',p:'10만원',op:'60만원',disc:'83%',meta:'검색 832K/월 · 완료율 52%',hook:'중위가 10만원, 이사 필수'},
-      {cat:'가구/인테리어',nm:'행거',p:'2만원',op:'8만원',disc:'75%',meta:'검색 754K/월 · 완료율 48%',hook:'옷장 없는 원룸 필수, 2만원'},
-      {cat:'생활가전',nm:'전자레인지',p:'4만원',op:'15만원',disc:'73%',meta:'검색 919K/월 · 완료율 49%',hook:'이사 첫날 필수, 4만원이면 해결'},
+      {cat:'가구/인테리어',nm:'의자',p:'2만원',op:'10만원',disc:'80%',meta:'검색 1.74M/월',hook:'월 174만 클릭, 가구 인기 1위'},
+      {cat:'가구/인테리어',nm:'책상',p:'5만원',op:'20만원',disc:'75%',meta:'검색 1.64M/월',hook:'월 164만 클릭, 재택 필수'},
+      {cat:'가구/인테리어',nm:'소파',p:'5만원',op:'30만원',disc:'83%',meta:'검색 2.19M/월',hook:'월 219만 클릭, 검색 TOP'},
+      {cat:'가구/인테리어',nm:'식탁',p:'4만원',op:'20만원',disc:'80%',meta:'검색 1.07M/월',hook:', 올리면 바로 팔림'},
+      {cat:'생활가전',nm:'냉장고',p:'13만원',op:'70만원',disc:'81%',meta:'검색 1.86M/월',hook:'월 186만 클릭, 이사 필수 1위'},
+      {cat:'생활가전',nm:'세탁기',p:'10만원',op:'60만원',disc:'83%',meta:'검색 832K/월',hook:'중위가 10만원, 이사 필수'},
+      {cat:'가구/인테리어',nm:'행거',p:'2만원',op:'8만원',disc:'75%',meta:'검색 754K/월',hook:'옷장 없는 원룸 필수, 2만원'},
+      {cat:'생활가전',nm:'전자레인지',p:'4만원',op:'15만원',disc:'73%',meta:'검색 919K/월',hook:'이사 첫날 필수, 4만원이면 해결'},
     ],
     v3:[
-      {cat:'가구/인테리어',nm:'선반',p:'1만원',op:'5만원',disc:'80%',meta:'검색 978K/월 · 완료율 48%',hook:'1만원 선반, 수납 시작'},
-      {cat:'가구/인테리어',nm:'수납장',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 991K/월 · 완료율 48%',hook:'1.5만원 수납장, 정리 시작'},
+      {cat:'가구/인테리어',nm:'선반',p:'1만원',op:'5만원',disc:'80%',meta:'검색 978K/월',hook:'1만원 선반, 수납 시작'},
+      {cat:'가구/인테리어',nm:'수납장',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 991K/월',hook:'1.5만원 수납장, 정리 시작'},
       {cat:'가구/인테리어',nm:'행거',p:'1만원',op:'5만원',disc:'80%',meta:'검색 754K/월 · P25가격대',hook:'행거 1만원, 옷 정리 기본'},
-      {cat:'가구/인테리어',nm:'커튼',p:'1만원',op:'4만원',disc:'75%',meta:'검색 317K/월 · 완료율 48%',hook:'커튼 1만원, 수면 환경 개선'},
-      {cat:'식물',nm:'화분',p:'1만원',op:'3만원',disc:'67%',meta:'검색 677K/월 · 완료율 42%',hook:'화분 1만원, 인테리어 시작'},
-      {cat:'가구/인테리어',nm:'접이식테이블',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 306K/월 · 완료율 48%',hook:'접이식 테이블 1.5만원, 공간 활용'},
-      {cat:'가구/인테리어',nm:'전신거울',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 407K/월 · 완료율 48%',hook:'전신거울 1.5만원, 코디 체크'},
-      {cat:'생활가전',nm:'에어프라이어',p:'2만원',op:'10만원',disc:'80%',meta:'검색 466K/월 · 완료율 48%',hook:'자취 요리 시작, 2만원'},
+      {cat:'가구/인테리어',nm:'커튼',p:'1만원',op:'4만원',disc:'75%',meta:'검색 317K/월',hook:'커튼 1만원, 수면 환경 개선'},
+      {cat:'식물',nm:'화분',p:'1만원',op:'3만원',disc:'67%',meta:'검색 677K/월',hook:'화분 1만원, 인테리어 시작'},
+      {cat:'가구/인테리어',nm:'접이식테이블',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 306K/월',hook:'접이식 테이블 1.5만원, 공간 활용'},
+      {cat:'가구/인테리어',nm:'전신거울',p:'1.5만원',op:'6만원',disc:'75%',meta:'검색 407K/월',hook:'전신거울 1.5만원, 코디 체크'},
+      {cat:'생활가전',nm:'에어프라이어',p:'2만원',op:'10만원',disc:'80%',meta:'검색 466K/월',hook:'자취 요리 시작, 2만원'},
     ],
     v4:[
-      {cat:'생활가전',nm:'에어컨',p:'20만원',op:'80만원',disc:'75%',meta:'검색 1.03M/월 · 완료율 46%',hook:'여름 전 필수, 시즌 끝나면 필요 없어'},
-      {cat:'생활가전',nm:'제습기',p:'6.5만원',op:'25만원',disc:'74%',meta:'검색 577K/월 · 완료율 60%',hook:'장마 시즌만, 되팔면 원가회수'},
-      {cat:'생활가전',nm:'창문형에어컨',p:'15만원',op:'40만원',disc:'63%',meta:'검색 299K/월 · 완료율 46%',hook:'원룸 여름용, 시즌 끝나면 되팔기'},
-      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월 · 완료율 47%',hook:'여름 여행용, 쓰고 되팔면 0원'},
-      {cat:'가구/인테리어',nm:'매트리스',p:'5만원',op:'20만원',disc:'75%',meta:'검색 305K/월 · 완료율 48%',hook:'이사 임시 매트리스, 되팔기 쉬움'},
-      {cat:'생활가전',nm:'공기청정기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 622K/월 · 완료율 49%',hook:'봄 미세먼지 시즌 한정'},
-      {cat:'가구/인테리어',nm:'파티션',p:'2만원',op:'8만원',disc:'75%',meta:'검색 348K/월 · 완료율 48%',hook:'공간 분리 임시용'},
-      {cat:'가구/인테리어',nm:'블라인드',p:'2만원',op:'8만원',disc:'75%',meta:'검색 338K/월 · 완료율 48%',hook:'여름 차광용, 시즌 한정'},
+      {cat:'생활가전',nm:'에어컨',p:'20만원',op:'80만원',disc:'75%',meta:'검색 1.03M/월',hook:'여름 전 필수, 시즌 끝나면 필요 없어'},
+      {cat:'생활가전',nm:'제습기',p:'6.5만원',op:'25만원',disc:'74%',meta:'검색 577K/월',hook:'장마 시즌만, 되팔면 원가회수'},
+      {cat:'생활가전',nm:'창문형에어컨',p:'15만원',op:'40만원',disc:'63%',meta:'검색 299K/월',hook:'원룸 여름용, 시즌 끝나면 되팔기'},
+      {cat:'스포츠/레저',nm:'캐리어',p:'2.7만원',op:'12만원',disc:'78%',meta:'검색 650K/월',hook:'여름 여행용, 쓰고 되팔면 0원'},
+      {cat:'가구/인테리어',nm:'매트리스',p:'5만원',op:'20만원',disc:'75%',meta:'검색 305K/월',hook:'이사 임시 매트리스, 되팔기 쉬움'},
+      {cat:'생활가전',nm:'공기청정기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 622K/월',hook:'봄 미세먼지 시즌 한정'},
+      {cat:'가구/인테리어',nm:'파티션',p:'2만원',op:'8만원',disc:'75%',meta:'검색 348K/월',hook:'공간 분리 임시용'},
+      {cat:'가구/인테리어',nm:'블라인드',p:'2만원',op:'8만원',disc:'75%',meta:'검색 338K/월',hook:'여름 차광용, 시즌 한정'},
     ],
     v5:[
-      {cat:'생활가전',nm:'에어컨',p:'20만원',op:'80만원',disc:'75%',meta:'검색 1.03M/월 · 완료율 46%',hook:'5월에 안 사면 6월 설치 3주 대기'},
-      {cat:'생활가전',nm:'제습기',p:'6.5만원',op:'25만원',disc:'74%',meta:'검색 577K/월 · 완료율 60%',hook:'장마 전 선점, 완료율 60%'},
-      {cat:'생활가전',nm:'창문형에어컨',p:'15만원',op:'40만원',disc:'63%',meta:'검색 299K/월 · 완료율 46%',hook:'설치비 0원, 원룸 필수'},
-      {cat:'식물',nm:'화분',p:'1만원',op:'3만원',disc:'67%',meta:'검색 677K/월 · 완료율 42%',hook:'봄 인테리어, 화분 수요 급증'},
-      {cat:'생활가전',nm:'공기청정기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 622K/월 · 완료율 49%',hook:'봄 황사, 공기청정기 필수'},
-      {cat:'가구/인테리어',nm:'블라인드',p:'2만원',op:'8만원',disc:'75%',meta:'검색 338K/월 · 완료율 48%',hook:'여름 직사광선 차단, 5월 전 설치'},
-      {cat:'가구/인테리어',nm:'커튼',p:'1만원',op:'4만원',disc:'75%',meta:'검색 317K/월 · 완료율 48%',hook:'여름 전 차광 커튼, 지금이 타이밍'},
-      {cat:'식물',nm:'식물',p:'1만원',op:'3만원',disc:'67%',meta:'검색 281K/월 · 완료율 42%',hook:'봄 식물 키우기 시즌 개막'},
+      {cat:'생활가전',nm:'에어컨',p:'20만원',op:'80만원',disc:'75%',meta:'검색 1.03M/월',hook:'5월에 안 사면 6월 설치 3주 대기'},
+      {cat:'생활가전',nm:'제습기',p:'6.5만원',op:'25만원',disc:'74%',meta:'검색 577K/월',hook:'장마 전 선점, '},
+      {cat:'생활가전',nm:'창문형에어컨',p:'15만원',op:'40만원',disc:'63%',meta:'검색 299K/월',hook:'설치비 0원, 원룸 필수'},
+      {cat:'식물',nm:'화분',p:'1만원',op:'3만원',disc:'67%',meta:'검색 677K/월',hook:'봄 인테리어, 화분 수요 급증'},
+      {cat:'생활가전',nm:'공기청정기',p:'8만원',op:'30만원',disc:'73%',meta:'검색 622K/월',hook:'봄 황사, 공기청정기 필수'},
+      {cat:'가구/인테리어',nm:'블라인드',p:'2만원',op:'8만원',disc:'75%',meta:'검색 338K/월',hook:'여름 직사광선 차단, 5월 전 설치'},
+      {cat:'가구/인테리어',nm:'커튼',p:'1만원',op:'4만원',disc:'75%',meta:'검색 317K/월',hook:'여름 전 차광 커튼, 지금이 타이밍'},
+      {cat:'식물',nm:'식물',p:'1만원',op:'3만원',disc:'67%',meta:'검색 281K/월',hook:'봄 식물 키우기 시즌 개막'},
     ],
     v6:[
-      {cat:'디지털기기',nm:'TV',p:'5만원',op:'30만원',disc:'83%',meta:'검색 469K/월 · 완료율 46%',hook:'방·서재용 서브 TV, 5만원'},
+      {cat:'디지털기기',nm:'TV',p:'5만원',op:'30만원',disc:'83%',meta:'검색 469K/월',hook:'방·서재용 서브 TV, 5만원'},
       {cat:'생활가전',nm:'전자레인지',p:'2만원',op:'10만원',disc:'80%',meta:'검색 919K/월 · P25가격대',hook:'서브 전자레인지, 2만원'},
-      {cat:'가구/인테리어',nm:'협탁',p:'1만원',op:'5만원',disc:'80%',meta:'검색 314K/월 · 완료율 48%',hook:'임시 사이드 테이블, 1만원'},
+      {cat:'가구/인테리어',nm:'협탁',p:'1만원',op:'5만원',disc:'80%',meta:'검색 314K/월',hook:'임시 사이드 테이블, 1만원'},
       {cat:'가구/인테리어',nm:'의자',p:'0.5만원',op:'5만원',disc:'90%',meta:'검색 1.74M/월 · P25가격대',hook:'손님용 여분 의자, 5천원'},
       {cat:'가구/인테리어',nm:'선반',p:'0.5만원',op:'3만원',disc:'83%',meta:'검색 978K/월 · P25가격대',hook:'베란다·현관 서브 선반, 5천원'},
       {cat:'생활가전',nm:'청소기',p:'1.8만원',op:'10만원',disc:'82%',meta:'검색 566K/월 · P25가격대',hook:'서브 청소기, 1.8만원'},
-      {cat:'가구/인테리어',nm:'서랍장',p:'1만원',op:'6만원',disc:'83%',meta:'검색 830K/월 · 완료율 48%',hook:'임시 수납용 서랍장, 1만원'},
+      {cat:'가구/인테리어',nm:'서랍장',p:'1만원',op:'6만원',disc:'83%',meta:'검색 830K/월',hook:'임시 수납용 서랍장, 1만원'},
       {cat:'가구/인테리어',nm:'매트리스',p:'3만원',op:'15만원',disc:'80%',meta:'검색 305K/월 · P25가격대',hook:'손님용 여분 매트리스, 3만원'},
     ],
   },
 }
-
 // STATE
 let curPersona = null;
 let curVersion = null;
 let curView = 'normal';
-
 function setView(v){
   curView = v;
   document.getElementById('btn-normal').classList.toggle('on', v==='normal');
@@ -825,7 +784,6 @@ function setView(v){
   if(v==='matrix') renderMatrix();
   if(v==='data') renderDataView();
 }
-
 function selectPersona(pid){
   curPersona = pid;
   document.querySelectorAll('.p-card').forEach(c=>c.classList.toggle('on', c.dataset.pid===pid));
@@ -833,7 +791,6 @@ function selectPersona(pid){
   renderItems();
   syncComboHighlights();
 }
-
 function selectVersion(vid){
   curVersion = vid;
   document.querySelectorAll('.v-tab').forEach(t=>t.classList.toggle('on', t.dataset.vid===vid));
@@ -841,7 +798,6 @@ function selectVersion(vid){
   renderItems();
   syncComboHighlights();
 }
-
 function syncComboHighlights(){
   document.querySelectorAll('.tc-chip').forEach(c=>{
     c.classList.toggle('on', c.dataset.pid===curPersona && c.dataset.vid===curVersion);
@@ -851,17 +807,8 @@ function syncComboHighlights(){
     chip.classList.toggle('on', !!c && c.pid===curPersona && c.vid===curVersion);
   });
 }
-
 function renderPersonaInsight(pid){ const el=document.getElementById('pInsight'); if(el){ el.className='p-insight'; el.innerHTML=''; } }
-
 function renderVersionBanner(vid){ const el=document.getElementById('vBanner'); if(el){ el.className='v-banner'; el.innerHTML=''; } }
-
-const CAT_CR = {
-  '디지털기기':46,'생활가전':49,'유아동':47,'유아도서':54,
-  '스포츠/레저':41,'가구/인테리어':48,'남성패션/잡화':34,
-  '여성잡화':28,'여성의류':28,'취미/게임/음반':31,'생활/주방':42,'식물':42
-};
-
 const CATEGORY_OPTIONS = ['디지털기기','생활가전','가구/인테리어','생활/주방','유아동','유아도서','여성의류','여성잡화','남성패션/잡화','뷰티/미용','스포츠/레저','취미/게임/음반','도서','티켓/교환권','가공식품','반려동물용품','식물'];
 const STORAGE_KEY = 'daangn-pt-v4';
 const LOCAL_BACKUP_KEY = STORAGE_KEY + '-backup';
@@ -874,26 +821,21 @@ const SUPABASE_SETUP_SQL = `create table if not exists public.persona_site_state
   payload jsonb not null,
   updated_at timestamptz not null default timezone('utc', now())
 );
-
 grant usage on schema public to anon;
 grant select, insert, update on table public.persona_site_state to anon;
-
 alter table public.persona_site_state enable row level security;
-
 drop policy if exists "anon read persona site state" on public.persona_site_state;
 create policy "anon read persona site state"
 on public.persona_site_state
 for select
 to anon
 using (true);
-
 drop policy if exists "anon insert persona site state" on public.persona_site_state;
 create policy "anon insert persona site state"
 on public.persona_site_state
 for insert
 to anon
 with check (true);
-
 drop policy if exists "anon update persona site state" on public.persona_site_state;
 create policy "anon update persona site state"
 on public.persona_site_state
@@ -905,7 +847,6 @@ let supabaseClient = null;
 let persistenceMode = 'local';
 let supabaseSetupWarned = false;
 let activeToastTimer = null;
-
 function showSaveStatus(message, isError=false){
   const el = document.getElementById('saveStatus');
   if(!el) return;
@@ -915,7 +856,6 @@ function showSaveStatus(message, isError=false){
   if(activeToastTimer) clearTimeout(activeToastTimer);
   activeToastTimer = setTimeout(()=>el.classList.remove('on'), 2600);
 }
-
 function initSupabaseClient(){
   try{
     if(!window.supabase || typeof window.supabase.createClient !== 'function') return null;
@@ -929,7 +869,6 @@ function initSupabaseClient(){
     return null;
   }
 }
-
 function getSerializableState(){
   ensureDataShape();
   return {
@@ -940,7 +879,6 @@ function getSerializableState(){
     saved_at: new Date().toISOString()
   };
 }
-
 function applyPersistedState(d){
   if(!d || typeof d !== 'object') return false;
   if(Array.isArray(d.personas)){ PERSONAS.length = 0; d.personas.forEach(p=>PERSONAS.push(p)); }
@@ -954,11 +892,9 @@ function applyPersistedState(d){
   ensureDataShape();
   return true;
 }
-
 function saveLocalBackup(payload){
   try{ localStorage.setItem(LOCAL_BACKUP_KEY, JSON.stringify(payload)); }catch(e){ console.error('local backup save failed', e); }
 }
-
 function loadLocalBackup(){
   try{
     const raw = localStorage.getItem(LOCAL_BACKUP_KEY) || localStorage.getItem(STORAGE_KEY);
@@ -969,7 +905,6 @@ function loadLocalBackup(){
     return null;
   }
 }
-
 function warnSupabaseSetup(errorMessage=''){
   if(supabaseSetupWarned) return;
   supabaseSetupWarned = true;
@@ -977,7 +912,6 @@ function warnSupabaseSetup(errorMessage=''){
   if(errorMessage) console.warn('Supabase error:', errorMessage);
   showSaveStatus('Supabase 테이블 설정이 필요해요. 일단 브라우저 임시저장은 됩니다.', true);
 }
-
 async function fetchRemoteState(){
   const client = initSupabaseClient();
   if(!client) return null;
@@ -996,7 +930,6 @@ async function fetchRemoteState(){
   if(!data || !data.payload) return null;
   return { payload:data.payload, updated_at:data.updated_at || data.payload.saved_at || null };
 }
-
 async function pushRemoteState(payload){
   const client = initSupabaseClient();
   if(!client) return { ok:false, reason:'client_unavailable' };
@@ -1011,16 +944,13 @@ async function pushRemoteState(payload){
   persistenceMode = 'supabase';
   return { ok:true };
 }
-
 function parseIsoTime(v){
   const t = Date.parse(v || '');
   return Number.isFinite(t) ? t : 0;
 }
-
 function getTailCategoryToken(text){
   return (String(text || '').split(',').pop() || '').trim();
 }
-
 function showCategoryAcDrop(input, drop){
   if(!input || !drop) return;
   const q = getTailCategoryToken(input.value);
@@ -1033,7 +963,6 @@ function showCategoryAcDrop(input, drop){
   ).join('');
   drop.classList.add('on');
 }
-
 function selectCategoryAcItem(e, category){
   e.preventDefault();
   const input = document.getElementById('mo-cats');
@@ -1050,7 +979,6 @@ function selectCategoryAcItem(e, category){
   if(drop) drop.classList.remove('on');
   input.focus();
 }
-
 function normalizeInitialVersionData(){
   PERSONAS.forEach(p=>{
     const legacy = ITEMS[p.id] || {};
@@ -1062,9 +990,7 @@ function normalizeInitialVersionData(){
     };
   });
 }
-
 normalizeInitialVersionData();
-
 function ensureDataShape(){
   PERSONAS.forEach(p=>{
     if(!ITEMS[p.id]) ITEMS[p.id] = {};
@@ -1080,8 +1006,6 @@ function ensureDataShape(){
     if(!PERSONAS.some(p=>p.id===c.pid) || !VERSIONS.some(v=>v.id===c.vid)) CUSTOM_COMBOS.splice(i,1);
   }
 }
-
-
 function updateDataBar(){
   const personaCount = PERSONAS.length;
   const versionCount = VERSIONS.length;
@@ -1093,7 +1017,6 @@ function updateDataBar(){
   if(b) b.textContent = versionCount + '개';
   if(c) c.textContent = itemCount + '개';
 }
-
 function refreshDerivedViews(){
   updateDataBar();
   renderTopCombos();
@@ -1101,7 +1024,6 @@ function refreshDerivedViews(){
   if(curView==='matrix') renderMatrix();
   if(curView==='data') renderDataView();
 }
-
 function sanitizeNumericInput(el, allowDecimal=true){
   if(!el) return;
   let v = (el.value || '').replace(/[^\d.]/g,'');
@@ -1112,45 +1034,27 @@ function sanitizeNumericInput(el, allowDecimal=true){
   }
   el.value = v;
 }
-
 function parseManwonNumber(s){
   if(!s) return '';
   const m = String(s).match(/([\d.]+)/);
   return m ? m[1] : '';
 }
-
-
 function parseSearchDisplay(meta){
   const m = String(meta||'').match(/검색\s*([^·]+)/);
   return m ? m[1].trim().replace(/\/월$/,'') : '';
 }
-function parseCompletionDisplay(meta){
-  const m = String(meta||'').match(/완료율\s*(\d+(?:\.\d+)?)%/);
-  return m ? (m[1] + '%') : '';
-}
-function parseCompletion(meta){
-  const m = String(meta||'').match(/완료율\s*(\d+(?:\.\d+)?)%/);
-  return m ? m[1] : '';
-}
-
-function buildMeta(searchVol, completionRate){
+function buildMeta(searchVol){
   const parts = [];
   const vol = Number(searchVol);
   if(Number.isFinite(vol) && vol > 0) parts.push('검색 ' + fmtVol(vol) + '/월');
-  const cr = String(completionRate || '').trim();
-  if(cr) parts.push('완료율 ' + cr + '%');
   return parts.join(' · ');
 }
-
 function categoryOptionsHtml(selected=''){
   return CATEGORY_OPTIONS.map(cat => '<option value="' + cat + '"' + (cat===selected ? ' selected' : '') + '>' + cat + '</option>').join('');
 }
-
-
 function cleanVersionLabel(label){
   return String(label||'').replace(/^[^\w가-힣0-9]+\s*/,'').trim();
 }
-
 function extractPersonaCategories(p){
   const out = [];
   (p.tags||[]).forEach(tag=>{ if(CATEGORY_OPTIONS.includes(tag) && !out.includes(tag)) out.push(tag); });
@@ -1160,19 +1064,16 @@ function extractPersonaCategories(p){
   });
   return out;
 }
-
 function personaOptionsHtml(selected='', includeNone=false){
   const opts = PERSONAS.map(p=>'<option value="'+p.id+'"'+(p.id===selected?' selected':'')+'>'+p.em+' '+p.name+'</option>');
   if(includeNone) opts.unshift('<option value=""'+(selected===''?' selected':'')+'>선택하지 않음</option>');
   return opts.join('');
 }
-
 function versionOptionsHtml(selected='', includeNone=false){
   const opts = VERSIONS.map(v=>'<option value="'+v.id+'"'+(v.id===selected?' selected':'')+'>'+cleanVersionLabel(v.label)+'</option>');
   if(includeNone) opts.unshift('<option value=""'+(selected===''?' selected':'')+'>선택하지 않음</option>');
   return opts.join('');
 }
-
 function renderCustomCombos(){
   const el = document.getElementById('customCombos');
   const addWrap = document.getElementById('customComboAddWrap');
@@ -1195,7 +1096,6 @@ function renderCustomCombos(){
     '</div>';
   }).join('');
 }
-
 function selectCustomCombo(idx){
   const c = CUSTOM_COMBOS[idx];
   if(!c) return;
@@ -1205,7 +1105,6 @@ function selectCustomCombo(idx){
   document.querySelectorAll('.cc-chip').forEach((chip,i)=>chip.classList.toggle('on', i===idx));
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
 function renderItems(){
   const grid = document.getElementById('itemsGrid');
   const empty = document.getElementById('emptyState');
@@ -1222,7 +1121,6 @@ function renderItems(){
     const coupangUrl = 'http://coupang.com/np/search?component=&q=' + encodeURIComponent(item.nm);
     const usedPrice = item.p || '';
     const searchText = parseSearchDisplay(item.meta || '');
-    const completionText = parseCompletionDisplay(item.meta || '');
     const dragAttr = editMode ? 'draggable="true"' : '';
     const delBtn  = editMode ? `<button class="ic-del" onclick="event.stopPropagation();deleteItem('${pid}','${vid}',${i})" title="삭제">×</button>` : '';
     const editBtn = editMode ? `<button class="ic-edit" onclick="event.stopPropagation();showEditItemModal('${pid}','${vid}',${i})" title="수정">✎</button>` : '';
@@ -1238,10 +1136,6 @@ function renderItems(){
           <div class="ic-meta-box">
             <div class="ic-meta-k">중고가</div>
             <div class="ic-meta-v price">${usedPrice}</div>
-          </div>
-          <div class="ic-meta-box">
-            <div class="ic-meta-k">거래완료율</div>
-            <div class="ic-meta-v">${completionText}</div>
           </div>
           <div class="ic-meta-box">
             <div class="ic-meta-k">검색량</div>
@@ -1260,7 +1154,6 @@ function renderItems(){
   }
   if(editMode) setupItemDrag(grid, pid, vid);
 }
-
 function renderMatrix(){
   const container = document.getElementById('matrixTable');
   const vHeaders = VERSIONS.map(v=>`<th>${v.label}</th>`).join('');
@@ -1274,7 +1167,6 @@ function renderMatrix(){
   }).join('');
   container.innerHTML = `<table><thead><tr><th>페르소나 ＼ 버전</th>${vHeaders}</tr></thead><tbody>${rows}</tbody></table>`;
 }
-
 // ── PARSE SEARCH VOLUME FROM META ──
 function parseVol(meta){
   const m = meta.match(/검색\s*([\d.]+)([KkMm])/);
@@ -1292,7 +1184,6 @@ function parsePrice(s){
   const m = s.match(/([\d.]+)만원/);
   return m ? parseFloat(m[1])*10000 : 0;
 }
-
 function calculateDiscountFromManwon(priceText, originalText){
   const used = parseFloat(String(priceText || '').replace(/[^\d.]/g,''));
   const original = parseFloat(String(originalText || '').replace(/[^\d.]/g,''));
@@ -1300,7 +1191,6 @@ function calculateDiscountFromManwon(priceText, originalText){
   const pct = Math.round((1 - (used / original)) * 100);
   return Math.max(0, pct).toString();
 }
-
 function updateDiscountPreview(){
   const priceEl = document.getElementById('mo-p');
   const originalEl = document.getElementById('mo-op');
@@ -1308,7 +1198,6 @@ function updateDiscountPreview(){
   if(!priceEl || !originalEl || !discEl) return;
   discEl.value = calculateDiscountFromManwon(priceEl.value, originalEl.value);
 }
-
 function normalizeBulkVolume(text){
   const raw = String(text||'').trim().replace(/,/g,'');
   if(!raw) return 0;
@@ -1321,29 +1210,24 @@ function normalizeBulkVolume(text){
   if(unit==='K') return Math.round(n*1000);
   return Math.round(n);
 }
-
 function parsePercentLoose(text){
   const m = String(text||'').replace(/,/g,'').match(/-?([\d.]+)/);
   return m ? m[1] : '';
 }
-
 function parseManwonLoose(text){
   const m = String(text||'').replace(/,/g,'').match(/([\d.]+)/);
   return m ? parseFloat(m[1]) : NaN;
 }
-
 function parseDiscountLoose(text){
   const m = String(text||'').replace(/,/g,'').match(/-?([\d.]+)/);
   if(!m) return NaN;
   return parseFloat(m[1]);
 }
-
 function formatManwonLoose(value){
   const n = Number(value);
   if(!Number.isFinite(n)) return '';
   return String(Math.round(n*100)/100).replace(/\.0+$/,'').replace(/(\.\d*[1-9])0+$/,'$1');
 }
-
 function deriveOriginalFromDiscount(usedManwon, discountPct){
   const used = Number(usedManwon);
   const discount = Number(discountPct);
@@ -1351,13 +1235,11 @@ function deriveOriginalFromDiscount(usedManwon, discountPct){
   const original = used / (1 - discount/100);
   return formatManwonLoose(original);
 }
-
 function splitBulkLine(line){
   return String(line||'').includes('	')
     ? String(line).split('	').map(s=>s.trim())
     : String(line).split(',').map(s=>s.trim());
 }
-
 // ── TOP 8 COMBO SCORING ──
 function computeComboScores(){
   const scores = [];
@@ -1383,22 +1265,17 @@ function computeComboScores(){
   scores.sort((a,b)=>b.totalVol - a.totalVol);
   return scores.slice(0,8);
 }
-
-
 function restructureLayout(){
   const pre = document.getElementById('preViews');
   const normalView = document.getElementById('normalView');
   if(!pre || !normalView || document.getElementById('normalLayout')) return;
-
   const wrap = document.querySelector('.wrap');
   const matrixView = document.getElementById('matrixView');
   const sidebar = pre.querySelector('.tc-sec');
   if(sidebar) sidebar.remove();
-
   const children = Array.from(pre.children);
   pre.className = 'main-selectors';
   pre.innerHTML = '';
-
   for(let i=0;i<children.length;i+=2){
     const block = document.createElement('div');
     block.className = 'main-block';
@@ -1406,7 +1283,6 @@ function restructureLayout(){
     if(children[i+1]) block.appendChild(children[i+1]);
     pre.appendChild(block);
   }
-
   const layout = document.createElement('div');
   layout.id = 'normalLayout';
   const mainCol = document.createElement('div');
@@ -1414,17 +1290,14 @@ function restructureLayout(){
   const customSec = document.createElement('div');
   customSec.className = 'cc-sec';
   customSec.innerHTML = '<div class="cc-head"><div class="sec-lbl" style="margin-bottom:0">커스텀 조합</div><div id="customComboAddWrap"></div></div><div class="cc-row" id="customCombos"></div>';
-
   if(matrixView) wrap.insertBefore(layout, matrixView);
   else wrap.appendChild(layout);
-
   if(sidebar) layout.appendChild(sidebar);
   mainCol.appendChild(pre);
   mainCol.appendChild(normalView);
   layout.appendChild(mainCol);
   layout.appendChild(customSec);
 }
-
 function renderTopCombos(){
   const top8 = computeComboScores();
   const el = document.getElementById('topCombos');
@@ -1440,7 +1313,6 @@ function renderTopCombos(){
     </div>
   `}).join('');
 }
-
 function selectCombo(pid,vid){
   setView('normal');
   selectPersona(pid);
@@ -1450,7 +1322,6 @@ function selectCombo(pid,vid){
   });
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
 // ── DATA VIEW ──
 function renderDataView(){
   const el = document.getElementById('dataView');
@@ -1468,7 +1339,7 @@ function renderDataView(){
             nm:it.nm, cat:it.cat,
             vol:parseVol(it.meta),
             prices:[], discs:[],
-            combos:[], cr:CAT_CR[it.cat]||0
+            combos:[]
           };
         }
         itemMap[key].prices.push(parsePrice(it.p));
@@ -1478,16 +1349,14 @@ function renderDataView(){
     });
   });
   const allItems = Object.values(itemMap).sort((a,b)=>b.vol-a.vol);
-
   // 2. Category summary
   const catMap = {};
   allItems.forEach(it=>{
-    if(!catMap[it.cat]) catMap[it.cat]={cat:it.cat,cr:it.cr,count:0,totalVol:0};
+    if(!catMap[it.cat]) catMap[it.cat]={cat:it.cat,count:0,totalVol:0};
     catMap[it.cat].count++;
     catMap[it.cat].totalVol += it.vol;
   });
   const cats = Object.values(catMap).sort((a,b)=>b.totalVol-a.totalVol);
-
   // 3. Combo scores for reference
   const comboScores = [];
   PERSONAS.forEach(p=>{
@@ -1498,17 +1367,15 @@ function renderDataView(){
     });
   });
   comboScores.sort((a,b)=>b.totalVol-a.totalVol);
-
   const maxVol = allItems[0]?.vol||1;
-
   el.innerHTML = `
     <!-- SUMMARY -->
     <div class="dv-sec">
       <div class="dv-title">📈 데이터 요약</div>
-      <div class="dv-desc">BigQuery search_query_stats + fleaMarketArticles 기반, 2026년 3-4월 실데이터</div>
+      <div class="dv-desc">BigQuery search_query_stats 기반, 2026년 3-4월 실데이터</div>
       <div class="dv-grid">
         <div class="dv-stat"><div class="dv-stat-val">${allItems.length}개</div><div class="dv-stat-lbl">고유 아이템</div><div class="dv-stat-sub">중복 제거 기준</div></div>
-        <div class="dv-stat"><div class="dv-stat-val">${cats.length}개</div><div class="dv-stat-lbl">카테고리</div><div class="dv-stat-sub">거래완료율 보유</div></div>
+        <div class="dv-stat"><div class="dv-stat-val">${cats.length}개</div><div class="dv-stat-lbl">카테고리</div><div class="dv-stat-sub">검색량 집계 기준</div></div>
         <div class="dv-stat"><div class="dv-stat-val">${PERSONAS.reduce((sum,p)=>sum + VERSIONS.reduce((acc,v)=>acc + (((ITEMS[p.id]||{})[v.id]||[]).length), 0), 0)}개</div><div class="dv-stat-lbl">페르소나×버전 배치</div><div class="dv-stat-sub">${PERSONAS.length}P × ${VERSIONS.length}V 기준</div></div>
         <div class="dv-stat"><div class="dv-stat-val">${fmtVol(allItems.reduce((s,i)=>s+i.vol,0))}</div><div class="dv-stat-lbl">총 월간 검색량</div><div class="dv-stat-sub">고유 아이템 합산</div></div>
       </div>
@@ -1517,29 +1384,12 @@ function renderDataView(){
         <button class="dv-add-btn" onclick="showBulkAddItemsModal()">+ 여러매물 추가하기</button>
       </div>
     </div>
-
-    <!-- CATEGORY COMPLETION RATES -->
-    <div class="dv-sec">
-      <div class="dv-title">📂 카테고리별 거래완료율</div>
-      <div class="dv-desc">fleaMarketArticles 최근 90일 — 등록 대비 거래완료(closed) 비율</div>
-      <table class="dv-tbl">
-        <thead><tr><th>카테고리</th><th>거래완료율</th><th>고유 아이템수</th><th>총 월 검색량</th><th></th></tr></thead>
-        <tbody>${cats.map(c=>`<tr>
-          <td style="font-weight:700">${c.cat}</td>
-          <td><b style="color:var(--o)">${c.cr}%</b></td>
-          <td>${c.count}개</td>
-          <td>${fmtVol(c.totalVol)}</td>
-          <td><div class="dv-bar" style="width:${Math.round(c.cr/70*100)}px"></div></td>
-        </tr>`).join('')}</tbody>
-      </table>
-    </div>
-
     <!-- SEARCH QUERY RANKINGS -->
     <div class="dv-sec">
       <div class="dv-title">🔍 검색어 순위 — 월간 클릭수 기준</div>
       <div class="dv-desc">search_query_stats · tab='flea_market' · 2026년 3-4월 평균</div>
       <table class="dv-tbl">
-        <thead><tr><th>#</th><th>검색어</th><th>카테고리</th><th>월 검색량</th><th>거래완료율</th><th>가격대(중고)</th><th>평균할인</th><th>사용 조합수</th><th></th></tr></thead>
+        <thead><tr><th>#</th><th>검색어</th><th>카테고리</th><th>월 검색량</th><th>가격대(중고)</th><th>평균할인</th><th>사용 조합수</th><th></th></tr></thead>
         <tbody>${allItems.map((it,i)=>{
           const minP = Math.min(...it.prices);
           const maxP = Math.max(...it.prices);
@@ -1551,7 +1401,6 @@ function renderDataView(){
             <td style="font-weight:800">${it.nm}</td>
             <td>${it.cat}</td>
             <td><b>${fmtVol(it.vol)}</b><div class="dv-bar" style="width:${barW}px"></div></td>
-            <td>${it.cr}%</td>
             <td>${pRange}</td>
             <td>-${avgD}%</td>
             <td>${it.combos.length}회</td>
@@ -1559,7 +1408,6 @@ function renderDataView(){
           </tr>`}).join('')}</tbody>
       </table>
     </div>
-
     <!-- COMBO SCORES -->
     <div class="dv-sec">
       <div class="dv-title">🏅 페르소나×버전 조합 검색량 순위 (전체 ${comboScores.length}개)</div>
@@ -1579,14 +1427,11 @@ function renderDataView(){
     </div>
   `;
 }
-
-
 // ═══════════════════════════════════════════════════════════════════════════
 // PERSISTENCE & EDIT MODE
 // ═══════════════════════════════════════════════════════════════════════════
 let isDirty = false;
 let editMode = false;
-
 async function loadFromStorage(){
   try{
     const localPayload = loadLocalBackup();
@@ -1609,8 +1454,6 @@ async function loadFromStorage(){
     ensureDataShape();
   }catch(e){ console.error('load failed',e); }
 }
-
-
 async function saveAll(){
   ensureDataShape();
   const payload = getSerializableState();
@@ -1622,7 +1465,6 @@ async function saveAll(){
   showSaveStatus(remoteResult.ok ? 'Supabase에 저장됐어요.' : 'Supabase 연결 전이라 브라우저에만 저장됐어요.', !remoteResult.ok);
   return remoteResult.ok;
 }
-
 function markDirty(){ isDirty=true; updateFab(); }
 function updateFab(){
   const el=document.getElementById('fabMain');
@@ -1645,11 +1487,9 @@ function updateFab(){
     el.style.display = 'flex';
   }
 }
-
 window.addEventListener('beforeunload', e=>{
   if(isDirty){ e.preventDefault(); e.returnValue=''; }
 });
-
 function setEditMode(next){
   editMode = !!next;
   const btn = document.getElementById('btn-edit');
@@ -1667,11 +1507,9 @@ function setEditMode(next){
   renderItems();
   refreshDerivedViews();
 }
-
 function toggleEditMode(){
   setEditMode(!editMode);
 }
-
 // Handle clicks on the floating action button. When not editing, enable edit mode.
 // When editing and there are unsaved changes, save all data. When editing with no changes, exit edit mode.
 async function onFabClick(){
@@ -1689,7 +1527,6 @@ async function onFabClick(){
   setEditMode(false);
   updateFab();
 }
-
 // ═══════════════════════════════════════════════════════════════════════════
 // RENDER ROWS (with edit support)
 // ═══════════════════════════════════════════════════════════════════════════
@@ -1730,7 +1567,6 @@ function renderPersonaRow(){
     setupPersonaDrag(pr);
   }
 }
-
 function renderVersionRow(){
   const vr=document.getElementById('versionRow');
   vr.innerHTML='';
@@ -1766,7 +1602,6 @@ function renderVersionRow(){
     vr.appendChild(btn);
   }
 }
-
 // ═══════════════════════════════════════════════════════════════════════════
 // DELETE
 // ═══════════════════════════════════════════════════════════════════════════
@@ -1779,7 +1614,6 @@ function deletePersona(pid){
   if(curPersona===pid){ curPersona=null; document.getElementById('pInsight').className='p-insight'; }
   markDirty(); renderPersonaRow(); renderItems(); refreshDerivedViews();
 }
-
 function deleteVersion(vid){
   if(!confirm('이 버전을 삭제하시겠습니까?')) return;
   const idx=VERSIONS.findIndex(v=>v.id===vid);
@@ -1789,18 +1623,15 @@ function deleteVersion(vid){
   if(curVersion===vid){ curVersion=null; }
   markDirty(); renderVersionRow(); renderItems(); refreshDerivedViews();
 }
-
 function deleteItem(pid, vid, idx){
   if(!ITEMS[pid]||!ITEMS[pid][vid]) return;
   ITEMS[pid][vid].splice(idx,1);
   markDirty(); renderItems(); refreshDerivedViews();
 }
-
 // ═══════════════════════════════════════════════════════════════════════════
 // DRAG & DROP (item reorder)
 // ═══════════════════════════════════════════════════════════════════════════
 let dragSrcIdx=null;
-
 function setupItemDrag(grid, pid, vid){
   const cards=Array.from(grid.querySelectorAll('.ic[draggable="true"]'));
   cards.forEach((card,idx)=>{
@@ -1822,9 +1653,7 @@ function setupItemDrag(grid, pid, vid){
     });
   });
 }
-
 let dragPersonaIdx=null;
-
 function setupPersonaDrag(row){
   const cards = Array.from(row.querySelectorAll('.p-card[draggable="true"]'));
   cards.forEach((card, idx)=>{
@@ -1849,12 +1678,10 @@ function setupPersonaDrag(row){
     });
   });
 }
-
 // ═══════════════════════════════════════════════════════════════════════════
 // AUTOCOMPLETE
 // ═══════════════════════════════════════════════════════════════════════════
 let acCache=null;
-
 function getAcData(){
   if(acCache) return acCache;
   const map={};
@@ -1871,7 +1698,6 @@ function getAcData(){
   acCache=Object.values(map).sort((a,b)=>b.vol-a.vol);
   return acCache;
 }
-
 function showAcDrop(input, drop){
   const q=input.value.trim();
   const list=getAcData();
@@ -1889,22 +1715,19 @@ function showAcDrop(input, drop){
   }).join('');
   drop.classList.add('on');
 }
-
 function selectAcItem(e,nm,cat,p,op,disc,meta,hook){
   e.preventDefault();
   const s=(id,v)=>{ const el=document.getElementById(id); if(el) el.value=v; };
   s('mo-nm',nm); s('mo-cat',cat); s('mo-p',parseManwonNumber(p)); s('mo-op',parseManwonNumber(op));
-  s('mo-search-vol', parseVol(meta||'') || ''); s('mo-comp-rate', parseCompletion(meta||''));
+  s('mo-search-vol', parseVol(meta||'') || '');
   updateDiscountPreview();
   const drop=document.querySelector('.ac-drop');
   if(drop) drop.classList.remove('on');
 }
-
 // ═══════════════════════════════════════════════════════════════════════════
 // MODALS
 // ═══════════════════════════════════════════════════════════════════════════
 function closeModal(){ document.getElementById('modal').classList.remove('on'); }
-
 function showBulkAddItemsModal(){
   if(!editMode){
     setEditMode(true);
@@ -1917,44 +1740,40 @@ function showBulkAddItemsModal(){
       <div class="mo-title">여러매물 추가하기</div>
       <button class="mo-close" onclick="closeModal()">×</button>
     </div>
-    <div class="mo-help">한 줄에 한 매물씩 입력하세요. 쉼표(<code>,</code>) 또는 탭으로 구분할 수 있어요.<br>형식: <b>매물이름, 카테고리, 검색량, 완료율, 중고가, 할인율</b><br>예: 선반, 가구/인테리어, 978K, 48%, 1만원, -80%</div>
+    <div class="mo-help">한 줄에 한 매물씩 입력하세요. 쉼표(<code>,</code>) 또는 탭으로 구분할 수 있어요.<br>형식: <b>매물이름, 카테고리, 검색량, 중고가, 할인율</b><br>예: 선반, 가구/인테리어, 978K, 1만원, -80%</div>
     <div class="mo-row">
       <div class="mo-field"><div class="mo-lbl">페르소나</div><select id="mo-bulk-pid" class="mo-inp mo-select">${personaOptionsHtml(pid, true)}</select></div>
       <div class="mo-field"><div class="mo-lbl">버전</div><select id="mo-bulk-vid" class="mo-inp mo-select">${versionOptionsHtml(vid, true)}</select></div>
     </div>
     <div class="mo-field">
       <div class="mo-lbl">매물 목록</div>
-      <textarea id="mo-bulk-text" class="mo-inp mo-ta" placeholder="선반, 가구/인테리어, 978K, 48%, 1만원, -80%&#10;책상, 가구/인테리어, 512K, 63%, 8만원, -55%&#10;맥북, 디지털기기, 574K, 72%, 95만원, -31%"></textarea>
+      <textarea id="mo-bulk-text" class="mo-inp mo-ta" placeholder="선반, 가구/인테리어, 978K, 1만원, -80%&#10;책상, 가구/인테리어, 512K, 8만원, -55%&#10;맥북, 디지털기기, 574K, 95만원, -31%"></textarea>
     </div>
     <button class="mo-btn" onclick="confirmBulkAddItems()">여러 개 추가하기</button>
   `;
   document.getElementById('modal').classList.add('on');
   setTimeout(()=>document.getElementById('mo-bulk-text')?.focus(),100);
 }
-
 function confirmBulkAddItems(){
   const pid = (document.getElementById('mo-bulk-pid')||{}).value || '';
   const vid = (document.getElementById('mo-bulk-vid')||{}).value || '';
   const raw = (document.getElementById('mo-bulk-text')||{}).value || '';
   const lines = raw.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
   if(!lines.length){ alert('추가할 매물 데이터를 입력해주세요.'); return; }
-
   const useUnassigned = !(pid && vid);
   const targetPid = useUnassigned ? '__unassigned__' : pid;
   const targetVid = useUnassigned ? '__pool__' : vid;
   if(!ITEMS[targetPid]) ITEMS[targetPid] = {};
   if(!ITEMS[targetPid][targetVid]) ITEMS[targetPid][targetVid] = [];
-
   const added = [];
   const failed = [];
-
   lines.forEach((line, index)=>{
     const parts = splitBulkLine(line).map(s=>s.trim());
-    if(parts.length < 6){
+    if(parts.length < 5){
       failed.push((index+1)+'행: 항목 수 부족');
       return;
     }
-    const [nmRaw, catRaw, volRaw, compRaw, priceRaw, discRaw] = parts;
+    const [nmRaw, catRaw, volRaw, priceRaw, discRaw] = parts;
     const nm = String(nmRaw||'').trim();
     if(!nm){
       failed.push((index+1)+'행: 매물이름 없음');
@@ -1969,20 +1788,17 @@ function confirmBulkAddItems(){
     const discountPct = parseDiscountLoose(discRaw);
     const originalManwon = deriveOriginalFromDiscount(usedManwon, discountPct);
     const searchVol = normalizeBulkVolume(volRaw);
-    const completionRate = parsePercentLoose(compRaw);
-
     ITEMS[targetPid][targetVid].push({
       nm,
       cat,
       p: formatManwonLoose(usedManwon) + '만원',
       op: originalManwon ? originalManwon + '만원' : '',
       disc: originalManwon ? calculateDiscountFromManwon(formatManwonLoose(usedManwon), originalManwon) : (Number.isFinite(discountPct) ? String(Math.round(discountPct)) : ''),
-      meta: buildMeta(searchVol, completionRate),
+      meta: buildMeta(searchVol),
       hook: ''
     });
     added.push(nm);
   });
-
   acCache = null;
   if(added.length){
     closeModal();
@@ -2002,10 +1818,8 @@ function confirmBulkAddItems(){
     if(failed.length) alert(msg + '\n\n제외된 행:\n' + failed.slice(0,10).join('\n'));
     return;
   }
-
   alert('추가된 매물이 없어요.\n' + failed.join('\n'));
 }
-
 function showAddItemModal(pid, vid){
   acCache=null;
   document.getElementById('modalBox').innerHTML=`
@@ -2031,7 +1845,6 @@ function showAddItemModal(pid, vid){
     </div>
     <div class="mo-row">
       <div class="mo-field"><div class="mo-lbl">검색량</div><div class="mo-inp-wrap"><input id="mo-search-vol" class="mo-inp" inputmode="numeric" placeholder="2680000" oninput="sanitizeNumericInput(this,false)"/><span class="mo-suf">건/월</span></div></div>
-      <div class="mo-field"><div class="mo-lbl">완료율</div><div class="mo-inp-wrap"><input id="mo-comp-rate" class="mo-inp" inputmode="decimal" placeholder="46" oninput="sanitizeNumericInput(this,true)"/><span class="mo-suf">%</span></div></div>
     </div>
     <button class="mo-btn" onclick="confirmAddItem('${pid}','${vid}')">추가하기</button>
   `;
@@ -2041,7 +1854,6 @@ function showAddItemModal(pid, vid){
     if(el){ el.focus(); showAcDrop(el, el.closest('.ac-wrap').querySelector('.ac-drop')); }
   },150);
 }
-
 function confirmAddItem(pid, vid){
   const nm=(document.getElementById('mo-nm').value||'').trim();
   if(!nm){ alert('상품명을 입력해주세요'); return; }
@@ -2050,7 +1862,6 @@ function confirmAddItem(pid, vid){
   const originalPrice=g('mo-op').trim();
   const discount=calculateDiscountFromManwon(price, originalPrice);
   const searchVol=g('mo-search-vol').trim();
-  const completionRate=g('mo-comp-rate').trim();
   if(!ITEMS[pid]) ITEMS[pid]={};
   if(!ITEMS[pid][vid]) ITEMS[pid][vid]=[];
   ITEMS[pid][vid].push({
@@ -2058,12 +1869,11 @@ function confirmAddItem(pid, vid){
     p:price ? price + '만원' : '',
     op:originalPrice ? originalPrice + '만원' : '',
     disc:discount,
-    meta:buildMeta(searchVol, completionRate), hook:''
+    meta:buildMeta(searchVol), hook:''
   });
   acCache=null;
   closeModal(); markDirty(); renderItems(); refreshDerivedViews();
 }
-
 function showAddPersonaModal(){
   document.getElementById('modalBox').innerHTML=`
     <div class="mo-head">
@@ -2089,7 +1899,6 @@ function showAddPersonaModal(){
   document.getElementById('modal').classList.add('on');
   setTimeout(()=>document.getElementById('mo-pname').focus(),100);
 }
-
 function confirmAddPersona(){
   const name=(document.getElementById('mo-pname').value||'').trim();
   if(!name){ alert('이름을 입력해주세요'); return; }
@@ -2122,7 +1931,6 @@ function confirmAddPersona(){
   VERSIONS.forEach(v=>{ if(!ITEMS[id][v.id]) ITEMS[id][v.id]=[]; });
   closeModal(); markDirty(); renderPersonaRow(); refreshDerivedViews();
 }
-
 function showAddVersionModal(){
   document.getElementById('modalBox').innerHTML=`
     <div class="mo-head">
@@ -2138,7 +1946,6 @@ function showAddVersionModal(){
   document.getElementById('modal').classList.add('on');
   setTimeout(()=>document.getElementById('mo-vlabel').focus(),100);
 }
-
 function confirmAddVersion(){
   const label=(document.getElementById('mo-vlabel').value||'').trim();
   if(!label){ alert('버전 이름을 입력해주세요'); return; }
@@ -2153,8 +1960,6 @@ function confirmAddVersion(){
   PERSONAS.forEach(p=>{ if(!ITEMS[p.id]) ITEMS[p.id]={}; ITEMS[p.id][id]=[]; });
   closeModal(); markDirty(); renderVersionRow(); refreshDerivedViews();
 }
-
-
 function showCustomComboModal(mode='add', idx=-1){
   const existing = idx >= 0 ? CUSTOM_COMBOS[idx] : null;
   document.getElementById('modalBox').innerHTML=`
@@ -2195,7 +2000,6 @@ function deleteCustomCombo(idx){
   CUSTOM_COMBOS.splice(idx,1);
   markDirty(); refreshDerivedViews();
 }
-
 function showEditItemModal(pid, vid, idx){
   const item = (((ITEMS[pid]||{})[vid]||[])[idx]);
   if(!item) return;
@@ -2223,7 +2027,6 @@ function showEditItemModal(pid, vid, idx){
     </div>
     <div class="mo-row">
       <div class="mo-field"><div class="mo-lbl">검색량</div><div class="mo-inp-wrap"><input id="mo-search-vol" class="mo-inp" inputmode="numeric" placeholder="2680000" oninput="sanitizeNumericInput(this,false)" value="${parseVol(item.meta||'')||''}"/><span class="mo-suf">건/월</span></div></div>
-      <div class="mo-field"><div class="mo-lbl">완료율</div><div class="mo-inp-wrap"><input id="mo-comp-rate" class="mo-inp" inputmode="decimal" placeholder="46" oninput="sanitizeNumericInput(this,true)" value="${parseCompletion(item.meta||'')}"/><span class="mo-suf">%</span></div></div>
     </div>
     <button class="mo-btn" onclick="confirmEditItem('${pid}','${vid}',${idx})">저장하기</button>
   `;
@@ -2243,12 +2046,11 @@ function confirmEditItem(pid, vid, idx){
   item.p = price ? price + '만원' : '';
   item.op = originalPrice ? originalPrice + '만원' : '';
   item.disc = calculateDiscountFromManwon(price, originalPrice);
-  item.meta = buildMeta(g('mo-search-vol').trim(), g('mo-comp-rate').trim());
+  item.meta = buildMeta(g('mo-search-vol').trim());
   item.hook = '';
   acCache=null;
   closeModal(); markDirty(); renderItems(); refreshDerivedViews();
 }
-
 function showEditPersonaModal(pid){
   const p = PERSONAS.find(x=>x.id===pid);
   if(!p) return;
@@ -2294,7 +2096,6 @@ function confirmEditPersona(pid){
   p.category = catsList.length ? catsList.join(' · ') : '-';
   closeModal(); markDirty(); renderPersonaRow(); refreshDerivedViews();
 }
-
 function splitVersionLabelParts(label){
   const txt = String(label||'').trim();
   const m = txt.match(/^([^\s]+)\s+(.+)$/);
@@ -2330,7 +2131,6 @@ function confirmEditVersion(vid){
   v.desc = document.getElementById('mo-vdesc').value.trim();
   closeModal(); markDirty(); renderVersionRow(); refreshDerivedViews();
 }
-
 // INIT
 async function init(){
   restructureLayout();
@@ -2346,7 +2146,6 @@ async function init(){
 }
 init();
 </script>
-
 <!-- FAB MAIN -->
 <!--
   Floating action button that toggles edit mode and saves changes.
@@ -2354,13 +2153,10 @@ init();
   and there are unsaved changes, it switches to a save icon on an orange background.
 -->
 <button class="fab" id="fabMain" onclick="onFabClick()">✏️ 편집하기</button>
-
 <!-- MODAL -->
 <div class="mo" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="mo-box" id="modalBox"></div>
 </div>
-
 <div class="save-status" id="saveStatus"></div>
-
 </body>
 </html>
