@@ -121,6 +121,12 @@ tr:nth-child(even) td{background:#FAFAFA}
 .dv-stat-val{font-size:22px;font-weight:900;color:var(--o)}
 .dv-stat-lbl{font-size:10px;color:var(--s);margin-top:2px}
 .dv-stat-sub{font-size:9px;color:var(--s);margin-top:1px}
+.dv-actions{display:flex;justify-content:flex-end;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.dv-target{font-size:11px;color:var(--s);margin-right:auto}
+.dv-add-btn{border:none;background:var(--o);color:#fff;font-size:12px;font-weight:800;padding:10px 14px;border-radius:10px;cursor:pointer;transition:.15s}
+.dv-add-btn:hover{background:var(--od)}
+.mo-ta{width:100%;min-height:220px;resize:vertical;line-height:1.5}
+.mo-help{font-size:11px;color:var(--s);line-height:1.55;margin:-4px 0 12px}
 /* EMPTY */
 .empty{text-align:center;padding:60px 20px;color:var(--s)}
 .empty-em{font-size:48px;margin-bottom:14px}
@@ -264,6 +270,34 @@ tr:nth-child(even) td{background:#FAFAFA}
 .save-status.on{display:block}
 @media(max-width:960px){.hd-btn{font-size:17px;padding:12px 16px;min-width:0}}
 @media(max-width:640px){.hd-btn{font-size:15px;padding:11px 14px}.fab{padding:14px 22px;font-size:14px}}
+
+
+
+/* --- 2026-04 custom combos + inline edit --- */
+#normalLayout{grid-template-columns:220px minmax(0,1fr) 220px}
+.cc-sec{background:var(--w);border-radius:18px;padding:14px;box-shadow:var(--sh);position:sticky;top:100px;align-self:start}
+.cc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.cc-add{border:1.5px dashed var(--b);background:#fff;color:var(--s);border-radius:12px;padding:7px 10px;font-size:12px;font-weight:800;cursor:pointer;transition:.15s}
+.cc-add:hover{border-color:var(--o);color:var(--o);background:var(--ol)}
+.cc-row{display:flex;flex-direction:column;gap:10px}
+.cc-chip{position:relative;width:100%;text-align:left;padding:12px 14px;background:var(--w);border:1.5px solid var(--b);border-radius:14px;cursor:pointer;transition:.15s}
+.cc-chip:hover{border-color:var(--o);box-shadow:var(--sh);transform:translateY(-1px)}
+.cc-chip.on{border-color:var(--o);background:var(--ol)}
+.cc-name{font-size:13px;font-weight:900;color:var(--t);line-height:1.35;margin-bottom:6px}
+.cc-sub{font-size:11px;color:var(--s);line-height:1.5}
+.cc-empty{padding:18px 8px;font-size:12px;color:var(--s);line-height:1.6;text-align:center}
+.edit-btn{position:absolute;top:5px;right:31px;width:22px;height:22px;background:#4B5563;color:#fff;border:none;border-radius:50%;font-size:12px;line-height:22px;text-align:center;cursor:pointer;display:none;z-index:20;padding:0;font-weight:900}
+.edit-on .edit-btn{display:block}
+.cc-chip .del-btn,.cc-chip .edit-btn{top:8px}
+.cc-chip .del-btn{right:8px;display:block}
+.cc-chip .edit-btn{right:34px;display:block}
+.tc-chip .edit-btn{top:8px;right:34px;display:block}
+.tc-chip .del-btn{top:8px;right:8px;display:block}
+.p-wrap{position:relative;flex:0 0 auto}
+.v-wrap{position:relative;flex:0 0 auto}
+.ic-edit{position:absolute;top:6px;right:34px;width:22px;height:22px;background:#4B5563;color:#fff;border:none;border-radius:50%;font-size:12px;line-height:22px;text-align:center;cursor:pointer;z-index:20;padding:0;font-weight:900}
+@media(max-width:1200px){#normalLayout{grid-template-columns:220px minmax(0,1fr)}.cc-sec{grid-column:1 / -1;position:static}}
+@media(max-width:960px){#normalLayout{grid-template-columns:1fr}.cc-sec{position:static}}
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -438,6 +472,8 @@ const VERSIONS = [
     stats:[{v:'3.0M',l:'자전거 월클릭'},{v:'1.0M',l:'에어컨 월클릭'},{v:'5월',l:'시즌 피크'}],
   },
 ];
+
+const CUSTOM_COMBOS = [];
 
 const ITEMS = {
   p1:{
@@ -778,6 +814,7 @@ function selectPersona(pid){
   document.querySelectorAll('.p-card').forEach(c=>c.classList.toggle('on', c.dataset.pid===pid));
   renderPersonaInsight(pid);
   renderItems();
+  syncComboHighlights();
 }
 
 function selectVersion(vid){
@@ -785,6 +822,17 @@ function selectVersion(vid){
   document.querySelectorAll('.v-tab').forEach(t=>t.classList.toggle('on', t.dataset.vid===vid));
   renderVersionBanner(vid);
   renderItems();
+  syncComboHighlights();
+}
+
+function syncComboHighlights(){
+  document.querySelectorAll('.tc-chip').forEach(c=>{
+    c.classList.toggle('on', c.dataset.pid===curPersona && c.dataset.vid===curVersion);
+  });
+  document.querySelectorAll('.cc-chip').forEach((chip, idx)=>{
+    const c = CUSTOM_COMBOS[idx];
+    chip.classList.toggle('on', !!c && c.pid===curPersona && c.vid===curVersion);
+  });
 }
 
 function renderPersonaInsight(pid){ const el=document.getElementById('pInsight'); if(el){ el.className='p-insight'; el.innerHTML=''; } }
@@ -871,6 +919,7 @@ function getSerializableState(){
     personas: JSON.parse(JSON.stringify(PERSONAS)),
     versions: JSON.parse(JSON.stringify(VERSIONS)),
     items: JSON.parse(JSON.stringify(ITEMS)),
+    customCombos: JSON.parse(JSON.stringify(CUSTOM_COMBOS)),
     saved_at: new Date().toISOString()
   };
 }
@@ -883,6 +932,8 @@ function applyPersistedState(d){
     Object.keys(ITEMS).forEach(k=>delete ITEMS[k]);
     Object.keys(d.items).forEach(k=>{ ITEMS[k] = d.items[k]; });
   }
+  CUSTOM_COMBOS.length = 0;
+  if(Array.isArray(d.customCombos)) d.customCombos.forEach(c=>CUSTOM_COMBOS.push(c));
   ensureDataShape();
   return true;
 }
@@ -1007,7 +1058,12 @@ function ensureDataShape(){
       if(!VERSIONS.some(v=>v.id===vid)) delete ITEMS[p.id][vid];
     });
   });
+  for(let i=CUSTOM_COMBOS.length-1;i>=0;i--){
+    const c = CUSTOM_COMBOS[i];
+    if(!PERSONAS.some(p=>p.id===c.pid) || !VERSIONS.some(v=>v.id===c.vid)) CUSTOM_COMBOS.splice(i,1);
+  }
 }
+
 
 function updateDataBar(){
   const personaCount = PERSONAS.length;
@@ -1024,6 +1080,7 @@ function updateDataBar(){
 function refreshDerivedViews(){
   updateDataBar();
   renderTopCombos();
+  renderCustomCombos();
   if(curView==='matrix') renderMatrix();
   if(curView==='data') renderDataView();
 }
@@ -1063,6 +1120,66 @@ function categoryOptionsHtml(selected=''){
   return CATEGORY_OPTIONS.map(cat => '<option value="' + cat + '"' + (cat===selected ? ' selected' : '') + '>' + cat + '</option>').join('');
 }
 
+
+function cleanVersionLabel(label){
+  return String(label||'').replace(/^[^\w가-힣0-9]+\s*/,'').trim();
+}
+
+function extractPersonaCategories(p){
+  const out = [];
+  (p.tags||[]).forEach(tag=>{ if(CATEGORY_OPTIONS.includes(tag) && !out.includes(tag)) out.push(tag); });
+  String(p.category||'').split(/[·,/]/).forEach(part=>{
+    const cleaned = part.replace(/\([^)]*\)/g,'').trim();
+    if(CATEGORY_OPTIONS.includes(cleaned) && !out.includes(cleaned)) out.push(cleaned);
+  });
+  return out;
+}
+
+function personaOptionsHtml(selected='', includeNone=false){
+  const opts = PERSONAS.map(p=>'<option value="'+p.id+'"'+(p.id===selected?' selected':'')+'>'+p.em+' '+p.name+'</option>');
+  if(includeNone) opts.unshift('<option value=""'+(selected===''?' selected':'')+'>선택하지 않음</option>');
+  return opts.join('');
+}
+
+function versionOptionsHtml(selected='', includeNone=false){
+  const opts = VERSIONS.map(v=>'<option value="'+v.id+'"'+(v.id===selected?' selected':'')+'>'+cleanVersionLabel(v.label)+'</option>');
+  if(includeNone) opts.unshift('<option value=""'+(selected===''?' selected':'')+'>선택하지 않음</option>');
+  return opts.join('');
+}
+
+function renderCustomCombos(){
+  const el = document.getElementById('customCombos');
+  const addWrap = document.getElementById('customComboAddWrap');
+  if(!el) return;
+  if(addWrap) addWrap.innerHTML = editMode ? '<button class="cc-add" onclick="showAddCustomComboModal()">+ 추가</button>' : '';
+  if(!CUSTOM_COMBOS.length){
+    el.innerHTML = '<div class="cc-empty">저장한 조합이 없어요.<br>' + (editMode ? '편집 모드에서 추가할 수 있어요.' : '편집하기를 눌러 추가해보세요.') + '</div>';
+    return;
+  }
+  el.innerHTML = CUSTOM_COMBOS.map((c, idx)=>{
+    const persona = PERSONAS.find(p=>p.id===c.pid);
+    const version = VERSIONS.find(v=>v.id===c.vid);
+    if(!persona || !version) return '';
+    const active = curPersona===c.pid && curVersion===c.vid;
+    const delBtn = editMode ? '<button class="del-btn" onclick="event.stopPropagation();deleteCustomCombo('+idx+')" title="삭제">×</button>' : '';
+    const editBtn = editMode ? '<button class="edit-btn" onclick="event.stopPropagation();showEditCustomComboModal('+idx+')" title="수정">✎</button>' : '';
+    return '<div class="cc-chip'+(active?' on':'')+'" onclick="selectCustomCombo('+idx+')">'+editBtn+delBtn+
+      '<div class="cc-name">'+(c.name||('조합 '+(idx+1)))+'</div>'+
+      '<div class="cc-sub">'+persona.name+'<br>'+cleanVersionLabel(version.label)+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+function selectCustomCombo(idx){
+  const c = CUSTOM_COMBOS[idx];
+  if(!c) return;
+  setView('normal');
+  selectPersona(c.pid);
+  selectVersion(c.vid);
+  document.querySelectorAll('.cc-chip').forEach((chip,i)=>chip.classList.toggle('on', i===idx));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
 function renderItems(){
   const grid = document.getElementById('itemsGrid');
   const empty = document.getElementById('emptyState');
@@ -1080,10 +1197,11 @@ function renderItems(){
     const searchHtml = metaTxt ? `<div class="ic-search">${metaTxt}</div>` : '';
     const discHtml = item.disc ? `<span class="ic-disc">-${item.disc}</span>` : '';
     const dragAttr = editMode ? 'draggable="true"' : '';
-    const delBtn  = editMode ? `<button class="ic-del" onclick="deleteItem('${pid}','${vid}',${i})" title="삭제">×</button>` : '';
+    const delBtn  = editMode ? `<button class="ic-del" onclick="event.stopPropagation();deleteItem('${pid}','${vid}',${i})" title="삭제">×</button>` : '';
+    const editBtn = editMode ? `<button class="ic-edit" onclick="event.stopPropagation();showEditItemModal('${pid}','${vid}',${i})" title="수정">✎</button>` : '';
     return `
     <div class="ic" ${dragAttr} data-idx="${i}">
-      ${delBtn}
+      ${editBtn}${delBtn}
       <div class="ic-body">
         ${searchHtml}
         <div class="ic-topline">
@@ -1155,6 +1273,55 @@ function updateDiscountPreview(){
   discEl.value = calculateDiscountFromManwon(priceEl.value, originalEl.value);
 }
 
+function normalizeBulkVolume(text){
+  const raw = String(text||'').trim().replace(/,/g,'');
+  if(!raw) return 0;
+  const m = raw.match(/([\d.]+)\s*([KkMm])?$/);
+  if(!m) return 0;
+  const n = parseFloat(m[1]);
+  if(!Number.isFinite(n)) return 0;
+  const unit = (m[2]||'').toUpperCase();
+  if(unit==='M') return Math.round(n*1000000);
+  if(unit==='K') return Math.round(n*1000);
+  return Math.round(n);
+}
+
+function parsePercentLoose(text){
+  const m = String(text||'').replace(/,/g,'').match(/-?([\d.]+)/);
+  return m ? m[1] : '';
+}
+
+function parseManwonLoose(text){
+  const m = String(text||'').replace(/,/g,'').match(/([\d.]+)/);
+  return m ? parseFloat(m[1]) : NaN;
+}
+
+function parseDiscountLoose(text){
+  const m = String(text||'').replace(/,/g,'').match(/-?([\d.]+)/);
+  if(!m) return NaN;
+  return parseFloat(m[1]);
+}
+
+function formatManwonLoose(value){
+  const n = Number(value);
+  if(!Number.isFinite(n)) return '';
+  return String(Math.round(n*100)/100).replace(/\.0+$/,'').replace(/(\.\d*[1-9])0+$/,'$1');
+}
+
+function deriveOriginalFromDiscount(usedManwon, discountPct){
+  const used = Number(usedManwon);
+  const discount = Number(discountPct);
+  if(!Number.isFinite(used) || !Number.isFinite(discount) || used <= 0 || discount < 0 || discount >= 100) return '';
+  const original = used / (1 - discount/100);
+  return formatManwonLoose(original);
+}
+
+function splitBulkLine(line){
+  return String(line||'').includes('	')
+    ? String(line).split('	').map(s=>s.trim())
+    : String(line).split(',').map(s=>s.trim());
+}
+
 // ── TOP 8 COMBO SCORING ──
 function computeComboScores(){
   const scores = [];
@@ -1208,6 +1375,9 @@ function restructureLayout(){
   layout.id = 'normalLayout';
   const mainCol = document.createElement('div');
   mainCol.className = 'main-col';
+  const customSec = document.createElement('div');
+  customSec.className = 'cc-sec';
+  customSec.innerHTML = '<div class="cc-head"><div class="sec-lbl" style="margin-bottom:0">커스텀 조합</div><div id="customComboAddWrap"></div></div><div class="cc-row" id="customCombos"></div>';
 
   if(matrixView) wrap.insertBefore(layout, matrixView);
   else wrap.appendChild(layout);
@@ -1216,6 +1386,7 @@ function restructureLayout(){
   mainCol.appendChild(pre);
   mainCol.appendChild(normalView);
   layout.appendChild(mainCol);
+  layout.appendChild(customSec);
 }
 
 function renderTopCombos(){
@@ -1247,6 +1418,8 @@ function selectCombo(pid,vid){
 // ── DATA VIEW ──
 function renderDataView(){
   const el = document.getElementById('dataView');
+  const selectedPersona = PERSONAS.find(p=>p.id===curPersona) || PERSONAS[0] || null;
+  const selectedVersion = VERSIONS.find(v=>v.id===curVersion) || VERSIONS[0] || null;
   // 1. Collect unique items
   const itemMap = {};
   PERSONAS.forEach(p=>{
@@ -1302,6 +1475,10 @@ function renderDataView(){
         <div class="dv-stat"><div class="dv-stat-val">${cats.length}개</div><div class="dv-stat-lbl">카테고리</div><div class="dv-stat-sub">거래완료율 보유</div></div>
         <div class="dv-stat"><div class="dv-stat-val">${PERSONAS.reduce((sum,p)=>sum + VERSIONS.reduce((acc,v)=>acc + (((ITEMS[p.id]||{})[v.id]||[]).length), 0), 0)}개</div><div class="dv-stat-lbl">페르소나×버전 배치</div><div class="dv-stat-sub">${PERSONAS.length}P × ${VERSIONS.length}V 기준</div></div>
         <div class="dv-stat"><div class="dv-stat-val">${fmtVol(allItems.reduce((s,i)=>s+i.vol,0))}</div><div class="dv-stat-lbl">총 월간 검색량</div><div class="dv-stat-sub">고유 아이템 합산</div></div>
+      </div>
+      <div class="dv-actions">
+        <div class="dv-target">현재 대상: ${selectedPersona ? selectedPersona.name : '-'} × ${selectedVersion ? cleanVersionLabel(selectedVersion.label) : '-'}</div>
+        <button class="dv-add-btn" onclick="showBulkAddItemsModal()">+ 여러매물 추가하기</button>
       </div>
     </div>
 
@@ -1406,11 +1583,6 @@ async function saveAll(){
   const remoteResult = await pushRemoteState(payload);
   isDirty=false;
   updateFab();
-  const el=document.getElementById('fabMain');
-  if(el){
-    el.innerHTML = remoteResult.ok ? '✅ 저장됨' : '💾 로컬 저장됨';
-    setTimeout(()=>{ updateFab(); }, 1800);
-  }
   showSaveStatus(remoteResult.ok ? 'Supabase에 저장됐어요.' : 'Supabase 연결 전이라 브라우저에만 저장됐어요.', !remoteResult.ok);
   return remoteResult.ok;
 }
@@ -1442,8 +1614,8 @@ window.addEventListener('beforeunload', e=>{
   if(isDirty){ e.preventDefault(); e.returnValue=''; }
 });
 
-function toggleEditMode(){
-  editMode = !editMode;
+function setEditMode(next){
+  editMode = !!next;
   const btn = document.getElementById('btn-edit');
   if(btn){
     btn.classList.toggle('on', editMode);
@@ -1460,23 +1632,25 @@ function toggleEditMode(){
   refreshDerivedViews();
 }
 
+function toggleEditMode(){
+  setEditMode(!editMode);
+}
+
 // Handle clicks on the floating action button. When not editing, enable edit mode.
 // When editing and there are unsaved changes, save all data. When editing with no changes, exit edit mode.
 async function onFabClick(){
   if(!editMode){
-    // Enter edit mode
-    toggleEditMode();
+    setEditMode(true);
     updateFab();
     return;
   }
-  // If editing and there are unsaved changes, save them
   if(isDirty){
     await saveAll();
-    // Keep edit mode enabled after saving
+    setEditMode(false);
+    updateFab();
     return;
   }
-  // If editing and no unsaved changes, exit edit mode
-  toggleEditMode();
+  setEditMode(false);
   updateFab();
 }
 
@@ -1488,7 +1662,7 @@ function renderPersonaRow(){
   pr.innerHTML='';
   PERSONAS.forEach((p, idx)=>{
     const wrap=document.createElement('div');
-    wrap.style.cssText='position:relative;flex:0 0 auto';
+    wrap.className='p-wrap';
     wrap.dataset.idx = idx;
     const d=document.createElement('div');
     d.className='p-card'+(curPersona===p.id?' on':'');
@@ -1498,6 +1672,10 @@ function renderPersonaRow(){
     d.onclick=()=>selectPersona(p.id);
     wrap.appendChild(d);
     if(editMode){
+      const edit=document.createElement('button');
+      edit.className='edit-btn'; edit.textContent='✎'; edit.title='수정';
+      edit.onclick=e=>{ e.stopPropagation(); showEditPersonaModal(p.id); };
+      wrap.appendChild(edit);
       const del=document.createElement('button');
       del.className='del-btn'; del.textContent='×'; del.title='삭제';
       del.onclick=e=>{ e.stopPropagation(); deletePersona(p.id); };
@@ -1522,13 +1700,18 @@ function renderVersionRow(){
   vr.innerHTML='';
   VERSIONS.forEach(v=>{
     const wrap=document.createElement('div');
-    wrap.style.cssText='position:relative;flex:0 0 auto';
+    wrap.className='v-wrap';
     const b=document.createElement('button');
     b.className='v-tab'+(curVersion===v.id?' on':'');
     b.dataset.vid=v.id; b.textContent=v.label;
     b.onclick=()=>selectVersion(v.id);
     wrap.appendChild(b);
     if(editMode){
+      const edit=document.createElement('button');
+      edit.className='edit-btn'; edit.style.cssText='display:block;top:0;right:24px;width:18px;height:18px;font-size:11px;line-height:18px';
+      edit.textContent='✎'; edit.title='수정';
+      edit.onclick=e=>{ e.stopPropagation(); showEditVersionModal(v.id); };
+      wrap.appendChild(edit);
       const del=document.createElement('button');
       del.className='del-btn'; del.style.cssText='display:block;top:0;right:0;width:18px;height:18px;font-size:12px;line-height:18px';
       del.textContent='×'; del.title='삭제';
@@ -1556,6 +1739,7 @@ function deletePersona(pid){
   const idx=PERSONAS.findIndex(p=>p.id===pid);
   if(idx>=0) PERSONAS.splice(idx,1);
   delete ITEMS[pid];
+  for(let i=CUSTOM_COMBOS.length-1;i>=0;i--){ if(CUSTOM_COMBOS[i].pid===pid) CUSTOM_COMBOS.splice(i,1); }
   if(curPersona===pid){ curPersona=null; document.getElementById('pInsight').className='p-insight'; }
   markDirty(); renderPersonaRow(); renderItems(); refreshDerivedViews();
 }
@@ -1565,6 +1749,7 @@ function deleteVersion(vid){
   const idx=VERSIONS.findIndex(v=>v.id===vid);
   if(idx>=0) VERSIONS.splice(idx,1);
   Object.keys(ITEMS).forEach(pid=>{ if(ITEMS[pid]) delete ITEMS[pid][vid]; });
+  for(let i=CUSTOM_COMBOS.length-1;i>=0;i--){ if(CUSTOM_COMBOS[i].vid===vid) CUSTOM_COMBOS.splice(i,1); }
   if(curVersion===vid){ curVersion=null; }
   markDirty(); renderVersionRow(); renderItems(); refreshDerivedViews();
 }
@@ -1683,6 +1868,107 @@ function selectAcItem(e,nm,cat,p,op,disc,meta,hook){
 // MODALS
 // ═══════════════════════════════════════════════════════════════════════════
 function closeModal(){ document.getElementById('modal').classList.remove('on'); }
+
+function showBulkAddItemsModal(){
+  if(!editMode){
+    setEditMode(true);
+    updateFab();
+  }
+  const pid = curPersona || PERSONAS[0]?.id || '';
+  const vid = curVersion || VERSIONS[0]?.id || '';
+  document.getElementById('modalBox').innerHTML=`
+    <div class="mo-head">
+      <div class="mo-title">여러매물 추가하기</div>
+      <button class="mo-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="mo-help">한 줄에 한 매물씩 입력하세요. 쉼표(<code>,</code>) 또는 탭으로 구분할 수 있어요.<br>형식: <b>매물이름, 카테고리, 검색량, 완료율, 중고가, 할인율</b><br>예: 선반, 가구/인테리어, 978K, 48%, 1만원, -80%</div>
+    <div class="mo-row">
+      <div class="mo-field"><div class="mo-lbl">페르소나</div><select id="mo-bulk-pid" class="mo-inp mo-select">${personaOptionsHtml(pid, true)}</select></div>
+      <div class="mo-field"><div class="mo-lbl">버전</div><select id="mo-bulk-vid" class="mo-inp mo-select">${versionOptionsHtml(vid, true)}</select></div>
+    </div>
+    <div class="mo-field">
+      <div class="mo-lbl">매물 목록</div>
+      <textarea id="mo-bulk-text" class="mo-inp mo-ta" placeholder="선반, 가구/인테리어, 978K, 48%, 1만원, -80%&#10;책상, 가구/인테리어, 512K, 63%, 8만원, -55%&#10;맥북, 디지털기기, 574K, 72%, 95만원, -31%"></textarea>
+    </div>
+    <button class="mo-btn" onclick="confirmBulkAddItems()">여러 개 추가하기</button>
+  `;
+  document.getElementById('modal').classList.add('on');
+  setTimeout(()=>document.getElementById('mo-bulk-text')?.focus(),100);
+}
+
+function confirmBulkAddItems(){
+  const pid = (document.getElementById('mo-bulk-pid')||{}).value || '';
+  const vid = (document.getElementById('mo-bulk-vid')||{}).value || '';
+  const raw = (document.getElementById('mo-bulk-text')||{}).value || '';
+  const lines = raw.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+  if(!lines.length){ alert('추가할 매물 데이터를 입력해주세요.'); return; }
+
+  const useUnassigned = !(pid && vid);
+  const targetPid = useUnassigned ? '__unassigned__' : pid;
+  const targetVid = useUnassigned ? '__pool__' : vid;
+  if(!ITEMS[targetPid]) ITEMS[targetPid] = {};
+  if(!ITEMS[targetPid][targetVid]) ITEMS[targetPid][targetVid] = [];
+
+  const added = [];
+  const failed = [];
+
+  lines.forEach((line, index)=>{
+    const parts = splitBulkLine(line).map(s=>s.trim());
+    if(parts.length < 6){
+      failed.push((index+1)+'행: 항목 수 부족');
+      return;
+    }
+    const [nmRaw, catRaw, volRaw, compRaw, priceRaw, discRaw] = parts;
+    const nm = String(nmRaw||'').trim();
+    if(!nm){
+      failed.push((index+1)+'행: 매물이름 없음');
+      return;
+    }
+    const cat = CATEGORY_OPTIONS.find(c=>c===catRaw) || catRaw || '기타';
+    const usedManwon = parseManwonLoose(priceRaw);
+    if(!Number.isFinite(usedManwon) || usedManwon <= 0){
+      failed.push((index+1)+'행: 중고가 형식 오류');
+      return;
+    }
+    const discountPct = parseDiscountLoose(discRaw);
+    const originalManwon = deriveOriginalFromDiscount(usedManwon, discountPct);
+    const searchVol = normalizeBulkVolume(volRaw);
+    const completionRate = parsePercentLoose(compRaw);
+
+    ITEMS[targetPid][targetVid].push({
+      nm,
+      cat,
+      p: formatManwonLoose(usedManwon) + '만원',
+      op: originalManwon ? originalManwon + '만원' : '',
+      disc: originalManwon ? calculateDiscountFromManwon(formatManwonLoose(usedManwon), originalManwon) : (Number.isFinite(discountPct) ? String(Math.round(discountPct)) : ''),
+      meta: buildMeta(searchVol, completionRate),
+      hook: ''
+    });
+    added.push(nm);
+  });
+
+  acCache = null;
+  if(added.length){
+    closeModal();
+    markDirty();
+    if(!useUnassigned){
+      curPersona = pid;
+      curVersion = vid;
+    }
+    renderPersonaRow();
+    renderVersionRow();
+    renderItems();
+    refreshDerivedViews();
+    let msg = added.length + '개 매물을 추가했어요.';
+    if(useUnassigned) msg += ' (선택하지 않음으로 저장)';
+    if(failed.length) msg += ' (' + failed.length + '개 행은 제외)';
+    showSaveStatus(msg, failed.length > 0);
+    if(failed.length) alert(msg + '\n\n제외된 행:\n' + failed.slice(0,10).join('\n'));
+    return;
+  }
+
+  alert('추가된 매물이 없어요.\n' + failed.join('\n'));
+}
 
 function showAddItemModal(pid, vid){
   acCache=null;
@@ -1823,12 +2109,189 @@ function confirmAddVersion(){
   const em=document.getElementById('mo-vem').value.trim()||'🆕';
   const id='v'+Date.now();
   VERSIONS.push({
-    id, label:em+' '+label,
+    id, label:em+' '+label, comboShort:label,
     title:document.getElementById('mo-vtitle').value.trim()||label,
     desc:document.getElementById('mo-vdesc').value.trim(),
     stats:[]
   });
   PERSONAS.forEach(p=>{ if(!ITEMS[p.id]) ITEMS[p.id]={}; ITEMS[p.id][id]=[]; });
+  closeModal(); markDirty(); renderVersionRow(); refreshDerivedViews();
+}
+
+
+function showCustomComboModal(mode='add', idx=-1){
+  const existing = idx >= 0 ? CUSTOM_COMBOS[idx] : null;
+  document.getElementById('modalBox').innerHTML=`
+    <div class="mo-head">
+      <div class="mo-title">${mode==='edit' ? '커스텀 조합 수정' : '커스텀 조합 추가'}</div>
+      <button class="mo-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="mo-field"><div class="mo-lbl">이름 *</div><input id="mo-ccombo-name" class="mo-inp" placeholder="hansy1" value="${String(existing?.name||'').replace(/"/g,'&quot;')}"/></div>
+    <div class="mo-field"><div class="mo-lbl">페르소나</div><select id="mo-ccombo-pid" class="mo-inp mo-select">${personaOptionsHtml(existing?.pid || curPersona || PERSONAS[0]?.id || '')}</select></div>
+    <div class="mo-field"><div class="mo-lbl">버전</div><select id="mo-ccombo-vid" class="mo-inp mo-select">${versionOptionsHtml(existing?.vid || curVersion || VERSIONS[0]?.id || '')}</select></div>
+    <button class="mo-btn" onclick="${mode==='edit' ? 'confirmEditCustomCombo('+idx+')' : 'confirmAddCustomCombo()'}">${mode==='edit' ? '저장하기' : '추가하기'}</button>
+  `;
+  document.getElementById('modal').classList.add('on');
+  setTimeout(()=>document.getElementById('mo-ccombo-name')?.focus(),100);
+}
+function showAddCustomComboModal(){ showCustomComboModal('add'); }
+function showEditCustomComboModal(idx){ showCustomComboModal('edit', idx); }
+function confirmAddCustomCombo(){
+  const name=(document.getElementById('mo-ccombo-name').value||'').trim();
+  const pid=(document.getElementById('mo-ccombo-pid').value||'').trim();
+  const vid=(document.getElementById('mo-ccombo-vid').value||'').trim();
+  if(!name){ alert('이름을 입력해주세요'); return; }
+  CUSTOM_COMBOS.push({ name, pid, vid });
+  closeModal(); markDirty(); refreshDerivedViews();
+}
+function confirmEditCustomCombo(idx){
+  const c = CUSTOM_COMBOS[idx];
+  if(!c) return;
+  const name=(document.getElementById('mo-ccombo-name').value||'').trim();
+  const pid=(document.getElementById('mo-ccombo-pid').value||'').trim();
+  const vid=(document.getElementById('mo-ccombo-vid').value||'').trim();
+  if(!name){ alert('이름을 입력해주세요'); return; }
+  c.name = name; c.pid = pid; c.vid = vid;
+  closeModal(); markDirty(); refreshDerivedViews();
+}
+function deleteCustomCombo(idx){
+  if(!confirm('이 커스텀 조합을 삭제하시겠습니까?')) return;
+  CUSTOM_COMBOS.splice(idx,1);
+  markDirty(); refreshDerivedViews();
+}
+
+function showEditItemModal(pid, vid, idx){
+  const item = (((ITEMS[pid]||{})[vid]||[])[idx]);
+  if(!item) return;
+  acCache=null;
+  document.getElementById('modalBox').innerHTML=`
+    <div class="mo-head">
+      <div class="mo-title">매물 수정</div>
+      <button class="mo-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="mo-field">
+      <div class="mo-lbl">상품명 *</div>
+      <div class="ac-wrap">
+        <input id="mo-nm" class="mo-inp" placeholder="노트북, 자전거, 에어컨…" autocomplete="off"
+          oninput="showAcDrop(this,this.closest('.ac-wrap').querySelector('.ac-drop'))"
+          onfocus="showAcDrop(this,this.closest('.ac-wrap').querySelector('.ac-drop'))"
+          onblur="setTimeout(()=>this.closest('.ac-wrap').querySelector('.ac-drop').classList.remove('on'),200)" value="${String(item.nm||'').replace(/"/g,'&quot;')}"/>
+        <div class="ac-drop"></div>
+      </div>
+    </div>
+    <div class="mo-row">
+      <div class="mo-field"><div class="mo-lbl">카테고리</div><select id="mo-cat" class="mo-inp mo-select"><option value="">선택하세요</option>${categoryOptionsHtml(item.cat||'')}</select></div>
+      <div class="mo-field"><div class="mo-lbl">중고가</div><div class="mo-inp-wrap"><input id="mo-p" class="mo-inp" inputmode="decimal" placeholder="13" oninput="sanitizeNumericInput(this,true);updateDiscountPreview()" value="${parseManwonNumber(item.p||'')}"/><span class="mo-suf">만원</span></div></div>
+      <div class="mo-field"><div class="mo-lbl">원가(정가)</div><div class="mo-inp-wrap"><input id="mo-op" class="mo-inp" inputmode="decimal" placeholder="80" oninput="sanitizeNumericInput(this,true);updateDiscountPreview()" value="${parseManwonNumber(item.op||'')}"/><span class="mo-suf">만원</span></div></div>
+      <div class="mo-field"><div class="mo-lbl">할인율 (자동 계산)</div><div class="mo-inp-wrap"><input id="mo-disc" class="mo-inp" inputmode="decimal" placeholder="자동 계산" readonly tabindex="-1" value="${String(item.disc||'').replace(/[^\d.]/g,'')}"/><span class="mo-suf">%</span></div></div>
+    </div>
+    <div class="mo-row">
+      <div class="mo-field"><div class="mo-lbl">검색량</div><div class="mo-inp-wrap"><input id="mo-search-vol" class="mo-inp" inputmode="numeric" placeholder="2680000" oninput="sanitizeNumericInput(this,false)" value="${parseVol(item.meta||'')||''}"/><span class="mo-suf">건/월</span></div></div>
+      <div class="mo-field"><div class="mo-lbl">완료율</div><div class="mo-inp-wrap"><input id="mo-comp-rate" class="mo-inp" inputmode="decimal" placeholder="46" oninput="sanitizeNumericInput(this,true)" value="${parseCompletion(item.meta||'')}"/><span class="mo-suf">%</span></div></div>
+    </div>
+    <button class="mo-btn" onclick="confirmEditItem('${pid}','${vid}',${idx})">저장하기</button>
+  `;
+  document.getElementById('modal').classList.add('on');
+  setTimeout(()=>{ updateDiscountPreview(); document.getElementById('mo-nm')?.focus(); },120);
+}
+function confirmEditItem(pid, vid, idx){
+  const item = (((ITEMS[pid]||{})[vid]||[])[idx]);
+  if(!item) return;
+  const g=id=>(document.getElementById(id)||{}).value||'';
+  const nm=(g('mo-nm')||'').trim();
+  if(!nm){ alert('상품명을 입력해주세요'); return; }
+  const price=g('mo-p').trim();
+  const originalPrice=g('mo-op').trim();
+  item.nm = nm;
+  item.cat = g('mo-cat') || '기타';
+  item.p = price ? price + '만원' : '';
+  item.op = originalPrice ? originalPrice + '만원' : '';
+  item.disc = calculateDiscountFromManwon(price, originalPrice);
+  item.meta = buildMeta(g('mo-search-vol').trim(), g('mo-comp-rate').trim());
+  item.hook = '';
+  acCache=null;
+  closeModal(); markDirty(); renderItems(); refreshDerivedViews();
+}
+
+function showEditPersonaModal(pid){
+  const p = PERSONAS.find(x=>x.id===pid);
+  if(!p) return;
+  const cats = extractPersonaCategories(p).join(', ');
+  document.getElementById('modalBox').innerHTML=`
+    <div class="mo-head">
+      <div class="mo-title">페르소나 수정</div>
+      <button class="mo-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="mo-field"><div class="mo-lbl">이모지</div><input id="mo-em" class="mo-inp" style="font-size:20px" placeholder="🏃" value="${p.em||''}"/></div>
+    <div class="mo-field"><div class="mo-lbl">이름 *</div><input id="mo-pname" class="mo-inp" placeholder="운동 마니아" value="${String(p.name||'').replace(/"/g,'&quot;')}"/></div>
+    <div class="mo-field"><div class="mo-lbl">카드 설명/나이대 *</div><input id="mo-age" class="mo-inp" placeholder="20-48" value="${String(p.short||p.profile||'').replace(/"/g,'&quot;')}"/></div>
+    <div class="mo-field">
+      <div class="mo-lbl">관심 카테고리</div>
+      <div class="ac-wrap">
+        <input id="mo-cats" class="mo-inp" placeholder="디지털기기, 생활가전" autocomplete="off"
+          oninput="showCategoryAcDrop(this,this.closest('.ac-wrap').querySelector('.ac-drop'))"
+          onfocus="showCategoryAcDrop(this,this.closest('.ac-wrap').querySelector('.ac-drop'))"
+          onblur="setTimeout(()=>this.closest('.ac-wrap').querySelector('.ac-drop').classList.remove('on'),200)" value="${String(cats).replace(/"/g,'&quot;')}"/>
+        <div class="ac-drop"></div>
+      </div>
+    </div>
+    <div class="mo-field"><div class="mo-lbl">설명 (선택)</div><input id="mo-pdesc" class="mo-inp" placeholder="운동 장비 전문 구매자" value="${(p.desc||'').replace(/"/g,'&quot;')}"/></div>
+    <button class="mo-btn" onclick="confirmEditPersona('${pid}')">저장하기</button>
+  `;
+  document.getElementById('modal').classList.add('on');
+  setTimeout(()=>document.getElementById('mo-pname')?.focus(),100);
+}
+function confirmEditPersona(pid){
+  const p = PERSONAS.find(x=>x.id===pid);
+  if(!p) return;
+  const name=(document.getElementById('mo-pname').value||'').trim();
+  const short=(document.getElementById('mo-age').value||'').trim();
+  if(!name || !short){ alert('이름과 카드 설명을 입력해주세요'); return; }
+  const catsInput=(document.getElementById('mo-cats').value||'').trim();
+  const catsList=catsInput?catsInput.split(/[\s,]+/).map(s=>s.trim()).filter(s=>s):[];
+  p.em = document.getElementById('mo-em').value.trim()||'👤';
+  p.name = name;
+  p.short = short;
+  p.profile = short;
+  p.desc = document.getElementById('mo-pdesc').value.trim();
+  p.tags = catsList.length ? catsList : (p.tags||[]);
+  p.category = catsList.length ? catsList.join(' · ') : '-';
+  closeModal(); markDirty(); renderPersonaRow(); refreshDerivedViews();
+}
+
+function splitVersionLabelParts(label){
+  const txt = String(label||'').trim();
+  const m = txt.match(/^([^\s]+)\s+(.+)$/);
+  return m ? { em:m[1], name:m[2] } : { em:'🆕', name:txt };
+}
+function showEditVersionModal(vid){
+  const v = VERSIONS.find(x=>x.id===vid);
+  if(!v) return;
+  const parts = splitVersionLabelParts(v.label);
+  document.getElementById('modalBox').innerHTML=`
+    <div class="mo-head">
+      <div class="mo-title">버전 수정</div>
+      <button class="mo-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="mo-field"><div class="mo-lbl">이모지</div><input id="mo-vem" class="mo-inp" style="font-size:20px" placeholder="🎪" value="${String(parts.em||'').replace(/"/g,'&quot;')}"/></div>
+    <div class="mo-field"><div class="mo-lbl">버전 이름 *</div><input id="mo-vlabel" class="mo-inp" placeholder="버전7 · 선물용" value="${String(parts.name||'').replace(/"/g,'&quot;')}"/></div>
+    <div class="mo-field"><div class="mo-lbl">광고 카피</div><input id="mo-vtitle" class="mo-inp" placeholder="선물은 당근에서 반값에!" value="${(v.title||'').replace(/"/g,'&quot;')}"/></div>
+    <div class="mo-field"><div class="mo-lbl">설명 (선택)</div><input id="mo-vdesc" class="mo-inp" placeholder="선물 시즌 공략…" value="${(v.desc||'').replace(/"/g,'&quot;')}"/></div>
+    <button class="mo-btn" onclick="confirmEditVersion('${vid}')">저장하기</button>
+  `;
+  document.getElementById('modal').classList.add('on');
+  setTimeout(()=>document.getElementById('mo-vlabel')?.focus(),100);
+}
+function confirmEditVersion(vid){
+  const v = VERSIONS.find(x=>x.id===vid);
+  if(!v) return;
+  const label=(document.getElementById('mo-vlabel').value||'').trim();
+  if(!label){ alert('버전 이름을 입력해주세요'); return; }
+  const em=document.getElementById('mo-vem').value.trim()||'🆕';
+  v.label = em + ' ' + label;
+  v.comboShort = cleanVersionLabel(v.label);
+  v.title = document.getElementById('mo-vtitle').value.trim()||label;
+  v.desc = document.getElementById('mo-vdesc').value.trim();
   closeModal(); markDirty(); renderVersionRow(); refreshDerivedViews();
 }
 
