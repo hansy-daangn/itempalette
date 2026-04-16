@@ -355,7 +355,7 @@ tr:nth-child(even) td{background:#FAFAFA}
   <div class="sec-lbl">페르소나 선택</div>
   <div class="p-row" id="personaRow"></div>
   <!-- VERSION TABS -->
-  <div class="sec-lbl">버전 선택</div>
+  <div class="sec-lbl">테마 선택</div>
   <div class="v-row" id="versionRow"></div>
   </div><!-- end of preViews -->
   <!-- NORMAL VIEW -->
@@ -1298,7 +1298,7 @@ function restructureLayout(){
   mainCol.className = 'main-col';
   const customSec = document.createElement('div');
   customSec.className = 'cc-sec';
-  customSec.innerHTML = '<div class="cc-head"><div class="sec-lbl" style="margin-bottom:0">커스텀 조합</div><div id="customComboAddWrap"></div></div><div class="cc-row" id="customCombos"></div>';
+  customSec.innerHTML = '<div class="cc-head"><div class="sec-lbl" style="margin-bottom:0">추천 조합</div><div id="customComboAddWrap"></div></div><div class="cc-row" id="customCombos"></div>';
   if(matrixView) wrap.insertBefore(layout, matrixView);
   else wrap.appendChild(layout);
   if(sidebar) layout.appendChild(sidebar);
@@ -1985,7 +1985,7 @@ function showCustomComboModal(mode='add', idx=-1){
   const existing = idx >= 0 ? CUSTOM_COMBOS[idx] : null;
   document.getElementById('modalBox').innerHTML=`
     <div class="mo-head">
-      <div class="mo-title">${mode==='edit' ? '커스텀 조합 수정' : '커스텀 조합 추가'}</div>
+      <div class="mo-title">${mode==='edit' ? '추천 조합 수정' : '추천 조합 추가'}</div>
       <button class="mo-close" onclick="closeModal()">×</button>
     </div>
     <div class="mo-field"><div class="mo-lbl">이름 *</div><input id="mo-ccombo-name" class="mo-inp" placeholder="hansy1" value="${String(existing?.name||'').replace(/"/g,'&quot;')}"/></div>
@@ -2017,7 +2017,7 @@ function confirmEditCustomCombo(idx){
   closeModal(); markDirty(); refreshDerivedViews();
 }
 function deleteCustomCombo(idx){
-  if(!confirm('이 커스텀 조합을 삭제하시겠습니까?')) return;
+  if(!confirm('이 추천 조합을 삭제하시겠습니까?')) return;
   CUSTOM_COMBOS.splice(idx,1);
   markDirty(); refreshDerivedViews();
 }
