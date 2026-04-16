@@ -68,20 +68,37 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .items-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px}
 @media(max-width:960px){.items-grid{grid-template-columns:repeat(2,1fr)}}
 /* ITEM CARD */
-.ic{background:var(--w);border-radius:14px;box-shadow:var(--sh);transition:.15s;display:flex;flex-direction:column;position:relative}
-.ic:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.13)}
-.ic-body{padding:12px 12px 11px;display:flex;flex-direction:column;gap:5px;position:relative}
-.ic-topline{display:flex;align-items:flex-start;gap:8px;padding-right:98px}
-.ic-rank{font-size:12px;font-weight:900;color:var(--o);flex:0 0 auto;line-height:1.35}
-.ic-search{position:absolute;top:12px;right:12px;background:var(--bg);color:var(--s);font-size:10px;font-weight:700;padding:3px 7px;border-radius:999px;white-space:nowrap}
-.ic-cat{font-size:10px;color:var(--s);margin-left:36px}
-.ic-nm{font-size:14px;font-weight:800;line-height:1.35;flex:1}
-.ic-pr{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-top:2px}
-.ic-disc{background:#F1F1F1;color:#444;font-size:11px;font-weight:900;padding:2px 7px;border-radius:999px;border:1px solid #E0E0E0;white-space:nowrap}
-.ic-p{font-size:16px;font-weight:900;color:var(--o)}
-.ic-op{font-size:11px;color:var(--s);text-decoration:line-through}
-.ic-btn{display:flex;align-items:center;justify-content:center;gap:5px;background:#4A4A4A;color:#fff;font-size:12px;font-weight:800;padding:9px;border-radius:10px;text-decoration:none;transition:.15s;margin-top:6px}
-.ic-btn:hover{background:#2F2F2F}
+.ic{
+  background:var(--w);
+  border-radius:16px;
+  border:1px solid var(--b);
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  transition:.15s;
+  display:flex;
+  flex-direction:column;
+  position:relative
+}
+.ic:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.ic-body{padding:11px 11px 11px;display:flex;flex-direction:column;gap:0;position:relative}
+.ic-topline{display:flex;align-items:center;justify-content:flex-start;min-height:18px;margin-bottom:8px}
+.ic-rank{font-size:12px;font-weight:900;color:var(--o);line-height:1;flex:0 0 auto}
+.ic-nm{font-size:22px;font-weight:900;line-height:1.14;word-break:keep-all;margin-bottom:9px}
+.ic-search{display:none!important}
+.ic-cat{display:none!important}
+.ic-pr{display:none!important}
+.ic-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.ic-meta-box{background:#fafafa;border:1px solid #efefef;border-radius:8px;padding:6px}
+.ic-meta-k{font-size:10px;color:var(--s);line-height:1;margin-bottom:3px}
+.ic-meta-v{font-size:14px;line-height:1.15;color:var(--t);font-weight:500}
+.ic-meta-v.price{color:var(--o);font-weight:500}
+.ic-meta-v.muted{color:#8b8b8b;text-decoration:line-through}
+.ic-btn-wrap{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:0}
+.ic-btn{
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  background:#666;color:#fff;font-size:12px;font-weight:800;
+  padding:8px;border-radius:8px;text-decoration:none;transition:.15s;height:34px
+}
+.ic-btn:hover{background:#555}
 /* MATRIX VIEW */
 .matrix-wrap{display:none;overflow-x:auto}
 .matrix-wrap.on{display:block}
@@ -229,12 +246,12 @@ tr:nth-child(even) td{background:#FAFAFA}
 #normalView{margin-left:0}
 
 .items-grid{gap:12px}
-.ic{border:1px solid var(--b);box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.ic{min-width: 220px;border:1px solid var(--b);box-shadow:0 2px 10px rgba(0,0,0,.05)}
 .ic:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
 .ic-body{padding:12px 13px 12px;gap:8px}
 .ic-topline{display:flex;align-items:center;gap:8px;padding-right:92px;min-height:22px}
 .ic-rank{font-size:12px;font-weight:900;color:var(--o);line-height:1}
-.ic-nm{font-size:15px;font-weight:800;line-height:1.35;min-width:0}
+.ic-nm{font-size:20px;font-weight:800;line-height:1.35;min-width:0}
 .ic-cat{display:none!important}
 .ic-search{top:12px;right:12px;background:#F6F6F6;color:#666;font-size:10px;padding:4px 8px}
 .ic-pr{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:0}
@@ -1102,6 +1119,15 @@ function parseManwonNumber(s){
   return m ? m[1] : '';
 }
 
+
+function parseSearchDisplay(meta){
+  const m = String(meta||'').match(/검색\s*([^·]+)/);
+  return m ? m[1].trim().replace(/\/월$/,'') : '';
+}
+function parseCompletionDisplay(meta){
+  const m = String(meta||'').match(/완료율\s*(\d+(?:\.\d+)?)%/);
+  return m ? (m[1] + '%') : '';
+}
 function parseCompletion(meta){
   const m = String(meta||'').match(/완료율\s*(\d+(?:\.\d+)?)%/);
   return m ? m[1] : '';
@@ -1192,10 +1218,11 @@ function renderItems(){
   const items = ITEMS[curPersona][curVersion];
   const pid=curPersona, vid=curVersion;
   grid.innerHTML = items.map((item, i)=>{
-    const url = 'https://www.daangn.com/kr/buy-sell/s/?in=%EC%97%AD%EC%82%BC%EB%8F%99-6035&search=' + encodeURIComponent(item.nm);
-    const metaTxt = (((item.meta||'').replace(/^[📊⚡]\s*/u, '')).split(' · ')[0] || '').trim();
-    const searchHtml = metaTxt ? `<div class="ic-search">${metaTxt}</div>` : '';
-    const discHtml = item.disc ? `<span class="ic-disc">-${item.disc}</span>` : '';
+    const daangnUrl = 'https://www.daangn.com/kr/buy-sell/s/?in=%EC%97%AD%EC%82%BC%EB%8F%99-6035&search=' + encodeURIComponent(item.nm);
+    const coupangUrl = 'http://coupang.com/np/search?component=&q=' + encodeURIComponent(item.nm);
+    const usedPrice = item.p || '';
+    const searchText = parseSearchDisplay(item.meta || '');
+    const completionText = parseCompletionDisplay(item.meta || '');
     const dragAttr = editMode ? 'draggable="true"' : '';
     const delBtn  = editMode ? `<button class="ic-del" onclick="event.stopPropagation();deleteItem('${pid}','${vid}',${i})" title="삭제">×</button>` : '';
     const editBtn = editMode ? `<button class="ic-edit" onclick="event.stopPropagation();showEditItemModal('${pid}','${vid}',${i})" title="수정">✎</button>` : '';
@@ -1203,19 +1230,28 @@ function renderItems(){
     <div class="ic" ${dragAttr} data-idx="${i}">
       ${editBtn}${delBtn}
       <div class="ic-body">
-        ${searchHtml}
         <div class="ic-topline">
           <div class="ic-rank">${i+1}위</div>
-          <div class="ic-nm">${item.nm}</div>
         </div>
-        <div class="ic-pr">
-          <div class="ic-pricegrp">
-            <span class="ic-p">${item.p||''}</span>
-            <span class="ic-op">${item.op||''}</span>
+        <div class="ic-nm">${item.nm}</div>
+        <div class="ic-meta">
+          <div class="ic-meta-box">
+            <div class="ic-meta-k">중고가</div>
+            <div class="ic-meta-v price">${usedPrice}</div>
           </div>
-          ${discHtml}
+          <div class="ic-meta-box">
+            <div class="ic-meta-k">거래완료율</div>
+            <div class="ic-meta-v">${completionText}</div>
+          </div>
+          <div class="ic-meta-box">
+            <div class="ic-meta-k">검색량</div>
+            <div class="ic-meta-v">${searchText}</div>
+          </div>
         </div>
-        <a class="ic-btn" href="${url}" target="_blank">당근에서 보기</a>
+        <div class="ic-btn-wrap">
+          <a class="ic-btn" href="${daangnUrl}" target="_blank">당근가</a>
+          <a class="ic-btn" href="${coupangUrl}" target="_blank">원가</a>
+        </div>
       </div>
     </div>`;
   }).join('');
