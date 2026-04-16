@@ -89,8 +89,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sa
 .ic-meta{display: grid;grid-template-columns: repeat(2, minmax(72px, 1fr));gap: 8px; margin-bottom:10px}
 .ic-meta-box{background:#fafafa;border:1px solid #efefef;border-radius:8px;padding:6px}
 .ic-meta-k{white-space: nowrap;font-size:10px;color:var(--s);line-height:1;margin-bottom:3px}
-.ic-meta-v{white-space: nowrap;font-size:14px;line-height:1.15;color:var(--t);font-weight:600}
-.ic-meta-v.price{color:var(--o);font-weight:700}
+.ic-meta-v{white-space: nowrap;font-size:14px;line-height:1.15;color:var(--t);font-weight:500}
+.ic-meta-v.price{color:var(--o);font-weight:500}
 .ic-meta-v.muted{color:#8b8b8b;text-decoration:line-through}
 .ic-btn-wrap{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:0}
 .ic-btn{
@@ -142,6 +142,8 @@ tr:nth-child(even) td{background:#FAFAFA}
 .dv-target{font-size:11px;color:var(--s);margin-right:auto}
 .dv-add-btn{border:none;background:var(--o);color:#fff;font-size:12px;font-weight:800;padding:10px 14px;border-radius:10px;cursor:pointer;transition:.15s}
 .dv-add-btn:hover{background:var(--od)}
+.dv-save-btn{background:var(--w);color:var(--o);border:1.5px solid var(--o)}
+.dv-save-btn:hover{background:var(--ol)}
 .mo-ta{width:100%;min-height:220px;resize:vertical;line-height:1.5}
 .mo-help{font-size:11px;color:var(--s);line-height:1.55;margin:-4px 0 12px}
 /* EMPTY */
@@ -1246,6 +1248,53 @@ function splitBulkLine(line){
     ? String(line).split('	').map(s=>s.trim())
     : String(line).split(',').map(s=>s.trim());
 }
+
+function normalizeDiscountLabel(value){
+  const raw = String(value || '').trim();
+  if(!raw) return '';
+  const num = raw.replace(/%/g,'').replace(/^\+?/,'').replace(/^-?/,'').trim();
+  return num ? ('-' + num + '%') : '';
+}
+
+function downloadItemsTxt(){
+  const lines = [];
+  Object.values(ITEMS).forEach(pvObj=>{
+    if(!pvObj || typeof pvObj !== 'object') return;
+    Object.values(pvObj).forEach(arr=>{
+      if(!Array.isArray(arr)) return;
+      arr.forEach(it=>{
+        if(!it || !it.nm) return;
+        const volText = parseSearchDisplay(it.meta || '') || (parseVol(it.meta || '') ? fmtVol(parseVol(it.meta || '')) : '');
+        lines.push([
+          String(it.nm || '').trim(),
+          String(it.cat || '').trim(),
+          volText,
+          String(it.p || '').trim(),
+          normalizeDiscountLabel(it.disc)
+        ].join(', '));
+      });
+    });
+  });
+
+  if(!lines.length){
+    alert('저장할 매물이 없어요.');
+    return;
+  }
+
+  const blob = new Blob([lines.join('
+')], { type:'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const now = new Date();
+  const dateText = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+  a.href = url;
+  a.download = '매물목록_' + dateText + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+  showSaveStatus('매물목록 txt를 저장했어요.');
+}
 // ── TOP 8 COMBO SCORING ──
 function computeComboScores(){
   const scores = [];
@@ -1387,6 +1436,7 @@ function renderDataView(){
       </div>
       <div class="dv-actions">
         <div class="dv-target">현재 대상: ${selectedPersona ? selectedPersona.name : '-'} × ${selectedVersion ? cleanVersionLabel(selectedVersion.label) : '-'}</div>
+        <button class="dv-add-btn dv-save-btn" onclick="downloadItemsTxt()">매물목록 저장하기</button>
         <button class="dv-add-btn" onclick="showBulkAddItemsModal()">+ 여러매물 추가하기</button>
       </div>
     </div>
@@ -1734,6 +1784,156 @@ function selectAcItem(e,nm,cat,p,op,disc,meta,hook){
 // MODALS
 // ═══════════════════════════════════════════════════════════════════════════
 function closeModal(){ document.getElementById('modal').classList.remove('on'); }
+
+function getAllItemsAsBulkText(){
+  const lines = [];
+  Object.keys(ITEMS).forEach(pid=>{
+    const versionsObj = ITEMS[pid] || {};
+    Object.keys(versionsObj).forEach(vid=>{
+      const arr = versionsObj[vid];
+      if(!Array.isArray(arr)) return;
+      arr.forEach(it=>{
+        if(!it || !it.nm) return;
+        const vol = parseSearchDisplay(it.meta || '');
+        const price = parseManwonNumber(it.p || '');
+        const disc = (String(it.disc || '').replace(/[^\d.]/g,'') || '');
+        lines.push([
+          it.nm || '',
+          it.cat || '',
+          vol || '',
+          price ? price + '만원' : '',
+          disc ? '-' + disc + '%' : ''
+        ].join(', '));
+      });
+    });
+  });
+  return lines.join('\n');
+}
+
+function downloadTextFile(filename, content){
+  const blob = new Blob([content], { type:'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+function downloadAllItemsTxt(){
+  const stamp = new Date();
+  const pad = n => String(n).padStart(2,'0');
+  const filename = 'all-items-' + stamp.getFullYear() + pad(stamp.getMonth()+1) + pad(stamp.getDate()) + '-' + pad(stamp.getHours()) + pad(stamp.getMinutes()) + pad(stamp.getSeconds()) + '.txt';
+  downloadTextFile(filename, getAllItemsAsBulkText());
+}
+
+function clearAllItemsData(){
+  Object.keys(ITEMS).forEach(pid=>{
+    const versionsObj = ITEMS[pid] || {};
+    Object.keys(versionsObj).forEach(vid=>{
+      if(Array.isArray(versionsObj[vid])) versionsObj[vid] = [];
+    });
+  });
+  acCache = null;
+}
+
+function showReplaceAllItemsModal(){
+  if(!editMode){
+    setEditMode(true);
+    updateFab();
+  }
+  document.getElementById('modalBox').innerHTML=`
+    <div class="mo-head">
+      <div class="mo-title">전체매물 교체하기</div>
+      <button class="mo-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="mo-help">한 줄에 한 매물씩 입력하세요. 쉼표(<code>,</code>) 또는 탭으로 구분할 수 있어요.<br>형식: <b>매물이름, 카테고리, 검색량, 중고가, 할인율</b><br>예: 선반, 가구/인테리어, 978K, 1만원, -80%<br><br>교체하기를 누르면 현재 전체 매물목록이 먼저 TXT로 저장된 뒤, 기존 매물은 모두 삭제되고 아래 입력값으로 전체가 교체됩니다.</div>
+    <div class="mo-field">
+      <div class="mo-lbl">새 매물 목록</div>
+      <textarea id="mo-replace-text" class="mo-inp mo-ta" placeholder="선반, 가구/인테리어, 978K, 1만원, -80%&#10;책상, 가구/인테리어, 512K, 8만원, -55%&#10;맥북, 디지털기기, 574K, 95만원, -31%"></textarea>
+    </div>
+    <button class="mo-btn" onclick="confirmReplaceAllItems()">교체하기</button>
+  `;
+  document.getElementById('modal').classList.add('on');
+  setTimeout(()=>document.getElementById('mo-replace-text')?.focus(),100);
+}
+
+function confirmReplaceAllItems(){
+  const raw = (document.getElementById('mo-replace-text')||{}).value || '';
+  const lines = raw.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+  if(!lines.length){ alert('교체할 매물 데이터를 입력해주세요.'); return; }
+
+  const parsed = [];
+  const failed = [];
+  const incomingNames = new Set();
+
+  lines.forEach((line, index)=>{
+    const parts = splitBulkLine(line).map(s=>s.trim());
+    if(parts.length < 5){
+      failed.push((index+1)+'행: 항목 수 부족');
+      return;
+    }
+    const [nmRaw, catRaw, volRaw, priceRaw, discRaw] = parts;
+    const nm = String(nmRaw||'').trim();
+    if(!nm){
+      failed.push((index+1)+'행: 매물이름 없음');
+      return;
+    }
+    const key = normalizeName(nm);
+    if(incomingNames.has(key)) return;
+    incomingNames.add(key);
+
+    const cat = CATEGORY_OPTIONS.find(c=>c===catRaw) || catRaw || '기타';
+    const usedManwon = parseManwonLoose(priceRaw);
+    if(!Number.isFinite(usedManwon) || usedManwon <= 0){
+      failed.push((index+1)+'행: 중고가 형식 오류');
+      return;
+    }
+    const discountPct = parseDiscountLoose(discRaw);
+    const originalManwon = deriveOriginalFromDiscount(usedManwon, discountPct);
+    const searchVol = normalizeBulkVolume(volRaw);
+
+    parsed.push({
+      nm,
+      cat,
+      p: formatManwonLoose(usedManwon) + '만원',
+      op: originalManwon ? originalManwon + '만원' : '',
+      disc: originalManwon ? calculateDiscountFromManwon(formatManwonLoose(usedManwon), originalManwon) : (Number.isFinite(discountPct) ? String(Math.round(discountPct)) : ''),
+      meta: buildMeta(searchVol, ''),
+      hook: ''
+    });
+  });
+
+  if(!parsed.length){
+    alert('교체 가능한 매물이 없어요.\n' + failed.join('\n'));
+    return;
+  }
+
+  downloadAllItemsTxt();
+  clearAllItemsData();
+
+  const targetPid = curPersona || PERSONAS[0]?.id || '';
+  const targetVid = curVersion || VERSIONS[0]?.id || '';
+  if(!targetPid || !targetVid){
+    alert('기본 페르소나 또는 버전이 없어 교체할 수 없어요.');
+    return;
+  }
+  if(!ITEMS[targetPid]) ITEMS[targetPid] = {};
+  if(!ITEMS[targetPid][targetVid]) ITEMS[targetPid][targetVid] = [];
+  ITEMS[targetPid][targetVid] = parsed.slice();
+
+  closeModal();
+  markDirty();
+  saveAll();
+  renderPersonaRow();
+  renderVersionRow();
+  renderItems();
+  refreshDerivedViews();
+  showSaveStatus('전체 매물목록을 교체했어요.' + (failed.length ? ' 일부 행은 제외됐어요.' : ''));
+}
+
 function showBulkAddItemsModal(){
   if(!editMode){
     setEditMode(true);
@@ -1760,6 +1960,14 @@ function showBulkAddItemsModal(){
   document.getElementById('modal').classList.add('on');
   setTimeout(()=>document.getElementById('mo-bulk-text')?.focus(),100);
 }
+
+function normalizeName(name){
+  return String(name||'')
+    .toLowerCase()
+    .replace(/\s+/g,'')
+    .trim();
+}
+
 function confirmBulkAddItems(){
   const pid = (document.getElementById('mo-bulk-pid')||{}).value || '';
   const vid = (document.getElementById('mo-bulk-vid')||{}).value || '';
@@ -1771,7 +1979,24 @@ function confirmBulkAddItems(){
   const targetVid = useUnassigned ? '__pool__' : vid;
   if(!ITEMS[targetPid]) ITEMS[targetPid] = {};
   if(!ITEMS[targetPid][targetVid]) ITEMS[targetPid][targetVid] = [];
+  const existingNames = new Set();
+  Object.values(ITEMS).forEach(pvObj=>{
+    if(!pvObj || typeof pvObj !== 'object') return;
+    Object.values(pvObj).forEach(arr=>{
+      if(!Array.isArray(arr)) return;
+      arr.forEach(it=>{
+        const key = String(it?.nm || '').trim().toLowerCase();
+        if(key) existingNames.add(key);
+      });
+    });
+  });
   const added = [];
+  const existingNames = new Set(
+    Object.values(ITEMS)
+      .flatMap(v => Object.values(v))
+      .flat()
+      .map(it => normalizeName(it.nm))
+  );
   const failed = [];
   lines.forEach((line, index)=>{
     const parts = splitBulkLine(line).map(s=>s.trim());
@@ -1781,8 +2006,18 @@ function confirmBulkAddItems(){
     }
     const [nmRaw, catRaw, volRaw, priceRaw, discRaw] = parts;
     const nm = String(nmRaw||'').trim();
+    const key = normalizeName(nm);
+    if(existingNames.has(key)){
+      return;
+    }
+    existingNames.add(key);
+    const normalizedName = nm.toLowerCase();
     if(!nm){
       failed.push((index+1)+'행: 매물이름 없음');
+      return;
+    }
+    if(existingNames.has(normalizedName)){
+      failed.push((index+1)+'행: 중복 상품명이라 제외 (' + nm + ')');
       return;
     }
     const cat = CATEGORY_OPTIONS.find(c=>c===catRaw) || catRaw || '기타';
@@ -1803,6 +2038,7 @@ function confirmBulkAddItems(){
       meta: buildMeta(searchVol),
       hook: ''
     });
+    existingNames.add(normalizedName);
     added.push(nm);
   });
   acCache = null;
